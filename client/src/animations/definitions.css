@@ -1,0 +1,47 @@
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-down {
+  animation: fadeInDown 2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+@keyframes backgroundChangeColor {
+      0% {
+    opacity: 1;
+    background-color: black;
+  }
+
+  100% {
+    opacity: 1;
+background-color: white;  }
+}
+
+.background-color-change {
+    animation: backgroundChangeColor 2s ease-out forwards;
+}

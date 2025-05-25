@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -39,6 +40,19 @@ const fields = {
 
 export default function AuthForm() {
   const [formType, setFormType] = useState<FormType>("login");
+
+  const navigate = useNavigate()
+
+  const handleNavigate = () => {
+    if(formType == "login"){
+      setFormType("register")
+      navigate("/register")
+    }else {
+     setFormType("login")
+    navigate("/login")  
+    }
+   
+  }
 
   const {
     register,
@@ -109,7 +123,7 @@ export default function AuthForm() {
             <p>
               Don't have an account?{' '}
               <button
-                onClick={() => setFormType("register")}
+                onClick={() => handleNavigate()}
                 className="text-pink-500 hover:underline"
               >
                 Sign Up
@@ -119,7 +133,7 @@ export default function AuthForm() {
             <p>
               Already have an account?{' '}
               <button
-                onClick={() => setFormType("login")}
+                onClick={() => handleNavigate()}
                 className="text-pink-500 hover:underline"
               >
                 Sign In
