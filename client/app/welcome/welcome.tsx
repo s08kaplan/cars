@@ -1,46 +1,17 @@
+import IntroScene from "scenes/IntroScene";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
-import { OrbitControls, Environment, useGLTF, Html } from '@react-three/drei';
-import CarModel from "src/components/CarModel";
+
 
 export function Welcome() {
-  const [lightsOn, setLightsOn] = useState(false);
+ 
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-       <div className="relative w-screen h-screen bg-black">
-      <Canvas camera={{ position: [0, 1, 5], fov: 45 }} shadows>
-        <ambientLight intensity={0.3} />
-        {lightsOn && <spotLight position={[0, 5, 5]} intensity={1} castShadow />}
-
-        <Suspense fallback={<Html><span className="text-white">Loading Lexus Model...</span></Html>}>
-          <CarModel lightsOn={lightsOn} />
-          <Environment preset="city" />
-        </Suspense>
-
-        <OrbitControls enablePan={false} />
-      </Canvas>
-
-      <div className="absolute top-4 left-4 z-10">
-        <button
-          className="bg-white px-4 py-2 rounded shadow"
-          onClick={() => setLightsOn(!lightsOn)}
-        >
-          {lightsOn ? 'Turn Lights Off' : 'Turn Lights On'}
-        </button>
-      </div>
-
-      {/* Preview Overlay */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 text-black px-4 py-2 rounded shadow">
-        Lexus Model Preview - Use mouse to rotate, zoom, and explore
-      </div>
-    </div>
+    <main className="flex items-center justify-center pt-16 pb-4 background-color-change">
+   <IntroScene/>
     </main>
   );
 }
 
-useGLTF.preload('/models/scene.gltf');
 
 const resources = [
   {
