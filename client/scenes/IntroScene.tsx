@@ -6,6 +6,7 @@ const IntroScene = () => {
   return (
     <section className='background-color-change min-w-dvw min-h-dvh'>
 <LampModel/>
+<h1 className='fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 slide-in-right text-2xl'>AutoDen finds you what you need</h1>
 <CarModel/>
     </section>
   )
