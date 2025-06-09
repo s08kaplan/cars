@@ -13,7 +13,7 @@ export function Welcome() {
 }
 
 
-const resources = [
+/* const resources = [
   {
     href: "https://reactrouter.com/docs",
     text: "React Router Docs",
@@ -53,4 +53,4 @@ const resources = [
       </svg>
     ),
   },
-];
+]; */

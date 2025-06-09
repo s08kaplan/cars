@@ -1,8 +1,20 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 import CarModel from 'src/components/Car/CarModel'
 import LampModel from 'src/components/Lamp/LampModel'
 
 const IntroScene = () => {
+  const [time, settTme] = useState(5000)
+const navigate = useNavigate()
+  useEffect(() => {
+   const timer = setTimeout(() => {
+      navigate("/dashboard")
+    }, time);
+  
+    return () => clearTimeout(timer)
+  }, [])
+  
   return (
     <section className='background-color-change min-w-dvw min-h-dvh'>
 <LampModel/>

@@ -22,3 +22,37 @@ body {
   @apply rounded-full bg-pink-500 text-white text-sm font-bold px-6 py-2 uppercase tracking-wide hover:bg-pink-600 transition;
 }
 
+
+@keyframes fancyHover {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  10% {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  30% {
+    transform: scale(1.1) translateX(-10px);
+  }
+  70% {
+    transform: scale(1.1) translateX(10px);
+  }
+  90% {
+    transform: scale(1.1) translateX(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.8;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+
+.fancy-hover:hover {
+  animation: fancyHover 3s ease-in-out forwards;
+}
+
