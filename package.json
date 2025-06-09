@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@react-spring/three": "^10.0.1",
-    "multer": "^2.0.0"
-  }
-}

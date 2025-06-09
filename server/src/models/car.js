@@ -29,6 +29,10 @@ const CarSchema = new Schema(
       max: [new Date().getFullYear(), "Newest Car of the model"],
     },
 
+    image: {
+        type: [String]
+    },
+
     vehicleIdentificationNumber: {
       type: String,
       trim: true,
