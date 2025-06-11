@@ -22,6 +22,12 @@ const CarSchema = new Schema(
       maxLength: 50,
     },
 
+    typeOfCar: {
+       type: String,
+       enum: ["SUV", "Sedan", "Hatchback"],
+       required: [true, "Please express the type of the car"]
+    },
+
     year: {
       type: Number,
       required: true,
@@ -31,6 +37,11 @@ const CarSchema = new Schema(
 
     image: {
         type: [String]
+    },
+
+    carStatus: {
+      type: String,
+      enum: ["Sold", "Waiting", "Dealing", "Repair", "Cleaning"]
     },
 
     vehicleIdentificationNumber: {
