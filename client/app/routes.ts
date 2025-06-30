@@ -8,6 +8,7 @@ export default [
         route("about", "routes/public/about.tsx"),
         route("contact", "routes/public/contact.tsx"),
         route("dashboard", "routes/public/dashboard.tsx"),
+        route("car-detail/:carId", "routes/public/carDetail.tsx"),
 
     ])
 ] satisfies RouteConfig;
