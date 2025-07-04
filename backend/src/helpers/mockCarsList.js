@@ -20,7 +20,8 @@ const cars = [
     "mileAge": 31332,
     "fuelType": "Hybrid",
     "transmission": "Manual",
-    "price": 46365,
+    "boughtPrice":45000,
+    "sellPrice": 46365,
     "available": true,
     "features": [
       "Bluetooth",
@@ -90,7 +91,8 @@ const cars = [
     "mileAge": 94089,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 80483,
+    "boughtPrice":79550,
+    "sellPrice": 80483,
     "available": false,
     "features": [
       "Bluetooth",
@@ -164,7 +166,8 @@ const cars = [
     "mileAge": 39405,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 67042,
+    "boughtPrice":66125,
+    "sellPrice": 67042,
     "available": false,
     "features": [
       "Sunroof",
@@ -226,7 +229,8 @@ const cars = [
     "mileAge": 70836,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 21576,
+    "boughtPrice":20890,
+    "sellPrice": 21576,
     "available": true,
     "features": [
       "Air Conditioning"
@@ -282,7 +286,8 @@ const cars = [
     "mileAge": 208407,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 21956,
+    "boughtPrice": 20875,
+    "sellPrice": 21956,
     "available": false,
     "features": [
       "Navigation System",
@@ -358,7 +363,8 @@ const cars = [
     "mileAge": 73676,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 13334,
+    "boughtPrice":13000,
+    "sellPrice": 13334,
     "available": true,
     "features": [
       "Bluetooth",
@@ -433,7 +439,8 @@ const cars = [
     "mileAge": 115636,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 58112,
+    "boughtPrice":57130,
+    "sellPrice": 58112,
     "available": true,
     "features": [
       "Backup Camera",
@@ -491,7 +498,8 @@ const cars = [
     "mileAge": 250193,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 80724,
+    "boughtPrice":79885,
+    "sellPrice": 80724,
     "available": false,
     "features": [
       "Navigation System",
@@ -559,7 +567,8 @@ const cars = [
     "mileAge": 14874,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 25488,
+    "boughtPrice":24500,
+    "sellPrice": 25488,
     "available": true,
     "features": [
       "Navigation System",
@@ -617,7 +626,8 @@ const cars = [
     "mileAge": 112965,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 39037,
+    "boughtPrice":37500,
+    "sellPrice": 39037,
     "available": true,
     "features": [
       "Navigation System",
@@ -688,7 +698,8 @@ const cars = [
     "mileAge": 87290,
     "fuelType": "Petrol",
     "transmission": "Automatic",
-    "price": 17648,
+    "boughtPrice":15620,
+    "sellPrice": 17648,
     "available": true,
     "features": [
       "Backup Camera"
@@ -758,7 +769,8 @@ const cars = [
     "mileAge": 134482,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 77028,
+    "boughtPrice":75480,
+    "sellPrice": 77028,
     "available": false,
     "features": [
       "Bluetooth",
@@ -835,7 +847,8 @@ const cars = [
     "mileAge": 33740,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 30859,
+    "boughtPrice":29750,
+    "sellPrice": 30859,
     "available": true,
     "features": [
       "Backup Camera",
@@ -893,7 +906,8 @@ const cars = [
     "mileAge": 181161,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 64366,
+    "boughtPrice":63000,
+    "sellPrice": 64366,
     "available": true,
     "features": [
       "Backup Camera",
@@ -966,7 +980,8 @@ const cars = [
     "mileAge": 25668,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 46062,
+    "boughtPrice":45000,
+    "sellPrice": 46062,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -1024,7 +1039,8 @@ const cars = [
     "mileAge": 47018,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 11923,
+    "boughtPrice":10500,
+    "sellPrice": 11923,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -1082,7 +1098,8 @@ const cars = [
     "mileAge": 132024,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 83714,
+    "boughtPrice":82000,
+    "sellPrice": 83714,
     "available": false,
     "features": [
       "Bluetooth",
@@ -1145,7 +1162,8 @@ const cars = [
     "mileAge": 242414,
     "fuelType": "Petrol",
     "transmission": "Automatic",
-    "price": 36066,
+    "boughtPrice":34000,
+    "sellPrice": 36066,
     "available": false,
     "features": [
       "Bluetooth",
@@ -1212,7 +1230,8 @@ const cars = [
     "mileAge": 179648,
     "fuelType": "Electric",
     "transmission": "Automatic",
-    "price": 86966,
+    "boughtPrice":85450,
+    "sellPrice": 86966,
     "available": true,
     "features": [
       "Backup Camera",
@@ -1278,7 +1297,8 @@ const cars = [
     "mileAge": 29068,
     "fuelType": "Hybrid",
     "transmission": "Manual",
-    "price": 21224,
+    "boughtPrice":20000,
+    "sellPrice": 21224,
     "available": true,
     "features": [
       "Sunroof",
@@ -1351,7 +1371,8 @@ const cars = [
     "mileAge": 283233,
     "fuelType": "Petrol",
     "transmission": "Automatic",
-    "price": 33913,
+    "boughtPrice":32560,
+    "sellPrice": 33913,
     "available": true,
     "features": [
       "Sunroof",
@@ -1420,7 +1441,8 @@ const cars = [
     "mileAge": 265146,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 64022,
+    "boughtPrice":62560,
+    "sellPrice": 64022,
     "available": false,
     "features": [
       "Sunroof",
@@ -1494,7 +1516,8 @@ const cars = [
     "mileAge": 83771,
     "fuelType": "Petrol",
     "transmission": "Automatic",
-    "price": 85513,
+    "boughtPrice":84000,
+    "sellPrice": 85513,
     "available": true,
     "features": [
       "Navigation System",
@@ -1566,7 +1589,8 @@ const cars = [
     "mileAge": 11333,
     "fuelType": "Hybrid",
     "transmission": "Manual",
-    "price": 83571,
+    "boughtPrice":82000,
+    "sellPrice": 83571,
     "available": false,
     "features": [
       "Air Conditioning",
@@ -1627,7 +1651,8 @@ const cars = [
     "mileAge": 197682,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 67646,
+    "boughtPrice":65650,
+    "sellPrice": 67646,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -1692,7 +1717,8 @@ const cars = [
     "mileAge": 230829,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 20560,
+    "boughtPrice":19584,
+    "sellPrice": 20560,
     "available": true,
     "features": [
       "Navigation System"
@@ -1757,7 +1783,8 @@ const cars = [
     "mileAge": 110857,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 57262,
+    "boughtPrice":56000,
+    "sellPrice": 57262,
     "available": false,
     "features": [
       "Navigation System",
@@ -1826,7 +1853,8 @@ const cars = [
     "mileAge": 78267,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 30192,
+    "boughtPrice":29000,
+    "sellPrice": 30192,
     "available": false,
     "features": [
       "Backup Camera",
@@ -1887,7 +1915,8 @@ const cars = [
     "mileAge": 290593,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 51813,
+    "boughtPrice":50000,
+    "sellPrice": 51813,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -1964,7 +1993,8 @@ const cars = [
     "mileAge": 88289,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 73537,
+    "boughtPrice":72586,
+    "sellPrice": 73537,
     "available": false,
     "features": [
       "Sunroof",
@@ -2035,7 +2065,8 @@ const cars = [
     "mileAge": 192692,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 76217,
+    "boughtPrice":75826,
+    "sellPrice": 76217,
     "available": false,
     "features": [
       "Backup Camera",
@@ -2099,7 +2130,8 @@ const cars = [
     "mileAge": 177991,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 37939,
+    "boughtPrice":34500,
+    "sellPrice": 37939,
     "available": false,
     "features": [
       "Sunroof",
@@ -2176,7 +2208,8 @@ const cars = [
     "mileAge": 291863,
     "fuelType": "Hybrid",
     "transmission": "Manual",
-    "price": 43670,
+    "boughtPrice":42500,
+    "sellPrice": 43670,
     "available": false,
     "features": [
       "Sunroof",
@@ -2236,7 +2269,8 @@ const cars = [
     "mileAge": 176198,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 29806,
+    "boughtPrice":28000,
+    "sellPrice": 29806,
     "available": true,
     "features": [
       "Sunroof",
@@ -2285,7 +2319,8 @@ const cars = [
     "mileAge": 139364,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 7737,
+    "boughtPrice":7400,
+    "sellPrice": 7737,
     "available": false,
     "features": [
       "Navigation System",
@@ -2354,7 +2389,8 @@ const cars = [
     "mileAge": 167169,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 35704,
+    "boughtPrice":33000,
+    "sellPrice": 35704,
     "available": true,
     "features": [
       "Navigation System"
@@ -2419,7 +2455,8 @@ const cars = [
     "mileAge": 226613,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 69751,
+    "boughtPrice":67589,
+    "sellPrice": 69751,
     "available": true,
     "features": [
       "Bluetooth"
@@ -2478,7 +2515,8 @@ const cars = [
     "mileAge": 120158,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 66979,
+    "boughtPrice":65750,
+    "sellPrice": 66979,
     "available": true,
     "features": [
       "Bluetooth",
@@ -2535,7 +2573,8 @@ const cars = [
     "mileAge": 197954,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 28218,
+    "boughtPrice":27000,
+    "sellPrice": 28218,
     "available": false,
     "features": [
       "Navigation System",
@@ -2595,7 +2634,8 @@ const cars = [
     "mileAge": 221991,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 97143,
+    "boughtPrice":94000,
+    "sellPrice": 97143,
     "available": false,
     "features": [
       "Bluetooth"
@@ -2660,7 +2700,8 @@ const cars = [
     "mileAge": 282029,
     "fuelType": "Petrol",
     "transmission": "Automatic",
-    "price": 87786,
+    "boughtPrice":85000,
+    "sellPrice": 87786,
     "available": true,
     "features": [
       "Sunroof",
@@ -2716,7 +2757,8 @@ const cars = [
     "mileAge": 205537,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 71806,
+    "boughtPrice":69850,
+    "sellPrice": 71806,
     "available": false,
     "features": [
       "Backup Camera",
@@ -2779,7 +2821,8 @@ const cars = [
     "mileAge": 35078,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 92678,
+    "boughtPrice":90000,
+    "sellPrice": 92678,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -2828,7 +2871,8 @@ const cars = [
     "mileAge": 57383,
     "fuelType": "Electric",
     "transmission": "Automatic",
-    "price": 40066,
+    "boughtPrice":38000,
+    "sellPrice": 40066,
     "available": false,
     "features": [
       "Bluetooth",
@@ -2900,7 +2944,8 @@ const cars = [
     "mileAge": 154844,
     "fuelType": "Hybrid",
     "transmission": "Automatic",
-    "price": 10911,
+    "boughtPrice":8500,
+    "sellPrice": 10911,
     "available": true,
     "features": [
       "Sunroof",
@@ -2962,7 +3007,8 @@ const cars = [
     "mileAge": 172911,
     "fuelType": "Diesel",
     "transmission": "Manual",
-    "price": 24682,
+    "boughtPrice":22456,
+    "sellPrice": 24682,
     "available": false,
     "features": [
       "Navigation System",
@@ -3024,7 +3070,8 @@ const cars = [
     "mileAge": 241118,
     "fuelType": "Petrol",
     "transmission": "Manual",
-    "price": 85875,
+    "boughtPrice":82789,
+    "sellPrice": 85875,
     "available": false,
     "features": [
       "Sunroof",
@@ -3086,7 +3133,8 @@ const cars = [
     "mileAge": 273242,
     "fuelType": "Electric",
     "transmission": "Automatic",
-    "price": 5424,
+    "boughtPrice":5000,
+    "sellPrice": 5424,
     "available": true,
     "features": [
       "Backup Camera"
@@ -3156,7 +3204,8 @@ const cars = [
     "mileAge": 268730,
     "fuelType": "Electric",
     "transmission": "Manual",
-    "price": 87505,
+    "boughtPrice":85236,
+    "sellPrice": 87505,
     "available": true,
     "features": [
       "Air Conditioning",
@@ -3224,7 +3273,8 @@ const cars = [
     "mileAge": 238549,
     "fuelType": "Diesel",
     "transmission": "Automatic",
-    "price": 78194,
+    "boughtPrice":75000,
+    "sellPrice": 78194,
     "available": false,
     "features": [
       "Backup Camera",
