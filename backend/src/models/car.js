@@ -23,9 +23,9 @@ const CarSchema = new Schema(
     },
 
     typeOfCar: {
-       type: String,
-       enum: ["SUV", "Sedan", "Hatchback"],
-       required: [true, "Please express the type of the car"]
+      type: String,
+      enum: ["SUV", "Sedan", "Hatchback"],
+      required: [true, "Please express the type of the car"],
     },
 
     year: {
@@ -36,12 +36,12 @@ const CarSchema = new Schema(
     },
 
     image: {
-        type: [String]
+      type: [String],
     },
 
     carStatus: {
       type: String,
-      enum: ["Sold", "Waiting", "Dealing", "Repair", "Cleaning"]
+      enum: ["Sold", "Waiting", "Dealing", "Repair", "Cleaning"],
     },
 
     vehicleIdentificationNumber: {
@@ -78,13 +78,15 @@ const CarSchema = new Schema(
 
     boughtPrice: {
       type: Number,
-      required: true
+      required: true,
     },
 
-    sellPrice: {
+    requiredPrice: {
       type: Number,
-      required: true,
-      default: 0,
+    },
+
+    soldPrice: {
+      type: Number,
     },
 
     available: {
