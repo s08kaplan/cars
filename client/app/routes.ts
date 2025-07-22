@@ -19,6 +19,7 @@ export default [
     layout("routes/private/layout.tsx", [
       route("car-statistics", "routes/private/CarStatistics.tsx"),
       route("profile", "routes/private/Profile.tsx"),
+      route("budget", "routes/private/Budget.tsx")
     ]),
   ]),
 ] satisfies RouteConfig;
