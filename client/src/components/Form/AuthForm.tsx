@@ -15,16 +15,23 @@ const loginSchema = z.object({
 const registerSchema = loginSchema.extend({
   firstName: z.string().min(2, "Name is required"),
   lastName: z.string().min(2, "Name is required"),
-   contactNumber: z.string()
+  contactNumber: z
+    .string()
     .min(11, "Phone number is too short")
     .max(13, "Phone number is too long")
-    .refine((val) => {
-      const cleaned = val.replace(/[\s-]/g, '');
-      return /^(\+90|0)5\d{9}$/.test(cleaned);
-    }, {
-      message: "Phone number must start with +90 or 0, followed by 5 and 9 more digits"
-    }),
-  role: z.string()
+    .refine(
+      (val) => {
+        const cleaned = val.replace(/[\s-]/g, "");
+        return /^(\+90|0)5\d{9}$/.test(cleaned);
+      },
+      {
+        message:
+          "Phone number must start with +90 or 0, followed by 5 and 9 more digits",
+      }
+    ),
+  role: z.enum(["1", "2"], {
+    errorMap: () => ({ message: "Please select a valid user role" }),
+  }),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
@@ -36,15 +43,26 @@ type FormData = LoginFormData | RegisterFormData;
 const getSchema = (type: FormType) =>
   type === "login" ? loginSchema : registerSchema;
 
-const socialIcons = ["facebook-f", "google-plus-g", "linkedin-in"];
+const socialIcons = ["https://imgs.search.brave.com/AYjdgGsW6meEA14jfpSrWHnH1BkApGdprRXA2Cg4R_Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni8yODc1LzI4NzUz/MzEucG5nP3NlbXQ9/YWlzX2h5YnJpZA", "https://imgs.search.brave.com/vLH5j1NhqCKKJ7DO3J5hhVgbPO2qxXhfgOFH30acMsI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy8zMDM2MTUv/Z2l0aHViLWljb24t/MS1sb2dvLnN2Zw", "https://imgs.search.brave.com/yq3kDIhYoYbQAo8739YE5dqH9npbmpHgINsybDlucc8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/d29ybGR2ZWN0b3Js/b2dvLmNvbS9sb2dv/cy9saW5rZWRpbi1p/Y29uLnN2Zw"];
 
 const fields = {
   register: [
     { name: "firstName", type: "text", placeholder: "First Name" },
-     { name: "lastName", type: "text", placeholder: "Last Name" },
+    { name: "lastName", type: "text", placeholder: "Last Name" },
     { name: "email", type: "email", placeholder: "Email" },
-     { name: "contactNumber", type: "text", placeholder: "Contact Number" },
+    { name: "contactNumber", type: "text", placeholder: "Contact Number" },
     { name: "password", type: "password", placeholder: "Password" },
+    {
+      name: "role",
+      type: "select",
+      placeholder: "Select User Role",
+      options: [
+        { value: "", label: "Select User Role" },
+        { value: "1", label: "Manager" },
+        { value: "2", label: "User" },
+        /* { value: "moderator", label: "Moderator" } */
+      ],
+    },
   ],
   login: [
     { name: "email", type: "email", placeholder: "Email" },
@@ -52,21 +70,21 @@ const fields = {
   ],
 };
 
-export default function AuthForm({formType}:{formType:FormType}) {
- /*  const [formType, setFormType] = useState<FormType>("login"); */
+export default function AuthForm({ formType }: { formType: FormType }) {
+  /*  const [formType, setFormType] = useState<FormType>("login"); */
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-   /*  if(formType == "login"){
+    /*  if(formType == "login"){
       setFormType("register")
       navigate("/register")
     }else {
      setFormType("login")
     navigate("/login")  
     } */
-   formType == "login" ?  navigate("/register") : navigate("/login")
-  }
+    formType == "login" ? navigate("/register") : navigate("/login");
+  };
 
   const {
     register,
@@ -74,9 +92,19 @@ export default function AuthForm({formType}:{formType:FormType}) {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(getSchema(formType)) });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(`${formType.toUpperCase()} DATA:`, data);
-    formType === "login" ? login(data as LoginFormData) : registerUser(data as RegisterFormData)
+     try {
+      if (formType === "login") {
+        await login(data as LoginFormData)
+      }else {
+        await registerUser(data as RegisterFormData); 
+      }  
+      navigate("/dashboard")  
+
+    } catch (error) {
+      console.log("error login/register", error)
+    }
   };
 
   return (
@@ -93,24 +121,38 @@ export default function AuthForm({formType}:{formType:FormType}) {
               href="#"
               className="border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center text-gray-600 hover:text-pink-500"
             >
-              <i className={`fab fa-${icon}`}></i>
+              <img src={icon} alt="icon" />
             </a>
           ))}
         </div>
 
         <span className="text-sm text-center block">
-          or use your email {formType === "login" ? "to sign in" : "for registration"}
+          or use your email{" "}
+          {formType === "login" ? "to sign in" : "for registration"}
         </span>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {fields[formType].map((field) => (
             <div key={field.name}>
-              <input
-                {...register(field.name as keyof FormData)}
-                type={field.type}
-                placeholder={field.placeholder}
-                className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
+              {field.type === "select" ? (
+                <select
+                  {...register(field.name as keyof FormData)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white"
+                >
+                  {field.options?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  {...register(field.name as keyof FormData)}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+              )}
               {errors[field.name as keyof FormData] && (
                 <p className="text-xs text-red-500 mt-1">
                   {errors[field.name as keyof FormData]?.message as string}
@@ -136,7 +178,7 @@ export default function AuthForm({formType}:{formType:FormType}) {
         <div className="text-center text-sm">
           {formType === "login" ? (
             <p>
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <button
                 onClick={() => handleNavigate()}
                 className="text-pink-500 hover:underline"
@@ -146,7 +188,7 @@ export default function AuthForm({formType}:{formType:FormType}) {
             </p>
           ) : (
             <p>
-              Already have an account?{' '}
+              Already have an account?{" "}
               <button
                 onClick={() => handleNavigate()}
                 className="text-pink-500 hover:underline"

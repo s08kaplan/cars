@@ -1,11 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router";
-import {
+/* import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query'
+} from '@tanstack/react-query' */
+import Navbar from "src/components/Navbar/Navbar";
 
-const queryClient = new QueryClient({
+/* const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             retry: 2,
@@ -13,14 +14,18 @@ const queryClient = new QueryClient({
             refetchOnWindowFocus: false,
         },
     },
-})
+}) */
 
 const PublicLayout = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
+     {/* <QueryClientProvider client={queryClient}> */} 
+     {/*  <Navbar/> */}
       <h3>PublicLayout</h3>
       <Outlet />
-    </QueryClientProvider>
+   {/* </QueryClientProvider> */} 
+    </>
+  
   );
 };
 

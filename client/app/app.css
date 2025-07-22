@@ -8,12 +8,17 @@
 html,
 body {
   @apply bg-white dark:bg-gray-950;
-   overflow: hidden;
+  /*  overflow: hidden; */
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+
 }
+
+dd:nth-child(even),dt:nth-child(even){
+      @apply bg-gray-200;background: text-content;
+  }
 
 .input {
   @apply bg-gray-100 text-sm px-4 py-2 my-2 w-full rounded border border-gray-300;
