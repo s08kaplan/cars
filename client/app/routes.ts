@@ -1,14 +1,24 @@
-import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
+import {
+  type RouteConfig,
+  index,
+  layout,
+  route,
+} from "@react-router/dev/routes";
 
 export default [
+  layout("routes/MainRoute.tsx", [
     index("routes/home.tsx"),
     layout("routes/public/layout.tsx", [
-        route("login", "routes/public/login.tsx"),
-        route("register", "routes/public/register.tsx"),
-        route("about", "routes/public/about.tsx"),
-        route("contact", "routes/public/contact.tsx"),
-        route("dashboard", "routes/public/dashboard.tsx"),
-        route("car-detail/:carId", "routes/public/carDetail.tsx"),
-
-    ])
+      route("login", "routes/public/Login.tsx"),
+      route("register", "routes/public/Register.tsx"),
+      route("about", "routes/public/About.tsx"),
+      route("contact", "routes/public/Contact.tsx"),
+      route("dashboard", "routes/public/Dashboard.tsx"),
+      route("car-detail/:carId", "routes/public/CarDetail.tsx"),
+    ]),
+    layout("routes/private/layout.tsx", [
+      route("car-statistics", "routes/private/CarStatistics.tsx"),
+      route("profile", "routes/private/Profile.tsx"),
+    ]),
+  ]),
 ] satisfies RouteConfig;
