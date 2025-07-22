@@ -1,5 +1,5 @@
 import axios from "axios"
-import { type LoginFormData, type RegisterFormData } from "src/components/AuthForm"
+import { type LoginFormData, type RegisterFormData } from "src/components/Form/AuthForm"
 
 export const getCars = async (carId?: string) => {
     console.log(import.meta.env.VITE_BASE_URL)
@@ -26,8 +26,10 @@ export const getCars = async (carId?: string) => {
 }
 
 export const login = async (userData: LoginFormData) => {
+    //console.log(userData)
    try {
-    const { data } = axios.post(`${import.meta.env.VITE_BASE_URL}auth/login`,userData)
+    const  { data }  = axios.post(`${import.meta.env.VITE_BASE_URL}auth/login`,userData)
+    console.log("api response for user: ",data)
     return data
    } catch (error) {
     console.error("Login error", error);
@@ -43,4 +45,18 @@ export const registerUser = async (userData: RegisterFormData) => {
     console.error("Register error", error);
     
    }
+}
+
+//test 
+
+export const getCarStatus = async (url?:string) => {
+    if(!url) return
+    try {
+        const { data } = await axios(`${import.meta.env.VITE_BASE_URL}cars?filter[available]=${url}`)
+        console.log("car status: ", data)
+        return data
+    } catch (error) {
+        console.error("Car statistics not found", error);
+        
+    }
 }
