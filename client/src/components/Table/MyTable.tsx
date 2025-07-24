@@ -45,7 +45,7 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
       case "FUEL": return car.fuelType;
       case "MILE": return car.mileAge;
       case "BOUGHT": return `$${car.boughtPrice}`;
-      case "REQUIRED": return `$${car.requiredPrice}`;
+      case "REQUIRED": return car.requiredPrice ? `$${car.requiredPrice}` : "-" ;
       case "SOLD": return car.soldPrice ? `$${car.soldPrice}` : "-";
       case "PROFIT":
         return (car.soldPrice && car.boughtPrice)
