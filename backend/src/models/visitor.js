@@ -2,9 +2,9 @@
 
 const {
   mongoose: { Schema, model },
-} = require("../configs/dbConnection");
+} = require("../configs/requiredBasics");
 
-// Visitor Model:
+
 
 const VisitorSchema = new Schema(
   {
@@ -14,5 +14,4 @@ const VisitorSchema = new Schema(
   { collection: "visitors", timestamps: true }
 );
 
-/* ------------------------------------------------------- */
 module.exports = model("Visitor", VisitorSchema);

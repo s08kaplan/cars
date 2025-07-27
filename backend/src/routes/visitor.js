@@ -1,6 +1,6 @@
 "use strict";
 
-const router = require("express").Router();
+const router = require("../configs/requiredBasics").express.Router()
 
 const visitor = require("../controllers/visitor");
 const isAdmin = require("../middlewares/authorized")

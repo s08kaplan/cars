@@ -1,7 +1,7 @@
 "use strict";
-const express = require('express');
-const requestIp = require('request-ip');
-const useragent = require('useragent');
+const {express} = require("../configs/requiredBasics");
+const requestIp = require("request-ip");
+const UAParser = require("ua-parser-js");
 const Visitor = require("../models/visitor");
 
 const app = express();
@@ -19,16 +19,22 @@ module.exports = {
   },
 
   create: async (req, res) => {
-    const ip = req.ip;
-    const userAgent = useragent.parse(req.headers['user-agent']);
+    const ip = req.clientIp || req.ip;
+    const parser = new UAParser();
+    parser.setUA(req.headers["user-agent"]);
+    const { browser, os, device } = parser.getResult();
 
     console.log(userAgent);
     console.log(ip);
-  
+
     const data = await Visitor.create({
-        ip,
-        userAgent: userAgent
-      });
+      ip,
+      userAgent: {
+        browser,
+        os,
+        device,
+      },
+    });
 
     res.status(201).send({
       error: false,
@@ -63,11 +69,11 @@ module.exports = {
       data,
     });
   },
-  count : async (req, res) => {
+  count: async (req, res) => {
     const data = await Visitor.countDocuments();
     res.status(200).send({
       error: false,
-      data
+      data,
     });
-  }
+  },
 };
