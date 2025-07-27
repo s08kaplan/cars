@@ -28,9 +28,9 @@ export const getCars = async (carId?: string) => {
 export const login = async (userData: LoginFormData) => {
     //console.log(userData)
    try {
-    const  { data }  = axios.post(`${import.meta.env.VITE_BASE_URL}auth/login`,userData)
-    console.log("api response for user: ",data)
-    return data
+    const  { data }  = await axios.post(`${import.meta.env.VITE_BASE_URL}auth/login`,userData)
+    console.log("api response for user: ",data.user)
+    return data.user
    } catch (error) {
     console.error("Login error", error);
     
@@ -39,12 +39,21 @@ export const login = async (userData: LoginFormData) => {
 
 export const registerUser = async (userData: RegisterFormData) => {
    try {
-    const { data } = axios.post(`${import.meta.env.VITE_BASE_URL}users`, userData)
-    return data
+    const { data } =await axios.post(`${import.meta.env.VITE_BASE_URL}users`, userData)
+    return data.user
    } catch (error) {
     console.error("Register error", error);
     
    }
+}
+
+export const logout = async () => {
+  try {
+    const { data } = await axios(`${import.meta.env.VITE_BASE_URL}auth/logout`, {withCredentials: true})
+  } catch (error) {
+    console.error("Logout failed", error);
+    
+  }
 }
 
 //test 

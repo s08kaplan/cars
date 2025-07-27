@@ -6,13 +6,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { login, registerUser } from "src/helpers/functions";
+import { useAuthStore } from "src/store/useAuthStore";
+import { useQueryClient } from "@tanstack/react-query";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Minimum 6 characters"),
 });
 
-const registerSchema = loginSchema.extend({
+export const registerSchema = loginSchema.extend({
   firstName: z.string().min(2, "Name is required"),
   lastName: z.string().min(2, "Name is required"),
   contactNumber: z
@@ -43,9 +45,13 @@ type FormData = LoginFormData | RegisterFormData;
 const getSchema = (type: FormType) =>
   type === "login" ? loginSchema : registerSchema;
 
-const socialIcons = ["https://imgs.search.brave.com/AYjdgGsW6meEA14jfpSrWHnH1BkApGdprRXA2Cg4R_Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni8yODc1LzI4NzUz/MzEucG5nP3NlbXQ9/YWlzX2h5YnJpZA", "https://imgs.search.brave.com/vLH5j1NhqCKKJ7DO3J5hhVgbPO2qxXhfgOFH30acMsI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy8zMDM2MTUv/Z2l0aHViLWljb24t/MS1sb2dvLnN2Zw", "https://imgs.search.brave.com/yq3kDIhYoYbQAo8739YE5dqH9npbmpHgINsybDlucc8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/d29ybGR2ZWN0b3Js/b2dvLmNvbS9sb2dv/cy9saW5rZWRpbi1p/Y29uLnN2Zw"];
+const socialIcons = [
+  "https://imgs.search.brave.com/AYjdgGsW6meEA14jfpSrWHnH1BkApGdprRXA2Cg4R_Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni8yODc1LzI4NzUz/MzEucG5nP3NlbXQ9/YWlzX2h5YnJpZA",
+  "https://imgs.search.brave.com/vLH5j1NhqCKKJ7DO3J5hhVgbPO2qxXhfgOFH30acMsI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy8zMDM2MTUv/Z2l0aHViLWljb24t/MS1sb2dvLnN2Zw",
+  "https://imgs.search.brave.com/yq3kDIhYoYbQAo8739YE5dqH9npbmpHgINsybDlucc8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/d29ybGR2ZWN0b3Js/b2dvLmNvbS9sb2dv/cy9saW5rZWRpbi1p/Y29uLnN2Zw",
+];
 
-const fields = {
+export const fields = {
   register: [
     { name: "firstName", type: "text", placeholder: "First Name" },
     { name: "lastName", type: "text", placeholder: "Last Name" },
@@ -92,18 +98,31 @@ export default function AuthForm({ formType }: { formType: FormType }) {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(getSchema(formType)) });
 
+  const setUser = useAuthStore((state) => state.setUser);
+  const setIsAuthenticate = useAuthStore((state) => state.setIsAuthenticate);
+
+  const queryClient = useQueryClient()
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(`${formType.toUpperCase()} DATA:`, data);
-     try {
+    let user;
+    try {
       if (formType === "login") {
-        await login(data as LoginFormData)
-      }else {
-        await registerUser(data as RegisterFormData); 
-      }  
-      navigate("/dashboard")  
+        user = await login(data as LoginFormData);
+      } else {
+        await registerUser(data as RegisterFormData);
+        user = await login({
+          email: (data as RegisterFormData).email,
+          password: (data as RegisterFormData).password,
+        });
+      }
 
+      setUser(user);
+      setIsAuthenticate(true);
+      queryClient.setQueryData(["auth", "current-user"], user);
+      navigate("/dashboard");
     } catch (error) {
-      console.log("error login/register", error)
+      console.log("error login/register", error);
     }
   };
 

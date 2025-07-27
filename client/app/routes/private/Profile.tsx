@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { useAuthStore } from "src/store/useAuthStore";
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  const user = useAuthStore((state) => state.user);
 
-export default Profile
+  return (
+    <div>
+      <h3>Profile</h3>
+      <div>
+       <p>{user?.firstName}</p>
+       <p>{user?.lastName}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Profile;

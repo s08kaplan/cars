@@ -21,8 +21,8 @@ const PublicLayout = () => {
     <>
      {/* <QueryClientProvider client={queryClient}> */} 
      {/*  <Navbar/> */}
-      <h3>PublicLayout</h3>
-      <Outlet />
+{/*       <h3>PublicLayout</h3>
+ */}      <Outlet />
    {/* </QueryClientProvider> */} 
     </>
   

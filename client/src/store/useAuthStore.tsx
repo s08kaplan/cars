@@ -4,10 +4,10 @@ type User = {
   id: string
   firstName: string;
   lastName: string;
-  email: string;
+ /*  email: string;
   contactNumber: string;
   password: string;
-  image?: string;
+  image?: string; */
   role: number;
 }
 

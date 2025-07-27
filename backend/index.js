@@ -2,35 +2,35 @@
 const express = require('express')
 const app = express()
 // const path = require('path');
+const { cors } = require("./src/configs/requiredBasics")
 const limiter = require("./src/middlewares/rateLimiter")
 
-/* ------------------------------------------------------- */
-// Required Modules:
 
-// envVariables to process.env:
-require('dotenv').config()
+require('./src/configs/requiredBasics').dotenv.config()
 const HOST = process.env?.HOST || '127.0.0.1'
 const PORT = process.env?.PORT || 8000
 
 // asyncErrors to errorHandler:
-require('express-async-errors')
+require('./src/configs/requiredBasics').expressAsyncErrors
 
-/* ------------------------------------------------------- */
-// Configrations:
 
 // Connect to DB:
 const { dbConnection } = require('./src/configs/dbConnection')
 dbConnection()
 
-// Middlewares:
 
-// Accept JSON:
 app.use(express.json())
 
 app.use(express.urlencoded({extended:true}))
 
-// CORS:
-app.use(require('cors')()) // Run with defaults.
+
+const corsOptions = {
+  origin: ['https://127.0.0.1:5173', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, 
+};
+
+app.use(cors(corsOptions))
 
 //! LIMITER
 
@@ -41,7 +41,7 @@ app.use(limiter)
 // app.use('/uploads', express.static(uploadPath));
 app.use('/uploads', express.static('./upload'))
 
-// Check Authentication:
+
 app.use(require('./src/middlewares/authentication'))
 
 // Run Logger:
@@ -50,7 +50,7 @@ app.use(require('./src/middlewares/authentication'))
 // res.getModelList():
 app.use(require('./src/middlewares/queryHandler'))
 
-/* ------------------------------------------------------- */
+
 // Routes:
 
 // HomePath:
@@ -65,7 +65,6 @@ app.all('/', (req, res) => {
 // Routes:
 app.use(require('./src/routes'))
 
-/* ------------------------------------------------------- */
 
 // errorHandler:
 app.use(require('./src/middlewares/errorHandler'))
@@ -73,6 +72,6 @@ app.use(require('./src/middlewares/errorHandler'))
 // RUN SERVER:
 app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
 
-/* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-// require('./src/helpers/sync')() // !!! It clear database.
+// require('./src/helpers/mockUsers')() // !!! It clear database.
+// require("./src/helpers/mockCars")()
