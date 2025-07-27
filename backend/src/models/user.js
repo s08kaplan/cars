@@ -30,6 +30,7 @@ const UserSchema = new Schema(
     email: {
         type: String,
         required: true,
+        unique: true,
         set:(email) => emailValidate(email)
     },
 
