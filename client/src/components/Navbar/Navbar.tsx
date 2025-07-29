@@ -20,8 +20,10 @@ const navigation = [
   { name: "Dashboard", to: "/dashboard", current: true },
   { name: "Car Statistics", to: "/car-statistics", current: false },
   { name: "Budget", to: "/budget", current: false },
-  // { name: 'Calendar', to: '#', current: false },
+  { name: 'Contact', to: '/contact', current: false },
+  { name: 'About', to: '/about-us', current: false },
 ];
+
 
 const profileMenu = [
   { name: "Profile", to: "/profile" },
@@ -34,6 +36,9 @@ function classNames(...classes: string[]) {
 
 const Navbar = () => {
   const user = useAuthStore(state => state.user)
+  const publicNavigation = navigation.filter(n => n.name !== "Car Statistics" && n.name !== "Budget")
+
+  const navbarNavigation = user?.firstName ? navigation : publicNavigation
   return (
   
     <Disclosure as="nav" className="bg-gray-800">
@@ -64,7 +69,7 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:ml-6 sm:flex items-center ">
               <div className="flex items-center space-x-4">
-                {navigation.map((item) => (
+                {navbarNavigation.map((item) => (
                   <Link
                     key={item.name}
                     to={item.to}
