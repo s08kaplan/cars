@@ -78,7 +78,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
   // If image is focused, show full-screen overlay
   if (isImageFocused) {
     return (
-      <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col">
+      <div className="fixed inset-0 z-50 bg-white bg-opacity-95 flex flex-col">
         {/* Full-screen image container */}
         <div className="flex-1 relative flex items-center justify-center p-4">
           <img
@@ -91,18 +91,18 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
           {/* Navigation arrows for focused view */}
           <button
             onClick={prevImage}
-            className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-black/60 text-white p-4 rounded-full hover:bg-black/80 transition-colors"
+            className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-white text-white p-4 rounded-full hover:bg-white/80 transition-colors"
             aria-label="Previous"
           >
-            <img src={leftArrow} alt="" width={16}/>
+            <img src={leftArrow} alt="left arrow image" width={16}/>
           </button>
 
           <button
             onClick={nextImage}
-            className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-black/60 text-white p-4 rounded-full hover:bg-black/80 transition-colors"
+            className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-white text-white p-4 rounded-full hover:bg-white/80 transition-colors"
             aria-label="Next"
           >
-            <img src={rightArrow} alt="" width={16} />
+            <img src={rightArrow} alt="right arrow image" width={16} />
           </button>
 
           {/* Close button */}
@@ -162,7 +162,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
 
       <button
         onClick={prevImage}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/50 text-white p-2 rounded-full hover:bg-white/70"
         aria-label="Previous"
       >
        <img src={leftArrow} alt="" width={10}/>
@@ -170,7 +170,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
 
       <button
         onClick={nextImage}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/50 text-white p-2 rounded-full hover:bg-white/70"
         aria-label="Next"
       >
         <img src={rightArrow} alt="" width={10} />
