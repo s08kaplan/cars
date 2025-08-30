@@ -1,18 +1,15 @@
 "use strict"
 const express = require('express')
 const app = express()
+const process = require("node:process")
 // const path = require('path');
 const { cors } = require("./src/configs/requiredBasics")
 const limiter = require("./src/middlewares/rateLimiter")
 
 
-require('./src/configs/requiredBasics').dotenv.config()
+process.loadEnvFile(".env")
 const HOST = process.env?.HOST || '127.0.0.1'
 const PORT = process.env?.PORT || 8000
-
-// asyncErrors to errorHandler:
-require('./src/configs/requiredBasics').expressAsyncErrors
-
 
 // Connect to DB:
 const { dbConnection } = require('./src/configs/dbConnection')
