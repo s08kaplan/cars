@@ -1,5 +1,6 @@
 "use strict"
-const router = require("../configs/requiredBasics").express.Router()
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 
 router.use("/auth", require("./auth"))
 
@@ -10,6 +11,8 @@ router.use("/cars", require("./car"))
 router.use("/messages", require("./message"));
 
 router.use('/visitors', require('./visitor'))
+
+router.use("/budgets", require("./budget"))
 
 router.use("/uploads", require("./upload"))
 

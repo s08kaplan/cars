@@ -2,7 +2,8 @@
 
 const car = require("../controllers/car")
 
-const router = require("../configs/requiredBasics").express.Router()
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 
 const isAdmin = require("../middlewares/authorized")
  

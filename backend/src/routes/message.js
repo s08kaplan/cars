@@ -1,10 +1,11 @@
 "use strict";
 
-const router = require("express").Router();
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 
 const message = require("../controllers/message");
 const isAdmin = require("../middlewares/authorized")
-router.use(isAdmin)
+//router.use(isAdmin)
 
 router.route("/").get(message.list).post(message.create);
 router.route("/count").get(message.count);

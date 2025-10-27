@@ -2,7 +2,7 @@
 
 const {
   mongoose: { Schema, model },
-} = require("../configs/dbConnection");
+} = require("../configs/requiredBasics");
 
 
 const MessageSchema = new Schema(

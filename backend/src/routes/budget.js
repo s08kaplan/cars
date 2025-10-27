@@ -2,11 +2,11 @@
 
 const budget = require("../controllers/budget")
 
-const router = require("../configs/requiredBasics").express.Router()
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 
 const isAdmin = require("../middlewares/authorized")
  
-router.use(isAdmin)
 router.route("/")
 .get(budget.list)
 .post(budget.create)

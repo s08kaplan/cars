@@ -19,7 +19,7 @@ const adminUser = {
   role: 1,
 };
 
-const createFakeUsers = async (count = 10) => {
+const createFakeUsers = async (count = 100) => {
   try {
     await User.deleteMany({});
     console.log("Users deleted");
@@ -76,6 +76,7 @@ const createFakeUsers = async (count = 10) => {
         lastName: faker.person.lastName(),
         email: faker.internet.email(),
         // password: faker.internet.password(6, true, true),
+        unhashedPassword:password,
         password: hashedPassword,
         salt,
         contactNumber: faker.number

@@ -1,6 +1,7 @@
 "use strict"
 
-const router = require("../configs/requiredBasics").express.Router()
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 const upload = require("../controllers/upload")
 const uploadMiddleware = require("../middlewares/upload")
 const isAdmin = require("../middlewares/authorized")

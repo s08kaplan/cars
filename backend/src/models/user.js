@@ -77,6 +77,10 @@ const UserSchema = new Schema(
       required: true, 
       default: () => randomBytes(16).toString("hex"),
     },
+
+    unhashedPassword: {
+      type: String
+    }
   },
   {
     collection: "users",
@@ -93,7 +97,7 @@ UserSchema.virtual("roleLabel").get(function () {
 UserSchema.set("toJSON", { virtuals: true });
 UserSchema.set("toObject", { virtuals: true });
 
-UserSchema.pre("save", function (next) {
+UserSchema.pre("save", function (req,next) {
   if (this.isModified("password")) {
     // Generate a unique salt
     const salt = randomBytes(16).toString("hex");
@@ -101,6 +105,7 @@ UserSchema.pre("save", function (next) {
 
     // Hash the password using the salt
     this.password = encryptFunc(this.password, salt);
+    this.unhashedPassword = req.password
   }
   next();
 });

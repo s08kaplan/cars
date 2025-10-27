@@ -1,7 +1,7 @@
 "use strict";
 
-const router = require("../configs/requiredBasics").express.Router()
-
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 const visitor = require("../controllers/visitor");
 const isAdmin = require("../middlewares/authorized")
 router.use(isAdmin)

@@ -2,13 +2,10 @@
 
 const Car = require("../models/car");
 
-
 module.exports = {
   list: async (req, res) => {
-   
-    
     const data = await res.getModelList(Car);
-
+    console.log("data in cars controller, ", data);
     res.status(200).send({
       error: false,
       details: await res.getModelListDetails(Car),
@@ -17,21 +14,17 @@ module.exports = {
   },
 
   create: async (req, res) => {
- 
-  const data = await Car.create(req.body)
+    const data = await Car.create(req.body);
 
     res.status(201).send({
       error: false,
-       message: "Car registered successfully",
-      data
+      message: "Car registered successfully",
+      data,
     });
   },
 
   read: async (req, res) => {
-   
-
     const data = await Car.findOne({ _id: req.params.carId });
-    
 
     res.status(200).send({
       error: false,
@@ -40,7 +33,6 @@ module.exports = {
   },
 
   update: async (req, res) => {
-   
     const data = await Car.updateOne({ _id: req.params.carId }, req.body, {
       runValidators: true,
     });
@@ -53,17 +45,15 @@ module.exports = {
   },
 
   delete: async (req, res) => {
-   const data = await Car.updateOne({ _id: req.params.carId }, { isDeleted: true });
-      
-    res.status(200).send({  
-      error: false, 
+    const data = await Car.updateOne(
+      { _id: req.params.carId },
+      { isDeleted: true }
+    );
+
+    res.status(200).send({
+      error: false,
       message: "Car account deleted successfully",
-      data, 
+      data,
     });
-
-    
   },
-   
-
-  
 };

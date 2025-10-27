@@ -19,11 +19,20 @@ module.exports = {
   },
 
   create: async (req, res) => {
-     const { firstName, lastName, password } = req.body
+    console.log("create user req.body", req.body)
+     const { firstName, lastName, password, role } = req.body
 
     if (!(firstName && lastName && password)) {
       return res.status(400).send({ error: true, message: "First name, last name and password are required" });
   }
+
+  if(role === "1"){
+    return res.status(401).send({
+      error: true,
+      message: "You are not allowed for this role"
+    })
+  }
+
   const data = await User.create(req.body)
 
     res.status(201).send({

@@ -1,7 +1,7 @@
 "use strict"
 
-const router = require("../configs/requiredBasics").express.Router()
-
+const { express } = require("../configs/requiredBasics")
+const router = express.Router()
 const auth = require("../controllers/auth")
 
 router.post("/login", auth.login);

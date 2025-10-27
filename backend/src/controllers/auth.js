@@ -3,6 +3,9 @@
 const User = require("../models/user");
 const jwt = require("../configs/requiredBasics").jwt;
 const { encryptFunc } = require("../helpers/validationHelpers");
+const process = require("node:process")
+
+process.loadEnvFile(".env")
 
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const REFRESH_KEY = process.env.REFRESH_KEY;
@@ -183,7 +186,18 @@ module.exports = {
 
   verifyToken: async (req, res) => {
     try {
-      const accessToken = req.cookies.accessToken;
+      let accessToken = req.cookies.accessToken;
+      console.log("accessToken in the verify token: ", accessToken);
+
+      if (!accessToken) {
+        const authHeader = req.headers.authorization;
+        if (authHeader && authHeader.startsWith("Bearer ")) {
+          accessToken = authHeader.split(" ")[1];
+        }
+      }
+
+      console.log("accessToken in verify token: ", accessToken);
+      console.log("ACCESS_SECRET defined:", !!ACCESS_SECRET);
 
       if (!accessToken) {
         return res.status(401).send({
@@ -192,10 +206,11 @@ module.exports = {
         });
       }
 
-      const decoded = jwt.verify(accessToken, ACCESS_KEY);
+      console.log("🔍 Attempting to verify token...");
+      const decoded = jwt.verify(accessToken, ACCESS_SECRET);
 
       const user = await User.findById(decoded.id);
-      if (!user || user.isDeleted) {
+      if (!user || !user.isActive || user.isDeleted) {
         throw new Error("Invalid user");
       }
 
@@ -211,7 +226,6 @@ module.exports = {
     } catch (error) {
       console.error("Token verification error:", error);
 
-      
       if (error.name === "TokenExpiredError") {
         return res.status(401).send({
           valid: false,
