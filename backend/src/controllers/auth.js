@@ -197,7 +197,7 @@ module.exports = {
       }
 
       console.log("accessToken in verify token: ", accessToken);
-      console.log("ACCESS_SECRET defined:", !!ACCESS_SECRET);
+      console.log("ACCESS_SECRET defined:", !!ACCESS_KEY);
 
       if (!accessToken) {
         return res.status(401).send({
@@ -207,7 +207,7 @@ module.exports = {
       }
 
       console.log("🔍 Attempting to verify token...");
-      const decoded = jwt.verify(accessToken, ACCESS_SECRET);
+      const decoded = jwt.verify(accessToken, ACCESS_KEY);
 
       const user = await User.findById(decoded.id);
       if (!user || !user.isActive || user.isDeleted) {
