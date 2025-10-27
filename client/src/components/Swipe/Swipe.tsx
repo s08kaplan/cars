@@ -75,11 +75,11 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
     return () => clearTimeout(timer);
   }, [index]);
 
-  // If image is focused, show full-screen overlay
+
   if (isImageFocused) {
     return (
       <div className="fixed inset-0 z-50 bg-white bg-opacity-95 flex flex-col">
-        {/* Full-screen image container */}
+       
         <div className="flex-1 relative flex items-center justify-center p-4">
           <img
             src={source[index]}
@@ -88,7 +88,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
             onClick={() => setIsImageFocused(false)}
           />
           
-          {/* Navigation arrows for focused view */}
+        
           <button
             onClick={prevImage}
             className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-white text-white p-4 rounded-full hover:bg-white/80 transition-colors"

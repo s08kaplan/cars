@@ -31,6 +31,7 @@ export const registerSchema = loginSchema.extend({
           "Phone number must start with +90 or 0, followed by 5 and 9 more digits",
       }
     ),
+  image: z.string(),  
   role: z.enum(["1", "2"], {
     errorMap: () => ({ message: "Please select a valid user role" }),
   }),
@@ -58,6 +59,7 @@ export const fields = {
     { name: "email", type: "email", placeholder: "Email" },
     { name: "contactNumber", type: "text", placeholder: "Contact Number" },
     { name: "password", type: "password", placeholder: "Password" },
+    { name: "image", type: "text", placeholder: "Image (Optional)" },
     {
       name: "role",
       type: "select",

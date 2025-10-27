@@ -5,6 +5,7 @@ import { Outlet } from "react-router";
   QueryClientProvider,
 } from '@tanstack/react-query' */
 import Navbar from "src/components/Navbar/Navbar";
+import Footer from "src/components/UI/Footer";
 
 /* const queryClient = new QueryClient({
     defaultOptions: {
@@ -23,6 +24,9 @@ const PublicLayout = () => {
      {/*  <Navbar/> */}
 {/*       <h3>PublicLayout</h3>
  */}      <Outlet />
+ <div>
+  <Footer/>
+ </div>
    {/* </QueryClientProvider> */} 
     </>
   

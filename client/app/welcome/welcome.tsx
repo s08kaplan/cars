@@ -1,13 +1,14 @@
 import IntroScene from "scenes/IntroScene";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
+import SceneText from "scenes/Scene-Text";
 
 
 export function Welcome() {
  
   return (
-    <main className="flex items-center justify-center pt-16 pb-4 background-color-change">
-   <IntroScene/>
+    <main className="flex items-center justify-center pt-16 pb-4 background-color-change h-full">
+   <IntroScene/>  
     </main>
   );
 }

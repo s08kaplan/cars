@@ -6,9 +6,11 @@ import AuthProvider from "src/store/AuthProvider";
 const MainRoute = () => {
   return (
     <AuthProvider>
-      <MyNavbar />
-      <Outlet />
-      <Footer />
+      <div className="flex flex-col justify-between h-dvh">
+        <MyNavbar />
+        <Outlet />
+       {/*  <Footer /> */}
+      </div>
     </AuthProvider>
   );
 };

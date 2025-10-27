@@ -2,7 +2,7 @@
 import React, { useState, type ReactEventHandler } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCarStatus } from "src/helpers/functions";
-import MyTable from "src/components/Table/MyTable"
+import MyTable from "src/components/Table/MyTable";
 import MyError from "src/components/Error/MyError";
 
 const options = [
@@ -12,8 +12,18 @@ const options = [
   /* { value: "moderator", label: "Moderator" } */
 ];
 
-const TABLE_HEADERS = ["MAKE", "COLOR", "MODEL", "TYPE", "FUEL", "MILE", "BOUGHT", "SOLD", "REQUIRED", "PROFIT"]
-
+const TABLE_HEADERS = [
+  "MAKE",
+  "COLOR",
+  "MODEL",
+  "TYPE",
+  "FUEL",
+  "MILE",
+  "BOUGHT",
+  "SOLD",
+  "REQUIRED",
+  "PROFIT",
+];
 
 const CarStatistics = () => {
   const [url, setUrl] = useState("true");
@@ -22,29 +32,30 @@ const CarStatistics = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["carStatus",url],
+    queryKey: ["carStatus", url],
     queryFn: () => getCarStatus(url),
     staleTime: 10 * 60 * 1000,
     //cacheTime: 30 * 60 * 1000,
   });
 
- 
   if (isLoading && !carDetail) {
     return <div>Loading...</div>;
   }
 
   if (error && !carDetail) {
     /* return <div>Error loading car details</div>; */
-    return <MyError/>
+    return <MyError />;
   }
 
   if (!carDetail) {
     return <div>No car data available</div>;
   }
 
-  const handleChange = (e) => {
-    setUrl(e.target.value)
-  }
+  const handleChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setUrl(e.target.value);
+  };
   return (
     <div>
       <h3>CarStatistics</h3>
@@ -58,11 +69,18 @@ const CarStatistics = () => {
           </option>
         ))}
       </select>
-  
+
       <div>
-        <h2 className={url === "true" ? "text-center text-orange-700" : "text-center text-green-500"}>{url === "true" ? "CARS Waiting to be Sold" : "SOLD Cars Info"}</h2>
-          <MyTable title={TABLE_HEADERS} data={carDetail?.data} />
-          
+        <h2
+          className={
+            url === "true"
+              ? "text-center text-orange-700"
+              : "text-center text-green-500"
+          }
+        >
+          {url === "true" ? "CARS Waiting to be Sold" : "SOLD Cars Info"}
+        </h2>
+        <MyTable title={TABLE_HEADERS} data={carDetail?.data} />
       </div>
     </div>
   );

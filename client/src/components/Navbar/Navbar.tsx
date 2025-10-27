@@ -35,7 +35,7 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar = () => {
-  const user = useAuthStore(state => state.user)
+  const user = useAuthStore(state => state.user) || null
   const publicNavigation = navigation.filter(n => n.name !== "Car Statistics" && n.name !== "Budget")
 
   const navbarNavigation = user?.firstName ? navigation : publicNavigation
@@ -60,13 +60,13 @@ const Navbar = () => {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
+            <Link to="/dashboard" className="flex shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
+                alt="AutoDen Car Selling Company"
+                src="/car.webp"
+                className="h-8 w-8"
               />
-            </div>
+            </Link>
             <div className="hidden sm:ml-6 sm:flex items-center ">
               <div className="flex items-center space-x-4">
                 {navbarNavigation.map((item) => (
