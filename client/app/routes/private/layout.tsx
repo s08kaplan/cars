@@ -5,8 +5,7 @@ import { useAuthStore } from "src/store/useAuthStore";
 const PrivateLayout = () => {
   const user = useAuthStore((state) => state.user);
   const isAuthenticate = useAuthStore((state) => state.isAuthenticate);
-  /* console.log("user data:" , user) */
-
+  console.log("data in private layout: ", user);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,12 +14,17 @@ const PrivateLayout = () => {
     }
   }, [user, isAuthenticate, navigate]);
 
-  if (!isAuthenticate) {
-    <div>Checking authentication...</div>;
-    navigate("/");
-  }
+  useEffect(() => {
+   if(!isAuthenticate)  {
+    navigate("/dashboard")
+  };
+  }, [isAuthenticate])
+  
 
-  console.log("data in private layout: ", user);
+ /*  if (!isAuthenticate) {
+     <div>Checking authentication...</div>; 
+  } */
+
   return <Outlet />;
 };
 
