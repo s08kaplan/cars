@@ -1,18 +1,35 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import IntroScene from "scenes/IntroScene";
-import logoDark from "./logo-dark.svg";
-import logoLight from "./logo-light.svg";
 import SceneText from "scenes/Scene-Text";
 
-
 export function Welcome() {
- 
+  const [showSceneText, setShowSceneText] = useState(false);
+  const navigate = useNavigate();
+
+  const TIME_TO_NAVIGATE = 9000;
+  const TIME_TO_SHOW_TEXT = 4000;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/dashboard");
+    }, TIME_TO_NAVIGATE);
+
+    return () => clearTimeout(timer);
+  }, []);
+  useEffect(() => {
+    const animationTimer = setTimeout(() => {
+      setShowSceneText(true);
+    }, TIME_TO_SHOW_TEXT);
+    return () => clearTimeout(animationTimer);
+  }, []);
+
   return (
-    <main className="flex items-center justify-center pt-16 pb-4 background-color-change h-full">
-   <IntroScene/>  
+    <main className="flex items-center justify-center pb-4 background-color-change h-full w-full">
+      {!showSceneText ? <IntroScene /> : <SceneText />}
     </main>
   );
 }
-
 
 /* const resources = [
   {
