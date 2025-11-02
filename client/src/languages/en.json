@@ -1,0 +1,14 @@
+{
+  "navbar": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "about": "About",
+    "car_statistics": "Car Statistics",
+    "budget": "Budget",
+    "contact": "Contact"
+  },
+  "profile": {
+    "profile": "Profile",
+    "sign_in": "Sign in"
+  }
+}

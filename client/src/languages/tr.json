@@ -1,0 +1,14 @@
+{
+    "navbar": {
+        "home":"Ana Sayfa",
+        "dashboard":"Panel",
+        "about":"Hakkımızda",
+        "car_statistics":"Araç İstatistikleri",
+        "budget":"Bütçe",
+        "contact": "İletişim" 
+    },
+      "profile": {
+    "profile": "Profil",
+    "sign_in": "Giriş"
+  }
+}

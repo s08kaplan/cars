@@ -1,0 +1,14 @@
+{
+    "navbar": {
+        "home":"Página de Inicio",
+        "dashboard":"Panel de Control",
+        "about":"Acerca de",
+        "car_statistics":"Estadísticas de automóviles",
+        "budget":"Presupuesto",
+        "contact": "Contacto" 
+    },
+      "profile": {
+    "profile": "Perfil",
+    "sign_in": "Iniciar Sesión"
+  }
+}

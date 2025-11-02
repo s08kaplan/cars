@@ -1,0 +1,14 @@
+{
+    "navbar": {
+        "home":"Page d'accueil",
+        "dashboard":"Tableau de bord",
+        "about":"À propos",
+        "car_statistics":"Statistiques automobiles",
+        "budget":"Budget",
+        "contact": "Contact" 
+    },
+      "profile": {
+    "profile": "Profil",
+    "sign_in": "Se connecter"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "navbar": {
+    "home": "Startseite ",
+    "dashboard": "Armaturenbrett",
+    "about": "Über",
+    "car_statistics": "Autostatistik",
+    "budget": "Budget",
+    "contact": "Kontakt"
+  },
+    "profile": {
+    "profile": "Profil",
+    "sign_in": "Anmelden"
+  }
+}
