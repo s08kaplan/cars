@@ -1,14 +1,43 @@
 {
-    "navbar": {
-        "home":"Page d'accueil",
-        "dashboard":"Tableau de bord",
-        "about":"À propos",
-        "car_statistics":"Statistiques automobiles",
-        "budget":"Budget",
-        "contact": "Contact" 
-    },
-      "profile": {
+  "navbar": {
+    "home": "Page d'accueil",
+    "dashboard": "Tableau de bord",
+    "about": "À propos",
+    "car_statistics": "Statistiques automobiles",
+    "budget": "Budget",
+    "contact": "Contact"
+  },
+  "profile": {
     "profile": "Profil",
     "sign_in": "Se connecter"
+  },
+  "about": {
+    "title": "Guidé par la confiance. Défini par la qualité.",
+    "paragraphs": [
+      "Bienvenue chez <span>AutoDen</span>, l'une des entreprises de vente de voitures les plus fiables et réputées du marché. Nous offrons un large choix de véhicules — des modèles de luxe aux voitures abordables — tous garantis par notre engagement envers la qualité, la transparence et la satisfaction du client.",
+      "Chez DriveSmart, nous croyons que l’achat d’une voiture doit être une expérience <span>transparente et sans stress</span>. Chaque acheteur mérite honnêteté, clarté et confiance. C’est pourquoi nous avons bâti notre activité sur <span>la confiance et la transparence</span>.",
+      "Contrairement à de nombreux concessionnaires, nous partageons ouvertement les <span>avantages et inconvénients</span> de chaque véhicule avant toute négociation.",
+      "Notre <span>inventaire diversifié</span> répond à tous les besoins : des marques de luxe comme <span>BMW, Mercedes-Benz, Audi, Lexus</span> aux marques fiables telles que <span>Toyota, Honda, Ford, Hyundai, Nissan</span>.",
+      "Notre équipe est passionnée par l’automobile et dédiée à la satisfaction client. Nos conseillers guident et accompagnent chaque acheteur à chaque étape.",
+      "Nous proposons également des <span>solutions de financement</span> flexibles pour rendre l’achat accessible à tous.",
+      "Chez <span>AutoDen</span>, nous sommes plus qu’un concessionnaire — un partenaire de confiance pour ceux qui apprécient la <span>qualité et l’intégrité</span>.",
+      "Découvrez une nouvelle façon d’acheter une voiture — <span>honnête, claire et fiable.</span> Bienvenue chez <span>AutoDen — où votre satisfaction nous fait avancer.</span>"
+    ]
+  },
+  "formFields": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "contactNumber": "Numéro de contact",
+    "password": "Mot de passe",
+    "image": "Image (Optionnel)",
+    "signUp": "S'inscrire",
+    "signIn": "Se connecter",
+    "signInMessage": "Vous avez déjà un compte ?",
+    "signUpMessage": "Vous n'avez pas de compte ?",
+    "forgotPassword": "Mot de passe oublié ?",
+    "signUpTitle": "Créer un compte",
+    "signInSubtitle": "ou utilisez votre e-mail pour vous connecter",
+    "signUpSubtitle": "ou utilisez votre e-mail pour l'inscription"
   }
 }

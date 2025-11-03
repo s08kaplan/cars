@@ -10,5 +10,34 @@
     "profile": {
     "profile": "Profil",
     "sign_in": "Anmelden"
-  }
+  },
+  "about": {
+    "title": "Angetrieben durch Vertrauen. Definiert durch Qualität.",
+    "paragraphs": [
+      "Willkommen bei <span>AutoDen</span>, einem der zuverlässigsten Autohändler auf dem Markt. Wir bieten eine große Auswahl an Fahrzeugen — von Luxusmodellen bis zu erschwinglichen Alltagsautos — mit unserem Versprechen von Qualität und Transparenz.",
+      "Bei DriveSmart glauben wir, dass der Autokauf <span>transparent und stressfrei</span> sein sollte. Jeder Käufer verdient Ehrlichkeit und Vertrauen.",
+      "Im Gegensatz zu vielen Händlern teilen wir offen die <span>Vor- und Nachteile</span> jedes Fahrzeugs vor der Verhandlung.",
+      "Unser <span>vielfältiges Angebot</span> umfasst Luxusmarken wie <span>BMW, Mercedes-Benz, Audi, Lexus</span> sowie zuverlässige Modelle von <span>Toyota, Honda, Ford, Hyundai, Nissan</span>.",
+      "Unser engagiertes Team begleitet Sie bei jedem Schritt, um das passende Fahrzeug zu finden.",
+      "Wir bieten außerdem <span>Finanzierungslösungen</span> an, um den Autokauf für jeden zugänglich zu machen.",
+      "<span>AutoDen</span> ist mehr als ein Händler — wir sind ein vertrauenswürdiger Partner, der <span>Qualität, Fairness und Integrität</span> schätzt.",
+      "Erleben Sie den Autokauf richtig — <span>ehrlich, informiert und zuverlässig.</span> Willkommen bei <span>AutoDen — wo Ihre Zufriedenheit uns antreibt.</span>"
+    ]
+  },
+"formFields": {
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "email": "E-Mail",
+  "contactNumber": "Kontaktnummer",
+  "password": "Passwort",
+  "image": "Bild (Optional)",
+  "signUp": "Registrieren",
+  "signIn": "Anmelden",
+  "signInMessage": "Haben Sie bereits ein Konto?",
+  "signUpMessage": "Noch kein Konto?",
+  "forgotPassword": "Passwort vergessen?",
+  "signUpTitle": "Konto erstellen",
+  "signInSubtitle": "oder verwenden Sie Ihre E-Mail zum Anmelden",
+  "signUpSubtitle": "oder verwenden Sie Ihre E-Mail zur Registrierung"
+}
 }

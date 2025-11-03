@@ -10,5 +10,34 @@
       "profile": {
     "profile": "Profil",
     "sign_in": "Giriş"
-  }
+  },
+   "about": {
+    "title": "Güvenle Yola Çıkın. Kaliteyle Tanımlanın.",
+    "paragraphs": [
+      "<span>AutoDen</span>’e hoş geldiniz. Piyasadaki en güvenilir araç satış şirketlerinden biriyiz. Lüks modellerden ekonomik araçlara kadar geniş bir yelpazede araçlar sunuyoruz. Tüm araçlarımız kalite, şeffaflık ve müşteri memnuniyeti sözümüzle desteklenmektedir. Yıllar içinde DriveSmart Auto Traders, müşterilerimizin güvenle tercih ettiği, <span>en güvenilir markalardan biri</span> haline gelmiştir.",
+      "DriveSmart olarak bir araç satın almanın <span>şeffaf ve stressiz bir deneyim</span> olması gerektiğine inanıyoruz. Felsefemiz basit: Her alıcı dürüstlük, açıklık ve güven hak eder. Bu nedenle işimizi <span>güven ve şeffaflık</span> temelleri üzerine kurduk.",
+      "Birçok bayiden farklı olarak, her aracın <span>artılarını ve eksilerini</span> pazarlık öncesinde açıkça paylaşıyoruz. Deneyimli ekibimiz, araçların performansını ve durumunu detaylı bir şekilde inceler. Bu dürüst yaklaşım, müşterilerimizin daha doğru kararlar vermesine ve uzun vadeli memnuniyet sağlamamıza yardımcı olur.",
+      "Her sürücüye hitap eden <span>geniş bir araç yelpazemiz</span> var. Lüks, konfor ve performans arayanlar için <span>BMW, Mercedes-Benz, Audi, Lexus</span> gibi markalar sunuyoruz. Uygun fiyatlı ve güvenilir araçlar arayanlar için <span>Toyota, Honda, Ford, Hyundai, Nissan</span> modellerimiz mevcuttur.",
+      "DriveSmart Auto Traders’ın kalbinde, otomobillere tutkuyla bağlı bir profesyonel ekip vardır. Satış danışmanlarımız yalnızca satış yapmaz; rehberlik eder, bilgilendirir ve ihtiyacınıza uygun aracı bulmanıza yardımcı olur.",
+      "Ayrıca, araç sahibi olmayı herkes için erişilebilir kılmak adına çeşitli <span>finansman çözümleri</span> sunuyoruz. Esnek kredi ve takas seçenekleriyle süreci kolaylaştırıyoruz.",
+      "<span>AutoDen</span> sadece bir bayi değil, <span>kalite, adalet ve dürüstlüğe</span> değer veren müşteriler için güvenilir bir iş ortağıdır.",
+      "Araba almanın doğru yolunu deneyimleyin — <span>dürüst, bilinçli ve güvenilir.</span> Hoş geldiniz <span>AutoDen’e — memnuniyetiniz bizi ileri taşır.</span>"
+    ]
+  },
+  "formFields": {
+  "firstName": "Ad",
+  "lastName": "Soyad",
+  "email": "E-posta",
+  "contactNumber": "İletişim Numarası",
+  "password": "Şifre",
+  "image": "Resim (İsteğe Bağlı)",
+  "signUp": "Kaydol",
+  "signIn": "Giriş Yap",
+  "signInMessage": "Zaten hesabınız var mı?",
+  "signUpMessage": "Hesabınız yok mu?",
+  "forgotPassword": "Şifrenizi mi unuttunuz?",
+  "signUpTitle": "Hesap Oluştur",
+  "signInSubtitle": "veya giriş yapmak için e-postanızı kullanın",
+  "signUpSubtitle": "veya kayıt için e-postanızı kullanın"
+}
 }

@@ -10,5 +10,34 @@
   "profile": {
     "profile": "Profile",
     "sign_in": "Sign in"
+  },
+  "about": {
+    "title": "Driven by Trust. Defined by Quality.",
+    "paragraphs": [
+      "Welcome to <span>AutoDen</span>, one of the most reliable and trusted car selling companies in the market. We take pride in offering a wide selection of vehicles — from premium luxury models to affordable everyday cars — all backed by our promise of quality, transparency, and customer satisfaction. Over the years, DriveSmart Auto Traders has become a name that car buyers can depend on, earning consistent recognition as one of the <span>most reliable companies according to our buyers.</span>",
+      "At DriveSmart, we believe that purchasing a car should be a <span>transparent and stress-free experience.</span> Our philosophy is simple: every buyer deserves honesty, clarity, and confidence when making such an important decision. That’s why we’ve built our business around <span>trust and transparency</span>, ensuring that every customer receives complete and accurate information about their chosen vehicle before making a purchase.",
+      "Unlike many dealerships, we openly share the <span>pros and cons</span> of every car before any negotiation begins. Our experienced team carefully inspects each vehicle and provides detailed insights into its performance, condition, and features. We believe that this honest approach not only helps customers make better decisions but also sets us apart as a dealership that truly cares about long-term satisfaction. Whether a car is brand new or pre-owned, luxury or economy, we want you to know exactly what you’re buying — no surprises, no hidden issues, and no sales pressure.",
+      "Our <span>diverse inventory</span> caters to every type of driver. For those who seek elegance, comfort, and advanced performance, we offer luxury brands such as <span>BMW, Mercedes-Benz, Audi, and Lexus.</span> If practicality and reliability are your priorities, you’ll find a wide range of <span>Toyota, Honda, Ford, Hyundai, and Nissan</span> models to choose from. Each vehicle is thoroughly inspected, certified, and maintained to meet our high-quality standards. Whatever your lifestyle, preference, or budget, we have the right car waiting for you.",
+      "At the heart of DriveSmart Auto Traders is a team of professionals who are passionate about cars and committed to customer satisfaction. Our sales advisors are not just here to sell — they’re here to guide, inform, and assist you in finding a vehicle that fits your needs and budget. From the first inquiry to the final handshake, we ensure that every step of your car-buying journey is <span>smooth, transparent, and rewarding.</span>",
+      "We also offer a variety of <span>financing solutions</span> to make car ownership accessible to everyone. Whether you’re purchasing your first vehicle or upgrading to your dream car, our flexible finance and trade-in options are designed to make the process simple and convenient. Our goal is to help you drive away with confidence — knowing you made the right choice with the right company.",
+      "At <span>AutoDen</span>, we’re more than just a dealership. We are a trusted partner for car buyers who value <span>quality, fairness, and integrity.</span> Our commitment to transparency, reliability, and customer care has earned us a loyal base of returning clients and countless referrals — a true reflection of the trust we’ve built in the automotive community.",
+      "Experience car buying the right way — <span>honest, informed, and dependable.</span> Welcome to <span>AutoDen — where your satisfaction drives us forward.</span>"
+    ]
+  },
+  "formFields": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "contactNumber": "Contact Number",
+    "password": "Password",
+    "image": "Image (Optioanl)",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "signInMessage": "Already have an account?",
+    "signUpMessage": "Don't have an account?",
+    "forgotPassword": "Forgot your password?",
+    "signUpTitle":"Create Account",
+    "signInSubtitle":"or use your email to sign in",
+    "signUpSubtitle":"or use your email for registration"
   }
 }
