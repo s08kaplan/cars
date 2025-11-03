@@ -22,7 +22,11 @@ export const useLanguageStore = create<LanguageState>()(
   persist(
     (set, get) => ({
       lang: "English",
-      setLang: (lang) => set({ lang }),
+      setLang: (lang) => {
+        document.documentElement.dir = lang === "Arabic" ? "rtl" : "ltr";
+        document.documentElement.lang = lang;
+        set({ lang });
+      },
 
       t: (key, vars) => {
         const { lang } = get();
@@ -30,6 +34,8 @@ export const useLanguageStore = create<LanguageState>()(
         let text: any = translations[lang];
         for (const k of keys) text = text?.[k];
         if (!text) return key;
+
+        if (Array.isArray(text)) return text;
 
         if (vars) {
           Object.entries(vars).forEach(([k, v]) => {
