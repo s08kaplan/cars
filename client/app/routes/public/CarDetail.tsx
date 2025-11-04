@@ -56,6 +56,13 @@ const CarDetail = () => {
             <dd className="text-gray-900">{displayData?.available ? "On Sale" : "Sold"}</dd>
           </div>
 
+          { displayData?.available &&
+              <div className="flex justify-between border-b pb-1">
+            <dt className="font-medium text-gray-600">Price</dt>
+            <dd className="text-gray-900">{displayData?.requiredPrice}</dd>
+          </div>
+          }
+
           <div className="flex justify-between border-b pb-1">
             <dt className="font-medium text-gray-600">Model</dt>
             <dd className="text-gray-900">{displayData?.model}</dd>
