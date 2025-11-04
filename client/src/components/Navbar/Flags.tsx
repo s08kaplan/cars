@@ -1,9 +1,11 @@
-export const TurkishFlag = () => {
+const width = 32
+const height = 32
+export const TurkishFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <rect x={1} y={4} width={30} height={24} rx={4} ry={4} fill="#d12d24" />
@@ -28,12 +30,12 @@ export const TurkishFlag = () => {
   );
 };
 
-export const EnglishFlag = () => {
+export const EnglishFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <rect x={1} y={4} width={30} height={24} rx={4} ry={4} fill="#fff" />
@@ -142,12 +144,12 @@ export const EnglishFlag = () => {
   );
 };
 
-export const SpanishFlag = () => {
+export const SpanishFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <path fill="#f1c142" d="M1 10H31V22H1z" />
@@ -189,12 +191,12 @@ export const SpanishFlag = () => {
   );
 };
 
-export const GermanFlag = () => {
+export const GermanFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <path fill="#cc2b1d" d="M1 11H31V21H1z" />
@@ -217,12 +219,12 @@ export const GermanFlag = () => {
   );
 };
 
-export const ArabicFlag = () => {
+export const ArabicFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <path fill="#fff" d="M1 11H31V21H1z" />
@@ -249,12 +251,12 @@ export const ArabicFlag = () => {
   );
 };
 
-export const FrenchFlag = () => {
+export const FrenchFlag = ({width, height}:{width:number, height: number}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
       viewBox="0 0 32 32"
     >
       <path fill="#fff" d="M10 4H22V28H10z" />
