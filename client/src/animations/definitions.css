@@ -63,7 +63,8 @@
 }
 
 .slow-visible {
-  animation: slowVisible 4s ease-in-out forwards;
+  animation: slowVisible var(--animation-duration, 4s)
+    var(--animation-delay, 0s) ease-in-out forwards;
 }
 @keyframes slowVisible {
   0% {
@@ -75,4 +76,27 @@
     opacity: 1;
     background-color: black;
   }
+}
+
+@keyframes dropLetter {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(18px);
+    opacity: 0.15;
+  }
+  70% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.letter-drop {
+  animation: dropLetter .9s cubic-bezier(.22,.9,.35,1) infinite;
 }
