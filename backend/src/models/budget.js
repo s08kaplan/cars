@@ -9,7 +9,7 @@ const BudgetSchema = new Schema({
         required: true,
       },
       addedBy: {
-        name: String,
+        type: String,
         trim: true,
         required: true,
         index: true
