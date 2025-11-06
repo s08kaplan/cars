@@ -8,6 +8,12 @@ const BudgetSchema = new Schema({
         enum: ["income", "expense"],
         required: true,
       },
+      addedBy: {
+        name: String,
+        trim: true,
+        required: true,
+        index: true
+      },
       amount: {
         type: Number,
         required: true,
