@@ -10,7 +10,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-     useEffect(() => {
+  useEffect(() => {
     // Lock scroll
     document.body.style.overflow = "hidden";
 
@@ -21,8 +21,7 @@ export default function Home() {
   }, []);
   return (
     <>
-    
-    <Welcome />
+      <Welcome />
     </>
-);
+  );
 }

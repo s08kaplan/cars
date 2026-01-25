@@ -206,11 +206,11 @@ module.exports = {
         });
       }
 
-      console.log("🔍 Attempting to verify token...");
+      console.log("Attempting to verify token...");
       const decoded = jwt.verify(accessToken, ACCESS_KEY);
 
       const user = await User.findById(decoded.id);
-      if (!user || !user.isActive || user.isDeleted) {
+      if (!user || user.isDeleted) {
         throw new Error("Invalid user");
       }
 

@@ -66,21 +66,21 @@ const ContactForm = () => {
   return (
     <section className="flex flex-col sm:flex">
       
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} id="contact-form" className="space-y-4">
           {contactFields.map((field) => (
             <div key={field.name}>
               {field.type === "textarea" ? (
                 <textarea
                   {...register(field.name as keyof ContactFormData)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded text-sm"
+                   className="w-full h-12 text-gray-600 placeholder-gray-400  shadow-sm bg-transparent text-lg font-normal leading-7 rounded-lg border border-gray-200 focus:outline-none pl-4 mb-10"
                 />
               ) : (
                 <input
                   type={field.type}
                   {...register(field.name as keyof ContactFormData)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded text-sm"
+                   className="w-full h-12 text-gray-600 placeholder-gray-400  shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-10"
                 />
               )}
               {errors[field.name as keyof ContactFormData] && (
@@ -94,12 +94,9 @@ const ContactForm = () => {
             </div>
           ))}
 
-          <button
-            type="submit"
-            className="w-32 py-2 text-sm font-bold text-white uppercase bg-[#195190] rounded hover:bg-teal-600 transition"
-          >
-            Submit
-          </button>
+           <button className="w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-indigo-800 bg-indigo-600 shadow-sm">
+              Send
+            </button>
         </form>
      
     </section>

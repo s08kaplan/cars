@@ -1,25 +1,27 @@
-"use strict"
+"use strict";
 
-const jwt = require("../configs/requiredBasics").jwt
+const jwt = require("../configs/requiredBasics").jwt;
 
 module.exports = async (req, res, next) => {
-    const auth = req.headers?.authorization
+  const auth = await req.headers?.authorization;
+/* console.log(auth)
+  if (!auth) {
+    res.status(401).send({
+      error: true,
+      message: "No token provided",
+    });
+  } */
+  const tokenKey = auth.split(" ")
 
-    if(!auth) {
-        res.status(401).send({
-            error: true,
-            message: "No token provided"
-        })
-    }
-    const tokenKey = auth ? auth.split(" ") : null
+  if (tokenKey[0] !== "Bearer") {
+    return res.status(401).send({
+      error: true,
+      message: "Invalid token format",
+    });
+  }
 
-    if(tokenKey){
-        if(tokenKey[0] === "Bearer"){
-            jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (error, accessData)=> {
-                req.user = accessData ? accessData : false
-            })
-            next()
-        }
-    }
-    
-}
+  jwt.verify(tokenKey[1], process.env.ACCESS_KEY,(error, accessData) => {
+    req.user = accessData 
+    next();
+  });
+};

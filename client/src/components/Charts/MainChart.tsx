@@ -1,32 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import AddNew from "src/components/Budget/AddNew";
-import AreaChart from "src/components/Charts/AreaChart";
-import BarChart from "src/components/Charts/BarChart";
-import LineChart from "src/components/Charts/LineChart";
-import MainChart from "src/components/Charts/MainChart";
-import PieChart from "src/components/Charts/PieChart";
-import { getBudgetData } from "src/helpers/functions";
+import BarChart from "./BarChart";
+import AreaChart from "./AreaChart";
+import LineChart from "./LineChart";
+import PieChart from "./PieChart";
+import type { IBudget } from "types/budget";
 
-const Budget = () => {
-  const {
-    data: budget,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["budget"],
-    queryFn: () => getBudgetData(),
-    staleTime: 10 * 60 * 1000,
-    //cacheTime: 30 * 60 * 1000,
-  });
+const MainChart = ({budget}:{budget:IBudget}) => {
   const [selectChart, setSelectChart] = useState({
     barChart: false,
     areaChart: false,
     lineChart: false,
     pieChart: false,
   });
-
-  const [show, setShow] = useState(false)
 
   const handleChart = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.textContent);
@@ -65,36 +50,26 @@ const Budget = () => {
       });
     }
   };
-  console.log("budget data: ", budget?.data);
   return (
-    <section className="flex flex-col justify-center items-center gap-5 h-[calc(100%-64px)]">
+ <section className="flex flex-col justify-center items-center gap-5 h-[calc(100%-64px)]">
       <button onClick={handleChart} className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50"><span className="absolute h-56 w-32 rounded-full transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
         <span className="relative">Show on Bar Chart</span>
       </button>
-        {selectChart.barChart && <BarChart budget={budget.data} />}
+        {selectChart.barChart && <BarChart budget={budget} />}
       <button onClick={handleChart} className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50"><span className="absolute h-56 w-32 rounded-full transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
         <span className="relative">Show on Area Chart</span>
       </button>
-        {selectChart.areaChart && <AreaChart budget={budget.data} />}
+        {selectChart.areaChart && <AreaChart budget={budget} />}
       <button onClick={handleChart} className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50"><span className="absolute h-56 w-32 rounded-full transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
         <span className="relative">Show on Line Chart</span>
       </button>
-        {selectChart.lineChart && <LineChart budget={budget.data} />}
+        {selectChart.lineChart && <LineChart budget={budget} />}
       <button onClick={handleChart} className=" h-12 overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50">
         <span>Show on Pie Chart</span>
       </button>
-        {selectChart.pieChart && <PieChart budget={budget.data} />}
-        <button onClick={()=> setShow(prev => !prev)} className=" h-12 overflow-hidden rounded-md bg-lime-500 px-6 font-medium text-neutral-50">
-          Add New Data
-        </button>
-        { show && <section>
-          <AddNew/>
-        </section>}
-        <div>
-          <MainChart budget={budget?.data}/>
-        </div>
-    </section>
-  );
+        {selectChart.pieChart && <PieChart budget={budget} />}
+    </section>  
+);
 };
 
-export default Budget;
+export default MainChart;

@@ -1,13 +1,14 @@
 {
-    "navbar": {
-        "home":"الصفحة الرئيسية",
-        "dashboard":"لوحة القيادة",
-        "about":"حول",
-        "car_statistics":"إحصائيات السيارات",
-        "budget":"الميزانية",
-        "contact": "صفحة الاتصال" 
-    },
-      "profile": {
+  "navbar": {
+    "home": "الصفحة الرئيسية",
+    "dashboard": "لوحة القيادة",
+    "about": "حول",
+    "car_statistics": "إحصائيات السيارات",
+    "budget": "الميزانية",
+    "contact": "صفحة الاتصال",
+    "messages": "رسائل"
+  },
+  "profile": {
     "profile": "ملف تعريف ",
     "sign_in": "تسجيل الدخول"
   },
@@ -25,19 +26,19 @@
     ]
   },
   "formFields": {
-  "firstName": "الاسم الأول",
-  "lastName": "اسم العائلة",
-  "email": "البريد الإلكتروني",
-  "contactNumber": "رقم الاتصال",
-  "password": "كلمة المرور",
-  "image": "الصورة (اختياري)",
-  "signUp": "إنشاء حساب",
-  "signIn": "تسجيل الدخول",
-  "signInMessage": "هل لديك حساب بالفعل؟",
-  "signUpMessage": "ليس لديك حساب؟",
-  "forgotPassword": "هل نسيت كلمة المرور؟",
-  "signUpTitle": "إنشاء حساب",
-  "signInSubtitle": "أو استخدم بريدك الإلكتروني لتسجيل الدخول",
-  "signUpSubtitle": "أو استخدم بريدك الإلكتروني للتسجيل"
-}
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "contactNumber": "رقم الاتصال",
+    "password": "كلمة المرور",
+    "image": "الصورة (اختياري)",
+    "signUp": "إنشاء حساب",
+    "signIn": "تسجيل الدخول",
+    "signInMessage": "هل لديك حساب بالفعل؟",
+    "signUpMessage": "ليس لديك حساب؟",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "signUpTitle": "إنشاء حساب",
+    "signInSubtitle": "أو استخدم بريدك الإلكتروني لتسجيل الدخول",
+    "signUpSubtitle": "أو استخدم بريدك الإلكتروني للتسجيل"
+  }
 }

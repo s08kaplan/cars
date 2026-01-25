@@ -7,6 +7,7 @@ import { getCars } from "src/helpers/functions";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthStore } from "src/store/useAuthStore";
 import Banner from "src/components/UI/Banner";
+import CarSpinner from "src/components/Spinners/CarSpinner";
 
 const Dashboard = () => {
   const {
@@ -24,7 +25,7 @@ const Dashboard = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div>Loading cars...</div>
+        <div><CarSpinner/></div>
       </div>
     );
   }

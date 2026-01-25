@@ -3,17 +3,17 @@ const user = require("../controllers/user")
 
 const { express } = require("../configs/requiredBasics")
 const router = express.Router()
- const authorized = require("../middlewares/authorized")
+const authorized = require("../middlewares/authorized")
+const authenticatedUser = require("../middlewares/authentication")
 
-router.use(authorized)
 router.route("/")
-.get(user.list)
+.get(authorized,user.list)
 .post(user.create)
 
 router.route("/:userId")
-.get(user.read)
-.put(user.update)
-.patch(user.update)
-.delete(user.delete)
+.get(authenticatedUser,user.read)
+.put(authenticatedUser,user.update)
+.patch(authenticatedUser,user.update)
+.delete(authorized,user.delete)
 
 module.exports = router

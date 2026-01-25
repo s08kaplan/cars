@@ -42,6 +42,7 @@ const Navbar = () => {
     { name: t("navbar.dashboard"), to: "/dashboard", current: true },
     { name: t("navbar.car_statistics"), to: "/car-statistics", current: false },
     { name: t("navbar.budget"), to: "/budget", current: false },
+    { name: t("navbar.messages"), to: "/messgaes", current: false },
     { name: t("navbar.contact"), to: "/contact", current: false },
     { name: t("navbar.about"), to: "/about-us", current: false },
   ];
@@ -52,7 +53,7 @@ const Navbar = () => {
 ];
 
     const publicNavigation = navigation.filter(
-    (n) => n.name !== "Car Statistics" && n.name !== "Budget"
+    (n) => n.name !== "Car Statistics" && n.name !== "Budget" && n.name !== "Messages"
   );
 
    const navbarNavigation = user ? navigation : publicNavigation;

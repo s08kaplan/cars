@@ -17,9 +17,7 @@ const { dbConnection } = require('./src/configs/dbConnection')
 dbConnection()
 
 app.use(cookieParser())
-
 app.use(express.json())
-
 app.use(express.urlencoded({extended:true}))
 
 
@@ -31,20 +29,25 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-//! LIMITER
 
-app.use(limiter)
+// test for logger
+/* app.use((req, res, next) => {
+    console.log('REQUEST RECEIVED:', req.method, req.url)
+    next()
+}) */
+
+
+// Run Logger:
+app.use(require('./src/middlewares/logger'))
+
+//! LIMITER
+//app.use(limiter)
+
 
 // Call static uploadFile:
 const uploadPath = path.join(__dirname, 'uploads');
 app.use('/uploads', express.static(uploadPath));
 // app.use('/uploads', express.static('./upload'))
-
-
-// app.use(require('./src/middlewares/authentication'))
-
-// Run Logger:
-// app.use(require('./src/middlewares/logger'))
 
 // res.getModelList():
 app.use(require('./src/middlewares/queryHandler'))
@@ -61,6 +64,7 @@ app.all('/', (req, res) => {
     })
 })
 
+//app.use(require('./src/middlewares/authentication'))
 
 // Routes:
 app.use(require('./src/routes'))

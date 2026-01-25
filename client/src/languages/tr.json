@@ -1,17 +1,18 @@
 {
-    "navbar": {
-        "home":"Ana Sayfa",
-        "dashboard":"Panel",
-        "about":"Hakkımızda",
-        "car_statistics":"Araç İstatistikleri",
-        "budget":"Bütçe",
-        "contact": "İletişim" 
-    },
-      "profile": {
+  "navbar": {
+    "home": "Ana Sayfa",
+    "dashboard": "Panel",
+    "about": "Hakkımızda",
+    "car_statistics": "Araç İstatistikleri",
+    "budget": "Bütçe",
+    "contact": "İletişim",
+    "messages": "Mesajlar"
+  },
+  "profile": {
     "profile": "Profil",
     "sign_in": "Giriş"
   },
-   "about": {
+  "about": {
     "title": "Güvenle Yola Çıkın. Kaliteyle Tanımlanın.",
     "paragraphs": [
       "<span>AutoDen</span>’e hoş geldiniz. Piyasadaki en güvenilir araç satış şirketlerinden biriyiz. Lüks modellerden ekonomik araçlara kadar geniş bir yelpazede araçlar sunuyoruz. Tüm araçlarımız kalite, şeffaflık ve müşteri memnuniyeti sözümüzle desteklenmektedir. Yıllar içinde DriveSmart Auto Traders, müşterilerimizin güvenle tercih ettiği, <span>en güvenilir markalardan biri</span> haline gelmiştir.",
@@ -25,19 +26,19 @@
     ]
   },
   "formFields": {
-  "firstName": "Ad",
-  "lastName": "Soyad",
-  "email": "E-posta",
-  "contactNumber": "İletişim Numarası",
-  "password": "Şifre",
-  "image": "Resim (İsteğe Bağlı)",
-  "signUp": "Kaydol",
-  "signIn": "Giriş Yap",
-  "signInMessage": "Zaten hesabınız var mı?",
-  "signUpMessage": "Hesabınız yok mu?",
-  "forgotPassword": "Şifrenizi mi unuttunuz?",
-  "signUpTitle": "Hesap Oluştur",
-  "signInSubtitle": "veya giriş yapmak için e-postanızı kullanın",
-  "signUpSubtitle": "veya kayıt için e-postanızı kullanın"
-}
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "contactNumber": "İletişim Numarası",
+    "password": "Şifre",
+    "image": "Resim (İsteğe Bağlı)",
+    "signUp": "Kaydol",
+    "signIn": "Giriş Yap",
+    "signInMessage": "Zaten hesabınız var mı?",
+    "signUpMessage": "Hesabınız yok mu?",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "signUpTitle": "Hesap Oluştur",
+    "signInSubtitle": "veya giriş yapmak için e-postanızı kullanın",
+    "signUpSubtitle": "veya kayıt için e-postanızı kullanın"
+  }
 }

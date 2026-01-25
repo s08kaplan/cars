@@ -7,6 +7,8 @@ module.exports = {
    
     
     const data = await res.getModelList(Budget);
+ 
+   // const data = await Budget.find();
 
     res.status(200).send({
       error: false,

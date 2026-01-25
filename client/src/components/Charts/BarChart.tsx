@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { MONTHS } from './Chart-Constants';
 
 
 ChartJS.register(
@@ -33,27 +34,27 @@ export const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-const fakeData = (Math.random() * 100)
 
-export const data = {
-  labels,
+const BarChart = ({budget}) => {
+  const expense = budget.filter(b => b.type === "expense")
+  const income = budget.filter(b => b.type === "income")
+  console.log("expense data in bar chart: ", expense)
+  const data = {
+  labels: MONTHS,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: labels.map(() => fakeData),
+      label: 'EXPENSE',
+      data: expense.map(() => expense.amount),
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
     {
-      label: 'Dataset 2',
-      data: labels.map(() => fakeData),
+      label: 'INCOME',
+      data: income.map(() => income.amount),
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
 };
-
-const BarChart = () => {
   return  <Bar options={options} data={data} />;
 }
 

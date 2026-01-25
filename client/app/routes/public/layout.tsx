@@ -5,12 +5,14 @@ import Footer from "src/components/UI/Footer";
 
 const PublicLayout = () => {
   return (
-    <>
-      <Outlet />
+    <div className="flex flex-col">
+      <div>
+        <Outlet />
+      </div>
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
