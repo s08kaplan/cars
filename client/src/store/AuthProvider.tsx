@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import useAuth from "src/tanstack-query/auth/useAuth";
+import useAuth from "src/hooks/auth-hooks/useAuth";
 import { useAuthStore } from "./useAuthStore";
 import { useNavigate } from "react-router";
 
