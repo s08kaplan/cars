@@ -1,3 +1,25 @@
+@keyframes letterDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.05);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.letter-drop {
+  animation: letterDrop 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @keyframes fadeInDown {
   0% {
     opacity: 0;

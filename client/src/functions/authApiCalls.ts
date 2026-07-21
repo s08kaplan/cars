@@ -13,6 +13,7 @@ interface User {
   lastName: string;
   image?: string;
   email: string;
+  role: number
 }
 
 interface AuthResponse {

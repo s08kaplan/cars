@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import IntroScene from "scenes/IntroScene";
-import SceneText from "scenes/Scene-Text";
+import IntroScene from "../../scenes/IntroScene";
+import SceneText from "../../scenes/Scene-Text";
 
 export function Welcome() {
   const [showSceneText, setShowSceneText] = useState(false);

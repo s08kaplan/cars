@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import useAuth from "src/hooks/auth-hooks/useAuth";
+import { useAuth } from "src/hooks/auth-hooks/useAuth";
 import { useAuthStore } from "./useAuthStore";
 import { useNavigate } from "react-router";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data: user, isLoading, isError } = useAuth();
+  const { user, isLoading, isError } = useAuth();
   const { user: storedUser, setUser, setIsAuthenticate } = useAuthStore();
   const navigate = useNavigate();
 
