@@ -1,4 +1,4 @@
-import SceneText from "scenes/Scene-Text";
+import SceneText from "../../../scenes/Scene-Text";
 import CarSpinner from "src/components/Spinners/CarSpinner";
 import useLanguageStore from "src/store/useLanguageStore";
 
