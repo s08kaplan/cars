@@ -1,10 +1,10 @@
 "use strict"
-const {express} = require('./src/configs/requiredBasics')
+const {express} = require('./configs/requiredBasics')
 const app = express()
 const process = require("node:process")
 const path = require('path');
-const { cors } = require("./src/configs/requiredBasics")
-const limiter = require("./src/middlewares/rateLimiter")
+const { cors } = require("./configs/requiredBasics")
+const limiter = require("./middlewares/rateLimiter")
 const cookieParser = require("cookie-parser")
 
 
@@ -13,7 +13,7 @@ const HOST = process.env?.HOST || '0.0.0.0'
 const PORT = process.env?.PORT || 8000
 
 // Connect to DB:
-const { dbConnection } = require('./src/configs/dbConnection')
+const { dbConnection } = require('./configs/dbConnection')
 dbConnection()
 
 app.use(cookieParser())
@@ -38,7 +38,7 @@ app.use(cors(corsOptions))
 
 
 // Run Logger:
-app.use(require('./src/middlewares/logger'))
+app.use(require('./middlewares/logger'))
 
 //! LIMITER
 //app.use(limiter)
@@ -50,7 +50,7 @@ app.use('/uploads', express.static(uploadPath));
 // app.use('/uploads', express.static('./upload'))
 
 // res.getModelList():
-app.use(require('./src/middlewares/queryHandler'))
+app.use(require('./middlewares/queryHandler'))
 
 
 // Routes:
@@ -67,12 +67,12 @@ app.all('/', (req, res) => {
 //app.use(require('./src/middlewares/authentication'))
 
 // Routes:
-app.use(require('./src/routes'))
+app.use(require('./routes'))
 
 
 
 // errorHandler:
-app.use(require('./src/middlewares/errorHandler'))
+app.use(require('./middlewares/errorHandler'))
 
 // RUN SERVER:
 app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
