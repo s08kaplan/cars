@@ -3,23 +3,25 @@
 const User = require("../models/user");
 const jwt = require("../configs/requiredBasics").jwt;
 const { encryptFunc } = require("../helpers/validationHelpers");
-const process = require("node:process")
+const process = require("node:process");
 
-process.loadEnvFile(".env")
+process.loadEnvFile(".env");
 
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const REFRESH_KEY = process.env.REFRESH_KEY;
 
 const generateToken = (user) => {
+  if (!user || !user._id) {
+    throw new Error("Invalid user provided for token generation");
+  }
+
   const accessToken = jwt.sign(
     {
       id: user._id,
       role: user.role,
-      firstName: user.firstName,
-      lastName: user.lastName,
     },
     ACCESS_KEY,
-    { expiresIn: "15m" }
+    { expiresIn: "15m" },
   );
 
   const refreshToken = jwt.sign({ id: user._id }, REFRESH_KEY, {
@@ -33,22 +35,27 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-     console.log("email: ", email)
-     console.log("password: ", password)
+
       if (!(email?.trim() && password?.trim())) {
         return res.status(400).send({
           error: true,
-          message: "Email and password must be entered",
+          message: "Email and password are required",
         });
       }
 
-      const user = await User.findOne({ email });
-      console.log("user: ", user)
+      const user = await User.findOne({ email }).select("+password +salt");
+
       if (!user) {
         return res.status(401).send({
           error: true,
-          message:
-            "Credentials are wrong please check your email and password",
+          message: "Invalid email or password",
+        });
+      }
+
+      if (user.isDeleted) {
+        return res.status(403).send({
+          error: true,
+          message: "Account has been deactivated or deleted",
         });
       }
 
@@ -58,14 +65,7 @@ module.exports = {
       if (user.password !== hashedPassword) {
         return res.status(401).send({
           error: true,
-          message: "Invalid password",
-        });
-      }
-
-      if (user.isDeleted) {
-        return res.status(403).send({
-          error: true,
-          message: "Account has been deleted",
+          message: "Invalid email or password",
         });
       }
 
@@ -94,6 +94,8 @@ module.exports = {
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,
+          image: user.image,
+          email: user.email,
         },
       });
     } catch (error) {
@@ -120,18 +122,19 @@ module.exports = {
 
       const user = await User.findById(decoded.id);
       if (!user || user.isDeleted) {
-        throw new Error("Invalid user");
+        return res.status(403).send({
+          error: true,
+          message: "Invalid or inactive account",
+        });
       }
 
       const newAccessToken = jwt.sign(
         {
           id: user._id,
           role: user.role,
-          firstName: user.firstName,
-          lastName: user.lastName,
         },
         ACCESS_KEY,
-        { expiresIn: "15m" }
+        { expiresIn: "15m" },
       );
 
       res.cookie("accessToken", newAccessToken, {
@@ -139,7 +142,7 @@ module.exports = {
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
         path: "/",
-        maxAge: 15 * 60 * 1000, // 15 minutes
+        maxAge: 15 * 60 * 1000,
       });
 
       return res.send({
@@ -150,7 +153,7 @@ module.exports = {
       console.error("Refresh token error:", error);
       return res.status(403).send({
         error: true,
-        message: "Invalid refresh token",
+        message: "Invalid or expired refresh token",
       });
     }
   },
@@ -187,7 +190,6 @@ module.exports = {
   verifyToken: async (req, res) => {
     try {
       let accessToken = req.cookies.accessToken;
-      console.log("accessToken in the verify token: ", accessToken);
 
       if (!accessToken) {
         const authHeader = req.headers.authorization;
@@ -196,9 +198,6 @@ module.exports = {
         }
       }
 
-      console.log("accessToken in verify token: ", accessToken);
-      console.log("ACCESS_SECRET defined:", !!ACCESS_KEY);
-
       if (!accessToken) {
         return res.status(401).send({
           error: true,
@@ -206,21 +205,25 @@ module.exports = {
         });
       }
 
-      console.log("Attempting to verify token...");
       const decoded = jwt.verify(accessToken, ACCESS_KEY);
 
       const user = await User.findById(decoded.id);
       if (!user || user.isDeleted) {
-        throw new Error("Invalid user");
+        return res.status(401).send({
+          valid: false,
+          message: "User account is no longer active",
+        });
       }
 
       return res.send({
         valid: true,
         user: {
-          id: decoded.id,
-          role: decoded.role,
-          firstName: decoded.firstName,
-          lastName: decoded.lastName,
+          id: user._id,
+          role: user.role,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          image: user.image,
+          email: user.email,
         },
       });
     } catch (error) {
