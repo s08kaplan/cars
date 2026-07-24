@@ -78,37 +78,37 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
 
   if (isImageFocused) {
     return (
-      <div className="fixed inset-0 z-50 bg-white bg-opacity-95 flex flex-col">
+      <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col">
        
         <div className="flex-1 relative flex items-center justify-center p-4">
           <img
             src={source[index]}
             alt={`Image ${index}`}
-            className="max-w-full max-h-full object-contain cursor-pointer"
+            className="max-w-full max-h-full object-contain cursor-pointer rounded-2xl shadow-2xl border border-slate-800/60"
             onClick={() => setIsImageFocused(false)}
           />
           
         
           <button
             onClick={prevImage}
-            className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-white text-white p-4 rounded-full hover:bg-white/80 transition-colors"
+            className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 text-cyan-400 p-4 rounded-full hover:border-cyan-500 hover:bg-slate-800 transition-all duration-200 shadow-xl cursor-pointer"
             aria-label="Previous"
           >
-            <img src={leftArrow} alt="left arrow image" width={16}/>
+            <img src={leftArrow} alt="left arrow image" width={16} className="invert brightness-200" />
           </button>
 
           <button
             onClick={nextImage}
-            className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-white text-white p-4 rounded-full hover:bg-white/80 transition-colors"
+            className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 text-cyan-400 p-4 rounded-full hover:border-cyan-500 hover:bg-slate-800 transition-all duration-200 shadow-xl cursor-pointer"
             aria-label="Next"
           >
-            <img src={rightArrow} alt="right arrow image" width={16} />
+            <img src={rightArrow} alt="right arrow image" width={16} className="invert brightness-200" />
           </button>
 
           {/* Close button */}
           <button
             onClick={() => setIsImageFocused(false)}
-            className="absolute top-6 right-6 bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors text-xl font-bold"
+            className="absolute top-6 right-6 bg-slate-900/90 border border-slate-700/80 text-slate-300 p-3 rounded-full hover:border-cyan-500 hover:text-cyan-400 hover:bg-slate-800 transition-all duration-200 text-xl font-bold cursor-pointer"
             aria-label="Close"
           >
             ✕
@@ -116,17 +116,17 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         </div>
 
         {/* Thumbnail row at bottom */}
-        <div className="bg-black/80 p-4">
+        <div className="bg-slate-900/90 border-t border-slate-800 p-4">
           <div className="flex gap-3 overflow-x-auto justify-center max-w-full">
             {source.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`Thumbnail ${i}`}
-                className={`flex-shrink-0 w-16 h-16 object-cover rounded cursor-pointer transition-all duration-200 ${
+                className={`flex-shrink-0 w-16 h-16 object-cover rounded-xl cursor-pointer transition-all duration-200 ${
                   i === index 
-                    ? "ring-3 ring-white scale-110 opacity-100" 
-                    : "hover:scale-105 opacity-60 hover:opacity-90"
+                    ? "ring-2 ring-cyan-400 scale-110 opacity-100 shadow-lg shadow-cyan-500/20" 
+                    : "hover:scale-105 opacity-50 hover:opacity-90 border border-slate-800"
                 }`}
                 onClick={() => handleThumbnailClick(i)}
               />
@@ -143,7 +143,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
       {...swipeHandlers}
       onMouseEnter={pauseAutoplay}
       onMouseLeave={resumeAutoplay}
-      className="relative w-full max-w-lg mx-auto overflow-hidden"
+      className="relative w-full max-w-lg mx-auto overflow-hidden rounded-2xl border border-slate-800/80 shadow-2xl bg-slate-900/40 backdrop-blur-xl"
     >
       <div
         className="flex transition-transform duration-500 ease-in-out"
@@ -162,26 +162,26 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
 
       <button
         onClick={prevImage}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/50 text-white p-2 rounded-full hover:bg-white/70"
+        className="absolute top-1/2 left-3 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 p-2.5 rounded-full hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-lg"
         aria-label="Previous"
       >
-       <img src={leftArrow} alt="" width={10}/>
+       <img src={leftArrow} alt="" width={12} className="invert brightness-200" />
       </button>
 
       <button
         onClick={nextImage}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/50 text-white p-2 rounded-full hover:bg-white/70"
+        className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 p-2.5 rounded-full hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-lg"
         aria-label="Next"
       >
-        <img src={rightArrow} alt="" width={10} />
+        <img src={rightArrow} alt="" width={12} className="invert brightness-200" />
       </button>
 
-      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5 bg-slate-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-800/80">
         {source.map((_, i) => (
           <div
             key={i}
-            className={`w-2 h-2 rounded-full transition ${
-              i === index ? "bg-white scale-110" : "bg-gray-400"
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              i === index ? "bg-cyan-400 scale-125 shadow-sm shadow-cyan-400/50" : "bg-slate-600"
             }`}
           />
         ))}

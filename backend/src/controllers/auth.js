@@ -96,6 +96,7 @@ module.exports = {
           role: user.role,
           image: user.image,
           email: user.email,
+          contactNumber: user.contactNumber,
         },
       });
     } catch (error) {
@@ -220,10 +221,6 @@ module.exports = {
         user: {
           id: user._id,
           role: user.role,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          image: user.image,
-          email: user.email,
         },
       });
     } catch (error) {
@@ -243,4 +240,46 @@ module.exports = {
       });
     }
   },
+  
+  getCurrentUser: async (req, res) => {
+  try {
+    const token = req.cookies?.accessToken;
+
+    if (!token) {
+      return res.status(401).send({
+        error: true,
+        message: "Not authenticated",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.ACCESS_KEY);
+    
+    const user = await User.findById(decoded.id).select("-password");
+
+    if (!user) {
+      return res.status(401).send({
+        error: true,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).send({
+      error: false,
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        image: user.image,
+        email: user.email,
+        role: user.role
+      },
+    });
+  } catch (error) {
+    console.error("Get current user error:", error);
+    return res.status(401).send({
+      error: true,
+      message: "Invalid or expired token",
+    });
+  }
+  }
 };

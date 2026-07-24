@@ -1,61 +1,30 @@
-/* import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from "react";
 
-const EngineSound = () => {
-      const audioRef = useRef<HTMLAudioElement | null>(null);
-
-        useEffect(() => {
-    const timeout = setTimeout(() => {
-      audioRef.current?.play();
-    }, 800); 
-
-    return () => clearTimeout(timeout);
-  }, []);
-  return (
-    <audio muted autoPlay ref={audioRef} src="/sounds/mustang.mp3" preload="auto" />
-  )
+interface EngineSoundProps {
+  isPlaying: boolean;
 }
 
-export default EngineSound */
-
-import React, { useEffect, useRef, useState } from 'react';
-
-const EngineSound = () => {
+const EngineSound: React.FC<EngineSoundProps> = ({ isPlaying }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
-    const handleFirstUserGesture = () => {
-      setHasInteracted(true);
-      document.removeEventListener('click', handleFirstUserGesture);
-    };
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    document.addEventListener('click', handleFirstUserGesture);
-    return () => {
-      document.removeEventListener('click', handleFirstUserGesture);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (hasInteracted) {
-      const timeout = setTimeout(() => {
-        const audio = audioRef.current;
-        if (audio) {
-          audio.muted = false; 
-          audio.play().catch(console.error);
-        }
-      }, 800);
-
-      return () => clearTimeout(timeout);
+    if (isPlaying) {
+      audio.currentTime = 0;
+      audio.muted = false;
+      audio.play().catch((err) => console.warn("Audio playback error:", err));
+    } else {
+      audio.pause();
     }
-  }, [hasInteracted]);
+  }, [isPlaying]);
 
   return (
     <audio
       ref={audioRef}
       src="/sounds/mustang.mp3"
       preload="auto"
-      autoPlay
-      muted 
     />
   );
 };

@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { MONTHS } from './Chart-Constants';
+import type { IBudget } from '../../../types/budget';
 
 
 ChartJS.register(
@@ -36,7 +37,7 @@ export const options = {
 
 
 
-const BarChart = ({budget}) => {
+const BarChart = ({budget}:{budget:IBudget[]}) => {
   const expense = budget.filter(b => b.type === "expense")
   const income = budget.filter(b => b.type === "income")
   console.log("expense data in bar chart: ", expense)

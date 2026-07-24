@@ -5,7 +5,6 @@ import Swipe from "src/components/Swipe/Swipe";
 import { images } from "../../../src/helpers/test-swipe/test";
 import { getCars } from "src/helpers/functions";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAuthStore } from "src/store/useAuthStore";
 import Banner from "src/components/UI/Banner";
 import CarSpinner from "src/components/Spinners/CarSpinner";
 

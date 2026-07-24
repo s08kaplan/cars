@@ -1,29 +1,28 @@
-import { Outlet, useNavigate } from "react-router";
-import { useEffect } from "react";
-import { useAuthStore } from "src/store/useAuthStore";
+import { Navigate, Outlet, useNavigate } from "react-router";
+import { useAuth } from "src/hooks/auth-hooks/useAuth";
 
 const PrivateLayout = () => {
-  const user = useAuthStore((state) => state.user);
-  const isAuthenticate = useAuthStore((state) => state.isAuthenticate);
+  const { user, isAuthenticated, isLoading } = useAuth();
   console.log("data in private layout: ", user);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticate && !user) {
-      navigate("/login");
-    }
-  }, [user, isAuthenticate, navigate]);
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <p className="text-gray-500">Checking authentication...</p>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-   if(!isAuthenticate)  {
-    navigate("/dashboard")
-  };
-  }, [isAuthenticate])
-  
+  if (!isAuthenticated || !user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
- /*  if (!isAuthenticate) {
-     <div>Checking authentication...</div>; 
-  } */
+  const roleAsNumber = typeof user.role === "string" ? parseInt(user.role, 10) : user.role;
+  if (roleAsNumber !== 1) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
 
   return <Outlet />;
 };

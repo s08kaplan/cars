@@ -14,6 +14,6 @@ router.route("/:userId")
 .get(authenticatedUser,user.read)
 .put(authenticatedUser,user.update)
 .patch(authenticatedUser,user.update)
-.delete(authorized,user.delete)
+.delete(authenticatedUser,user.delete)
 
 module.exports = router

@@ -3,7 +3,7 @@ import BarChart from "./BarChart";
 import AreaChart from "./AreaChart";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
-import type { IBudget } from "types/budget";
+import type { IBudget } from "../../../types/budget";
 
 const MainChart = ({budget}:{budget:IBudget}) => {
   const [selectChart, setSelectChart] = useState({

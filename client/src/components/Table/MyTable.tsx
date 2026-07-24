@@ -20,7 +20,7 @@ interface MyTableProps {
 
 const MyTable: React.FC<MyTableProps> = ({ title, data }) => {
   /*  console.log(data); */
-const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [extraColumn, setExtraColumn] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,47 +56,55 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   };
 
   return (
-      <div className="overflow-x-auto my-4">
+    <div className="overflow-x-auto my-4">
       {isMobile && (
-        <div className="mb-4">
-          <label className="text-sm mr-2">Select extra column: </label>
+        <div className="mb-4 flex items-center gap-2">
+          <label className="text-sm font-medium text-slate-300">Select extra column: </label>
           <select
             onChange={(e) => setExtraColumn(e.target.value)}
-            className="border p-1 rounded"
+            className="bg-slate-900 border border-slate-800 text-slate-100 p-1.5 rounded-lg text-sm focus:outline-none focus:border-cyan-500"
           >
-            <option value="">--None--</option>
+            <option value="" className="bg-slate-900 text-slate-100">--None--</option>
             {hiddenColumns.map(col => (
-              <option key={col} value={col}>{col}</option>
+              <option key={col} value={col} className="bg-slate-900 text-slate-100">{col}</option>
             ))}
           </select>
         </div>
       )}
-      <table className="table-auto border border-gray-300 w-full text-sm">
-        <thead className="bg-gray-100">
-          <tr>
-            {(isMobile ? visibleColumns : title).map((t) => (
-              <th key={t} className="border px-2 py-1">{t}</th>
-            ))}
-            {isMobile && extraColumn && <th className="border px-2 py-1">{extraColumn}</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((car) => (
-            <tr key={car._id}>
-              {(isMobile ? visibleColumns : title).map(col => (
-                <td key={col} className="border px-2 py-1 text-center">
-                  {getValue(car, col)}
-                </td>
+      <div className="rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden bg-slate-900/60 backdrop-blur-xl">
+        <table className="table-auto w-full text-sm text-slate-200">
+          <thead className="bg-slate-800/90 border-b border-slate-700/80">
+            <tr>
+              {(isMobile ? visibleColumns : title).map((t) => (
+                <th key={t} className="border-r border-slate-700/50 last:border-r-0 px-3 py-3 text-cyan-400 font-bold text-xs uppercase tracking-wider whitespace-nowrap">
+                  {t}
+                </th>
               ))}
               {isMobile && extraColumn && (
-                <td className="border px-2 py-1 text-center">
-                  {getValue(car, extraColumn)}
-                </td>
+                <th className="border-r border-slate-700/50 last:border-r-0 px-3 py-3 text-cyan-400 font-bold text-xs uppercase tracking-wider whitespace-nowrap">
+                  {extraColumn}
+                </th>
               )}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-slate-800/80">
+            {data?.map((car) => (
+              <tr key={car._id} className="hover:bg-slate-800/40 transition-colors duration-150">
+                {(isMobile ? visibleColumns : title).map(col => (
+                  <td key={col} className="border-r border-slate-800/60 last:border-r-0 px-3 py-2.5 text-center text-slate-300 font-medium whitespace-nowrap">
+                    {getValue(car, col)}
+                  </td>
+                ))}
+                {isMobile && extraColumn && (
+                  <td className="border-r border-slate-800/60 last:border-r-0 px-3 py-2.5 text-center text-slate-300 font-medium whitespace-nowrap">
+                    {getValue(car, extraColumn)}
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

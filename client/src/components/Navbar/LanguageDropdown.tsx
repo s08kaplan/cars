@@ -1,6 +1,4 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { cloneElement } from "react";
+import { ChevronDown } from "lucide-react";
 import {
   TurkishFlag,
   ArabicFlag,
@@ -42,35 +40,40 @@ const LanguageDropdown = ({
 
   return (
     <section className="ml-0.5">
-      <Menu as="div" className="relative inline-block">
-        <MenuButton className="inline-flex items-center gap-1 justify-center rounded-md bg-white/10 px-2 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+      <details className="group relative inline-block text-left">
+        {/* Trigger Button */}
+        <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 transition-colors hover:bg-white/20 focus:outline-none">
           <SelectedFlagComponent width={width / 2} height={height / 2} />
-          <ChevronDownIcon
+          <ChevronDown
             aria-hidden="true"
-            className="size-5 text-gray-400"
+            className="size-4 text-gray-400 transition-transform duration-200 group-open:rotate-180"
           />
-        </MenuButton>
+        </summary>
 
-        <MenuItems
-          transition
-          className="absolute right-0 z-10 mt-2 w-26 origin-top-right divide-y divide-white/10 rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-        >
-          <h2 className="text-white p-2">Select Language</h2>
+        {/* Dropdown Menu */}
+        <div className="absolute right-0 z-50 mt-2 w-40 origin-top-right divide-y divide-white/10 rounded-lg bg-gray-800 p-1 shadow-xl outline-1 -outline-offset-1 outline-white/10">
+          <h2 className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            Select Language
+          </h2>
           <div className="py-1">
             {flagComponents.map(({ name, Component }) => (
-              <MenuItem key={name}>
-                <button
-                  onClick={() => handleLanguage(name)}
-                  className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:text-white data-focus:outline-hidden"
-                >
-                  <Component width={width} height={height} />
-                  {name}
-                </button>
-              </MenuItem>
+              <button
+                key={name}
+                type="button"
+                onClick={(e) => {
+                  handleLanguage(name);
+                  // Closes the menu on click without changing state logic
+                  e.currentTarget.closest("details")?.removeAttribute("open");
+                }}
+                className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm text-gray-300 transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none"
+              >
+                <Component width={width} height={height} />
+                <span>{name}</span>
+              </button>
             ))}
           </div>
-        </MenuItems>
-      </Menu>
+        </div>
+      </details>
     </section>
   );
 };

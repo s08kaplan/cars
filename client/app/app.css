@@ -1,24 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@200..700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
   @apply bg-white dark:bg-gray-950;
-  /*  overflow: hidden; */
-
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #0f172b;
+  color: white;
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
-
 }
 
-dd:nth-child(even),dt:nth-child(even){
-      @apply bg-gray-200;background: text-content;
+.lobster {
+  font-family: "Lobster Two", "Noto Color Emoji", sans-serif, system-ui;
+}
+
+@keyframes revealButton {
+  0%, 30% {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
   }
+  31%, 100% {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+.scroll-to-top-btn {
+  animation: revealButton linear both;
+  animation-timeline: scroll(root); 
+}
+
+dd:nth-child(even),
+dt:nth-child(even) {
+  @apply bg-gray-200;
+  background: text-content;
+}
 
 .input {
   @apply bg-gray-100 text-sm px-4 py-2 my-2 w-full rounded border border-gray-300;
@@ -26,7 +53,6 @@ dd:nth-child(even),dt:nth-child(even){
 .btn {
   @apply rounded-full bg-pink-500 text-white text-sm font-bold px-6 py-2 uppercase tracking-wide hover:bg-pink-600 transition;
 }
-
 
 @keyframes fancyHover {
   0% {
@@ -56,8 +82,6 @@ dd:nth-child(even),dt:nth-child(even){
   }
 }
 
-
 .fancy-hover:hover {
   animation: fancyHover 3s ease-in-out forwards;
 }
-

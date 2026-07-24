@@ -9,9 +9,11 @@ import { login, registerUser } from "src/helpers/functions";
 import { useAuthStore } from "src/store/useAuthStore";
 import { useQueryClient } from "@tanstack/react-query";
 import useLanguageStore from "src/store/useLanguageStore";
+import { Shield, Lock, Mail, User, Phone, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { useAuth } from "src/hooks/auth-hooks/useAuth";
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email"),
+  email: z.email("Invalid email"),
   password: z.string().min(6, "Minimum 6 characters"),
 });
 
@@ -33,9 +35,9 @@ export const registerSchema = loginSchema.extend({
       }
     ),
   image: z.string(),  
-  role: z.enum(["1", "2"], {
+ /*  role: z.enum(["1", "2"], {
     errorMap: () => ({ message: "Please select a valid user role" }),
-  }),
+  }), */
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
@@ -61,17 +63,6 @@ export const fields = {
     { name: "contactNumber", type: "text", placeholder: "Contact Number" },
     { name: "password", type: "password", placeholder: "Password" },
     { name: "image", type: "text", placeholder: "Image (Optional)" },
-  /*   {
-      name: "role",
-      type: "select",
-      placeholder: "Select User Role",
-      options: [
-        { value: "", label: "Select User Role" },
-        { value: "1", label: "Manager" },
-        { value: "2", label: "User" },
-        { value: "moderator", label: "Moderator" }
-      ],
-    }, */
   ],
   login: [
     { name: "email", type: "email", placeholder: "Email" },
@@ -80,47 +71,28 @@ export const fields = {
 };
 
 export default function AuthForm({ formType }: { formType: FormType }) {
-  /*  const [formType, setFormType] = useState<FormType>("login"); */
+  const lang = useLanguageStore((s) => s.lang);
+  const t = useLanguageStore((s) => s.t);
 
-  const lang = useLanguageStore(s => s.lang)
-  const t = useLanguageStore(s => s.t)
+  const translatedFields = {
+    register: [
+      { name: "firstName", type: "text", placeholder: t("formFields.firstName"), icon: User },
+      { name: "lastName", type: "text", placeholder: t("formFields.lastName"), icon: User },
+      { name: "email", type: "email", placeholder: t("formFields.email"), icon: Mail },
+      { name: "contactNumber", type: "text", placeholder: t("formFields.contactNumber"), icon: Phone },
+      { name: "password", type: "password", placeholder: t("formFields.password"), icon: Lock },
+      { name: "image", type: "text", placeholder: t("formFields.image"), icon: ImageIcon },
+    ],
+    login: [
+      { name: "email", type: "email", placeholder: t("formFields.email"), icon: Mail },
+      { name: "password", type: "password", placeholder: t("formFields.password"), icon: Lock },
+    ],
+  };
 
-   const fields = {
-  register: [
-    { name: "firstName", type: "text", placeholder: t("formFields.firstName") },
-    { name: "lastName", type: "text", placeholder: t("formFields.lastName" )},
-    { name: "email", type: "email", placeholder: t("formFields.email") },
-    { name: "contactNumber", type: "text", placeholder: t("formFields.contactNumber") },
-    { name: "password", type: "password", placeholder: t("formFields.password") },
-    { name: "image", type: "text", placeholder: t("formFields.image") },
-  /*   {
-      name: "role",
-      type: "select",
-      placeholder: "Select User Role",
-      options: [
-        { value: "", label: "Select User Role" },
-        { value: "1", label: "Manager" },
-        { value: "2", label: "User" },
-        { value: "moderator", label: "Moderator" }
-      ],
-    }, */
-  ],
-  login: [
-    { name: "email", type: "email", placeholder: t("formFields.email" )},
-    { name: "password", type: "password", placeholder: t("formFields.password") },
-  ],
-};
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    /*  if(formType == "login"){
-      setFormType("register")
-      navigate("/register")
-    }else {
-     setFormType("login")
-    navigate("/login")  
-    } */
-    formType == "login" ? navigate("/register") : navigate("/login");
+    formType === "login" ? navigate("/register") : navigate("/login");
   };
 
   const {
@@ -129,10 +101,8 @@ export default function AuthForm({ formType }: { formType: FormType }) {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(getSchema(formType)) });
 
-  const setUser = useAuthStore((state) => state.setUser);
-  const setIsAuthenticate = useAuthStore((state) => state.setIsAuthenticate);
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(`${formType.toUpperCase()} DATA:`, data);
@@ -147,9 +117,6 @@ export default function AuthForm({ formType }: { formType: FormType }) {
           password: (data as RegisterFormData).password,
         });
       }
-
-      setUser(user);
-      setIsAuthenticate(true);
       queryClient.setQueryData(["auth", "current-user"], user);
       navigate("/dashboard");
     } catch (error) {
@@ -158,86 +125,96 @@ export default function AuthForm({ formType }: { formType: FormType }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
-        <h2 className="text-2xl font-bold text-center">
-          {formType === "login" ? t("formFields.signIn" ): t("formFields.signUpTitle")}
-        </h2>
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 sm:p-6 selection:bg-cyan-500 selection:text-slate-950">
+      
+      {/* Form Container Card */}
+      <div className="w-full max-w-md bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+        
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 mb-1">
+            <Shield className="w-6 h-6" />
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            {formType === "login" ? t("formFields.signIn") : t("formFields.signUpTitle")}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400">
+            {formType === "login" ? t("formFields.signInSubtitle") : t("formFields.signUpSubtitle")}
+          </p>
+        </div>
 
-        <div className="flex justify-center space-x-3">
-          {socialIcons.map((icon) => (
+        {/* Social Authentication */}
+        <div className="flex justify-center gap-3">
+          {socialIcons.map((icon, idx) => (
             <a
-              key={icon}
+              key={idx}
               href="#"
-              className="border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center text-gray-600 hover:text-pink-500"
+              className="w-11 h-11 rounded-2xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center transition-all duration-200 hover:border-cyan-500/50 hover:bg-slate-800 hover:scale-105"
             >
-              <img src={icon} alt="icon" />
+              <img src={icon} alt="social icon" className="w-5 h-5 object-contain" />
             </a>
           ))}
         </div>
 
-        <span className="text-sm text-center block">
-        {" "}
-          {formType === "login" ? t("formFields.signInSubtitle") : t("formFields.signUpSubtitle")}
-        </span>
+        <div className="relative flex items-center justify-center">
+          <div className="border-t border-slate-800 w-full" />
+          <span className="bg-slate-900 px-3 text-[11px] font-medium uppercase tracking-wider text-slate-500 absolute">
+            or continue with
+          </span>
+        </div>
 
+        {/* Form Inputs */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {fields[formType].map((field) => (
-            <div key={field.name}>
-            {/*   {field.type === "select" ? (
-                <select
-                  {...register(field.name as keyof FormData)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white"
-                >
-                  {field.options?.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  {...register(field.name as keyof FormData)}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-              )} */}
-              <input
-                  {...register(field.name as keyof FormData)}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-              {errors[field.name as keyof FormData] && (
-                <p className="text-xs text-red-500 mt-1">
-                  {errors[field.name as keyof FormData]?.message as string}
-                </p>
-              )}
-            </div>
-          ))}
+          {translatedFields[formType].map((field) => {
+            const Icon = field.icon;
+            return (
+              <div key={field.name} className="space-y-1">
+                <div className="relative flex items-center">
+                  <Icon className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+                  <input
+                    {...register(field.name as keyof FormData)}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200"
+                  />
+                </div>
+                {errors[field.name as keyof FormData] && (
+                  <p className="text-xs text-red-400 pl-1 font-medium">
+                    {errors[field.name as keyof FormData]?.message as string}
+                  </p>
+                )}
+              </div>
+            );
+          })}
 
+          {/* Forgot Password */}
           {formType === "login" && (
-            <a href="#" className="block text-sm text-gray-600 text-right">
-              {t("formFields.forgotPassword")}
-            </a>
+            <div className="text-right">
+              <a href="#" className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
+                {t("formFields.forgotPassword")}
+              </a>
+            </div>
           )}
 
+          {/* Action Button */}
           <button
             type="submit"
-            className="w-full py-2 text-sm font-bold text-white uppercase bg-pink-500 rounded hover:bg-pink-600 transition"
+            className="w-full py-3 px-4 rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-cyan-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
           >
             {formType === "login" ? t("formFields.signIn") : t("formFields.signUp")}
+            <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
-        <div className="text-center text-sm">
+        {/* Footer Navigation Toggle */}
+        <div className="text-center text-xs text-slate-400 pt-2 border-t border-slate-800/80">
           {formType === "login" ? (
             <p>
               {t("formFields.signUpMessage")}{" "}
               <button
-                onClick={() => handleNavigate()}
-                className="text-pink-500 hover:underline"
+                type="button"
+                onClick={handleNavigate}
+                className="text-cyan-400 font-semibold hover:underline cursor-pointer ml-1"
               >
                 {t("formFields.signUp")}
               </button>
@@ -246,14 +223,16 @@ export default function AuthForm({ formType }: { formType: FormType }) {
             <p>
               {t("formFields.signInMessage")}{" "}
               <button
-                onClick={() => handleNavigate()}
-                className="text-pink-500 hover:underline"
+                type="button"
+                onClick={handleNavigate}
+                className="text-cyan-400 font-semibold hover:underline cursor-pointer ml-1"
               >
                 {t("formFields.signIn")}
               </button>
             </p>
           )}
         </div>
+
       </div>
     </div>
   );

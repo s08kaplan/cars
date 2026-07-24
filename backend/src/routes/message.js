@@ -20,5 +20,5 @@ router
   .patch(message.update)
   .delete(message.delete);
 
-/* ------------------------------------------------------- */
+
 module.exports = router;

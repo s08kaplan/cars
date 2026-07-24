@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { MONTHS } from './Chart-Constants';
-import type { IBudget } from 'types/budget';
+import type { IBudget } from '../../../types/budget';
 
 
 ChartJS.register(

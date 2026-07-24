@@ -1,5 +1,5 @@
 "use client";
-import Button1 from "../Buttons/Button-1";
+import Button from "../Buttons/Button";
 import { useNavigate } from "react-router";
 
 const CarCard = ({ ...props }) => {
@@ -17,7 +17,7 @@ const CarCard = ({ ...props }) => {
         />
         
         {/* Dark Vignette Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-80" />
 
         {/* Availability Badge */}
         <div className="absolute top-3 right-3">
@@ -76,14 +76,14 @@ const CarCard = ({ ...props }) => {
             </span>
           </div>
 
-          <Button1
+          <Button
             message="Details"
             onClick={() =>
               navigate(`/car-detail/${props._id}`, {
                 state: { carData: props },
               })
             }
-            className="w-28 px-4 py-2 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/10 transition-all duration-200 active:scale-95"
+            className="w-28 px-4 py-2 text-xs font-semibold rounded-xl bg-linear-to-r from-slate-500 to-slate-600 hover:from-silver-400 hover:to-silver-500 text-slate-950! shadow-lg shadow-amber-500/10 transition-all duration-200 active:scale-95"
           />
         </div>
       </div>

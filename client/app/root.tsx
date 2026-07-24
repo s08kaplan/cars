@@ -27,7 +27,7 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,9 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <QueryClientProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <QueryClientProvider>{children}</QueryClientProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -77,7 +75,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
-
 
 /* import {
   isRouteErrorResponse,

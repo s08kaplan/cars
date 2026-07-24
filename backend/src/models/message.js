@@ -4,7 +4,6 @@ const {
   mongoose: { Schema, model },
 } = require("../configs/requiredBasics");
 
-
 const MessageSchema = new Schema(
   {
     firstName: {
@@ -27,7 +26,7 @@ const MessageSchema = new Schema(
         (email) => {
           const regexEmailCheck =
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-          if(regexEmailCheck.test(email)) email
+          if (regexEmailCheck.test(email)) email;
         },
         "Email type is not correct.",
       ],
@@ -35,7 +34,6 @@ const MessageSchema = new Schema(
     phone: {
       type: String,
       trim: true,
-      
     },
     isRead: {
       type: Boolean,
@@ -45,13 +43,12 @@ const MessageSchema = new Schema(
       type: String,
       maxLength: 100,
     },
-    content: { 
+    content: {
       type: String,
-      required: true
-     },
+      required: true,
+    },
   },
-  { collection: "messages", timestamps: true }
+  { collection: "messages", timestamps: true, versionKey: false },
 );
 
-/* ------------------------------------------------------- */
 module.exports = model("Message", MessageSchema);

@@ -9,6 +9,7 @@ module.exports = (err, req, res, next) => {
     res.status(errorStatusCode).send({
         error: true,
         message: err.message,
-        cause: err.cause
+        cause: err.cause,
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
     })
 }

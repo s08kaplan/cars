@@ -26,16 +26,17 @@ const Search = () => {
     //console.log(e.target.value)
     setSearch(e.target.value);
   };
+
   return (
-    <section className="bg-amber-50 w-26 aspect-auto rounded-xl cursor-pointer ml-5">
-      <div className="flex items-center">
+    <section className="relative w-full max-w-xs sm:max-w-sm ml-5">
+      <div className="group relative flex items-center bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-1.5 focus-within:border-cyan-500 focus-within:ring-1 focus-within:ring-cyan-500 transition-all duration-200 shadow-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth="1.5"
+          strokeWidth="1.8"
           stroke="currentColor"
-          className="size-6"
+          className="size-5 text-slate-400 group-focus-within:text-cyan-400 transition-colors duration-200 shrink-0"
         >
           <path
             strokeLinecap="round"
@@ -45,7 +46,9 @@ const Search = () => {
         </svg>
         <input
           type="search"
-          className="w-full outline-0 p-2"
+          value={search}
+          placeholder="Search cars..."
+          className="w-full bg-transparent outline-none border-none px-2.5 py-1 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0"
           onChange={handleChange}
         />
       </div>

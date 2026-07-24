@@ -14,14 +14,14 @@ export const useLogout = () => {
       queryClient.removeQueries({ queryKey: ["auth"] });
       
    
-      navigate("/auth/login");
+      navigate("/login");
     },
     onError: (error: any) => {
       console.error("Logout failed:", error);
       
       
       queryClient.setQueryData(["auth", "current-user"], null);
-      navigate("/auth/login");
+      navigate("/login");
     },
   });
 };

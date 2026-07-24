@@ -20,7 +20,7 @@ export default [
       route("car-statistics", "routes/private/CarStatistics.tsx"),
       route("profile", "routes/private/Profile.tsx"),
       route("budget", "routes/private/Budget.tsx"),
-      route("/messages", "routes/private/Messages.tsx")
+      route("messages", "routes/private/Messages.tsx")
     ]),
   ]),
 ] satisfies RouteConfig;

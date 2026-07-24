@@ -1,6 +1,7 @@
 "use client";
 import CarModel from "src/components/Car/CarModel";
 import LampModel from "src/components/Lamp/LampModel";
+import "src/animations/definitions.css"
 
 const IntroScene = () => {
   return (

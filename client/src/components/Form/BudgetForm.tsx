@@ -1,10 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router";
-import { useAuthStore } from "src/store/useAuthStore";
-import { registerSchema } from "./AuthForm";
-import { fields } from "./AuthForm";
 import axios from "axios";
 
 
@@ -53,23 +49,26 @@ const BudgetForm = () => {
       
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {budgetFields.map((field) => (
-            <div key={field.name}>
+            <div key={field.name} className="space-y-1">
               {field.type === "textarea" ? (
                 <textarea
                   {...register(field.name as keyof BudgetFormData)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded text-sm"
+                  rows={3}
+                  className="w-full px-4 py-2.5 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200 resize-none"
                 />
               ) : (
                 <input
                   type={field.type}
-                  {...register(field.name as keyof BudgetFormData)}
+                  {...register(field.name as keyof BudgetFormData, {
+                    valueAsNumber: field.type === "number",
+                  })}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded text-sm"
+                  className="w-full px-4 py-2.5 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200"
                 />
               )}
               {errors[field.name as keyof BudgetFormData] && (
-                <p className="text-xs text-red-500 mt-1">
+                <p className="text-xs text-red-400 pl-1 font-medium">
                   {
                     errors[field.name as keyof BudgetFormData]
                       ?.message as string
@@ -81,7 +80,7 @@ const BudgetForm = () => {
 
           <button
             type="submit"
-            className="w-32 py-2 text-sm font-bold text-white uppercase bg-[#195190] rounded hover:bg-teal-600 transition"
+            className="w-full sm:w-32 py-2.5 px-4 text-sm font-bold text-slate-950 uppercase bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/20 active:scale-95 cursor-pointer mt-2"
           >
             Submit
           </button>
@@ -91,4 +90,4 @@ const BudgetForm = () => {
   );
 }
 
-export default BudgetForm
+export default BudgetForm;

@@ -3,12 +3,7 @@ export const profileMenu = [
   { name: "Sign in", to: "/login" },
 ];
 
-
-export const publicNavigation = [
-
+export const profileWithLogoutMenu = [
+  { name: "Profile", to: "/profile" },
+  { name: "Sign out", to: "/login" },
 ]
-
-export const privateNavigation = [
-  
-]
-

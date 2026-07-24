@@ -11,16 +11,16 @@ const useNavigation = () => {
   const t = useLanguageStore((s) => s.t);
 
   const publicNavigation = [
-    { name: t("navbar.dashboard"), to: "/dashboard" },
-    { name: t("navbar.about"), to: "/about-us" },
-    { name: t("navbar.contact"), to: "/contact" },
+    {id: "dashboard", name: t("navbar.dashboard"), to: "/dashboard" },
+    {id: "about",  name: t("navbar.about"), to: "/about-us" },
+    { id: "contact", name: t("navbar.contact"), to: "/contact" },
   ];
 
   const privateNavigation = [
     ...publicNavigation,
-    { name: t("navbar.car_statistics"), to: "/car-statistics" },
-    { name: t("navbar.budget"), to: "/budget" },
-    { name: t("navbar.messages"), to: "/messages" },
+    {id: "car_statistics", name: t("navbar.car_statistics"), to: "/car-statistics" },
+    { id: "budget", name: t("navbar.budget"), to: "/budget" },
+    {id: "messages", name: t("navbar.messages"), to: "/messages" },
   ];
 
   const navigation = authorized ? privateNavigation : publicNavigation;

@@ -4,7 +4,7 @@ const {
   mongoose: { Schema, model },
 } = require("../configs/requiredBasics");
 
-const  userRoles  = require("../constraints/role");
+const userRoles = require("../constraints/role");
 const { randomBytes } = require("node:crypto");
 
 const {
@@ -28,10 +28,10 @@ const UserSchema = new Schema(
     },
 
     email: {
-        type: String,
-        required: true,
-        unique: true,
-        set:(email) => emailValidate(email)
+      type: String,
+      required: true,
+      unique: true,
+      set: (email) => emailValidate(email),
     },
 
     contactNumber: {
@@ -45,17 +45,13 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      unique: true,
-      index: true,
-      // set: (password) => passwordEncrypt(password),//!pre handle this part
+      select: false, 
     },
 
     image: {
       type: String,
       trim: true,
-      //required: true
     },
-
 
     role: {
       type: String,
@@ -66,7 +62,6 @@ const UserSchema = new Schema(
       },
     },
 
-    
     isDeleted: {
       type: Boolean,
       default: false,
@@ -74,39 +69,36 @@ const UserSchema = new Schema(
 
     salt: {
       type: String,
-      required: true, 
+      required: true,
       default: () => randomBytes(16).toString("hex"),
+      select: false, // Hidden by default
     },
-
-    unhashedPassword: {
-      type: String
-    }
+    
   },
   {
     collection: "users",
     timestamps: true,
-  }
+    versionKey: false,
+  },
 );
-
 
 UserSchema.virtual("roleLabel").get(function () {
   return userRoles[this.role];
 });
 
-
 UserSchema.set("toJSON", { virtuals: true });
 UserSchema.set("toObject", { virtuals: true });
 
-UserSchema.pre("save", function (req,next) {
+UserSchema.pre("save", function (next) {
   if (this.isModified("password")) {
-    // Generate a unique salt
+   
     const salt = randomBytes(16).toString("hex");
-    this.salt = salt
+    this.salt = salt;
 
-    // Hash the password using the salt
-    this.password = encryptFunc(this.password, salt);
-    this.unhashedPassword = req.password
+
+    this.password = passwordEncrypt(this.password, salt);
   }
   next();
 });
+
 module.exports = model("User", UserSchema);
