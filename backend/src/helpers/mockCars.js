@@ -13,6 +13,6 @@ const generateCars = async () => {
     }
 }
 
-module.exports = async () => {
-    await generateCars()
+module.exports = {
+     generateCars
 }

@@ -96,7 +96,6 @@ const createFakeUsers = async (count = 100) => {
       const usersWithoutSalt = await usersCollection
         .find({ salt: { $exists: false } })
         .toArray();
-      console.log(`Users without salt:`, usersWithoutSalt);
 
       for (const user of usersWithoutSalt) {
         if (!user.password || user.password.length > 32) {
@@ -109,7 +108,6 @@ const createFakeUsers = async (count = 100) => {
 
       users.push(user);
     }
-    console.log("Salt has been added to all users!");
     await User.insertMany(users);
     console.log(`${count} fake users created successfully!`);
   } catch (error) {
@@ -117,7 +115,6 @@ const createFakeUsers = async (count = 100) => {
   }
 };
 
-module.exports = async () => {
-  await dbConnection();
-  await createFakeUsers();
+module.exports = {
+      createFakeUsers
 };

@@ -6,21 +6,15 @@ const path = require('path');
 const { cors } = require("./configs/requiredBasics")
 const limiter = require("./middlewares/rateLimiter")
 const cookieParser = require("cookie-parser")
-
+const startServer = require("./configs/server")
 
 process.loadEnvFile(".env")
 const HOST = process.env?.HOST || '0.0.0.0'
 const PORT = process.env?.PORT || 8000
 
 // Connect to DB:
-const { dbConnection } = require('./configs/dbConnection')
-dbConnection()
-
-app.use(cookieParser())
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-
-
+/* const { dbConnection } = require('./configs/dbConnection')
+dbConnection() */
 const corsOptions = {
   origin: ['http://0.0.0.0:5173', 'http://localhost:5173', 'http://127.0.0.1:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -28,6 +22,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions))
+
+app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+
 
 
 // test for logger
@@ -75,9 +75,6 @@ app.use(require('./routes'))
 app.use(require('./middlewares/errorHandler'))
 
 // RUN SERVER:
-app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
+/* app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`)) */
 
-// Syncronization (must be in commentLine):
-//nodemon
-// require('./src/helpers/mockUsers')() // !!! It clear database.
-// require("./src/helpers/mockCars")()
+startServer(app)
