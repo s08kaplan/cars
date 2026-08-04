@@ -15,10 +15,10 @@ const Search = () => {
   }, [search]);
 
   useEffect(() => {
-    if (debouncedSearch.trim() !== "") {
-      //api call
-      console.log(search);
-      getCarByQuery(search);
+  const query = debouncedSearch.trim();
+    if (query) {
+      console.log("Searching for:", query);
+      getCarByQuery(query);
     }
   }, [debouncedSearch]);
 
