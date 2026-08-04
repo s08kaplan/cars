@@ -15,7 +15,7 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.8)
       '@hookform/resolvers':
-        specifier: ^5.7.1
+        specifier: ^5.4.0
         version: 5.7.1(react-hook-form@7.84.0(react@19.2.8))(valibot@1.4.2(typescript@7.0.2))(zod@4.4.3)
       '@react-router/node':
         specifier: ^8.3.0
@@ -30,7 +30,7 @@ importers:
         specifier: ^5.101.4
         version: 5.101.4(@tanstack/react-query@5.101.4(react@19.2.8))(react@19.2.8)
       axios:
-        specifier: ^1.19.0
+        specifier: ^1.18.1
         version: 1.19.0(debug@4.4.3)
       chart.js:
         specifier: ^4.5.1
@@ -39,7 +39,7 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       lucide-react:
-        specifier: ^1.28.0
+        specifier: ^1.26.0
         version: 1.28.0(react@19.2.8)
       react:
         specifier: ^19.2.8
@@ -51,7 +51,7 @@ importers:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
       react-hook-form:
-        specifier: ^7.84.0
+        specifier: ^7.82.0
         version: 7.84.0(react@19.2.8)
       react-router:
         specifier: ^8.3.0
@@ -76,19 +76,19 @@ importers:
         specifier: ^5.101.4
         version: 5.101.4(eslint@10.4.1(jiti@2.7.0))(typescript@7.0.2)
       '@types/node':
-        specifier: ^26.1.2
+        specifier: ^26.1.1
         version: 26.1.2
       '@types/react':
-        specifier: ^19.2.18
+        specifier: ^19.2.17
         version: 19.2.18
       '@types/react-dom':
-        specifier: ^19.2.4
+        specifier: ^19.2.3
         version: 19.2.4(@types/react@19.2.18)
       autoprefixer:
         specifier: ^10.5.4
         version: 10.5.4(postcss@8.5.25)
       postcss:
-        specifier: ^8.5.25
+        specifier: ^8.5.23
         version: 8.5.25
       tailwindcss:
         specifier: ^4.3.3
@@ -97,7 +97,7 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
       vite:
-        specifier: ^8.2.0
+        specifier: ^8.1.5
         version: 8.2.0(@types/node@26.1.2)(jiti@2.7.0)
       vite-plugin-devtools-json:
         specifier: ^1.1.0
@@ -984,10 +984,6 @@ packages:
     resolution: {integrity: sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw==}
     engines: {node: '>=18'}
 
-  brace-expansion@5.0.6:
-    resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
-    engines: {node: 18 || 20 || >=22}
-
   brace-expansion@5.0.9:
     resolution: {integrity: sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==}
     engines: {node: 20 || >=22}
@@ -1595,10 +1591,6 @@ packages:
   mime-types@3.0.2:
     resolution: {integrity: sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==}
     engines: {node: '>=18'}
-
-  minimatch@10.2.5:
-    resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
-    engines: {node: 18 || 20 || >=22}
 
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
@@ -2248,7 +2240,7 @@ snapshots:
     dependencies:
       '@eslint/object-schema': 3.0.5
       debug: 4.4.3
-      minimatch: 10.2.5
+      minimatch: 10.2.6
     transitivePeerDependencies:
       - supports-color
 
@@ -2830,10 +2822,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  brace-expansion@5.0.6:
-    dependencies:
-      balanced-match: 4.0.4
-
   brace-expansion@5.0.9:
     dependencies:
       balanced-match: 4.0.4
@@ -3014,7 +3002,7 @@ snapshots:
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       json-stable-stringify-without-jsonify: 1.0.1
-      minimatch: 10.2.5
+      minimatch: 10.2.6
       natural-compare: 1.4.0
       optionator: 0.9.4
     optionalDependencies:
@@ -3372,10 +3360,6 @@ snapshots:
   mime-types@3.0.2:
     dependencies:
       mime-db: 1.54.0
-
-  minimatch@10.2.5:
-    dependencies:
-      brace-expansion: 5.0.6
 
   minimatch@10.2.6:
     dependencies:
