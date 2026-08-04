@@ -1,79 +1,99 @@
-"use strict"
+"use strict";
+
+const escapeRegex = (text) => {
+  return String(text).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = (req, res, next) => {
+  const query = req.query || {};
 
-    /* FILTERING & SEARCHING & SORTING & PAGINATION */
+  /* 1. PARSE FILTERS (Exact Matches) */
+  const filter = {};
+  if (query.filter && typeof query.filter === "object") {
+    Object.assign(filter, query.filter);
+  }
+  // Fallback for unparsed flat keys: filter[brandName]=Ford
+  for (let key in query) {
+    const match = key.match(/^filter\[(.*?)\]$/);
+    if (match) filter[match[1]] = query[key];
+  }
 
-    // ### FILTERING ###
+  /* 2. PARSE SEARCHES (Regex / Partial Matches) */
+  const search = {};
+  const rawSearch = {};
 
-    // URL?filter[key1]=value1&filter[key2]=value2
-    const filter = req.query?.filter || {}
-    // console.log(filter)
+  // Case A: Express parsed it as nested object: ?search[brandName]=ford -> query.search.brandName
+  if (query.search && typeof query.search === "object") {
+    for (let key in query.search) {
+      if (typeof query.search[key] === "string" && query.search[key].trim() !== "") {
+        rawSearch[key] = query.search[key];
+        search[key] = { $regex: escapeRegex(query.search[key]), $options: "i" };
+      }
+    }
+  }
 
-    // ### SEARCHING ###
+  // Case B: Express parsed it as flat key: ?search[brandName]=ford -> query['search[brandName]']
+  for (let key in query) {
+    const match = key.match(/^search\[(.*?)\]$/);
+    if (match && typeof query[key] === "string" && query[key].trim() !== "") {
+      const fieldName = match[1];
+      rawSearch[fieldName] = query[key];
+      search[fieldName] = { $regex: escapeRegex(query[key]), $options: "i" };
+    }
+  }
 
-    // URL?search[key1]=value1&search[key2]=value2
-    // https://www.mongodb.com/docs/manual/reference/operator/query/regex/
-    const search = req.query?.search || {}
-    // console.log(search)
-    // const example = { title: { $regex: 'test', $options: 'i' } } // const example = { title: /test/ }
-    for (let key in search) search[key] = { $regex: search[key], $options: 'i' } // i: case insensitive
-    // console.log(search)
+  /* 3. SORTING */
+  const sort = query.sort && typeof query.sort === "object" ? query.sort : {};
 
-    // ### SORTING ###
+  /* 4. PAGINATION */
+  let limit = Number(query.limit);
+  limit = limit > 0 ? limit : Number(process.env.PAGE_SIZE || 20);
 
-    // URL?sort[key1]=asc&sort[key2]=desc
-    // asc: A-Z - desc: Z-A
-    const sort = req.query?.sort || {}
-    // console.log(sort)
+  let page = Number(query.page);
+  page = page > 0 ? page - 1 : 0;
 
-    // ### PAGINATION ###
+  let skip = Number(query.skip);
+  skip = skip > 0 ? skip : page * limit;
 
-    // URL?page=3&limit=10
-    let limit = Number(req.query?.limit)
-    // console.log(limit)
-    limit = limit > 0 ? limit : Number(process.env.PAGE_SIZE || 20)
-    // console.log(typeof limit, limit)
+  /* DB HELPER FUNCTIONS */
 
-    let page = Number(req.query?.page)
-    page = page > 0 ? (page - 1) : 0 // Backend'de sayfa sayısı her zaman (page - 1)'dir.
-    // console.log(typeof page, page)
+  res.getModelList = async (Model, customFilter = {}, populate = null) => {
+    const finalQuery = { ...filter, ...search, ...customFilter };
+    return await Model.find(finalQuery)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .populate(populate);
+  };
 
-    let skip = Number(req.query?.skip)
-    skip = skip > 0 ? skip : (page * limit)
-    // console.log(typeof skip, skip)
+  res.getModelListDetails = async (Model, customFilter = {}) => {
+    const finalQuery = { ...filter, ...search, ...customFilter };
 
-    /* FILTERING & SEARCHING & SORTING & PAGINATION */
+    const totalRecords = await Model.countDocuments(finalQuery);
+    const totalPages = Math.ceil(totalRecords / limit) || 1;
 
-    // Run for output:
-    res.getModelList = async (Model, customFilter = {}, populate = null) => {
-        return await Model.find({ ...filter, ...search, ...customFilter }).sort(sort).skip(skip).limit(limit).populate(populate)
+    let details = {
+      filter,
+      search: rawSearch,
+      sort,
+      skip,
+      limit,
+      page: page + 1,
+      pages: {
+        previous: page > 0 ? page : false,
+        current: page + 1,
+        next: page + 2 <= totalPages ? page + 2 : false,
+        total: totalPages,
+      },
+      totalRecords,
+    };
+
+    if (totalRecords <= limit) {
+      details.pages = false;
     }
 
-    // Details:
-    res.getModelListDetails = async (Model, customFilter = {}) => {
+    return details;
+  };
 
-        const data = await Model.find({ ...filter, ...search, ...customFilter })
-
-        let details = {
-            filter,
-            search,
-            sort,
-            skip,
-            limit,
-            page,
-            pages: {
-                previous: (page > 0 ? page : false),
-                current: page + 1,
-                next: page + 2,
-                total: Math.ceil(data.length / limit)
-            },
-            totalRecords: data.length,
-        }
-        details.pages.next = (details.pages.next > details.pages.total ? false : details.pages.next)
-        if (details.totalRecords <= limit) details.pages = false
-        return details
-    }
-    
-    next()
-}
+  next();
+};
