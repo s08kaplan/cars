@@ -7,22 +7,28 @@ const escapeRegex = (text) => {
 module.exports = (req, res, next) => {
   const query = req.query || {};
 
-  /* 1. PARSE FILTERS (Exact Matches) */
-  const filter = {};
-  if (query.filter && typeof query.filter === "object") {
-    Object.assign(filter, query.filter);
-  }
-  // Fallback for unparsed flat keys: filter[brandName]=Ford
+  /* 1. PARSE FILTERS */
+  const rawFilter = query.filter && typeof query.filter === "object" ? query.filter : {};
   for (let key in query) {
     const match = key.match(/^filter\[(.*?)\]$/);
-    if (match) filter[match[1]] = query[key];
+    if (match) rawFilter[match[1]] = query[key];
   }
 
-  /* 2. PARSE SEARCHES (Regex / Partial Matches) */
-  const search = {};
-  const rawSearch = {};
+  // Database query filter (with RegExp instances)
+  const dbFilter = {};
+  for (let key in rawFilter) {
+    if (typeof rawFilter[key] === "string" && rawFilter[key].trim() !== "") {
+      // Case-insensitive exact match for MongoDB
+      dbFilter[key] = new RegExp(`^${escapeRegex(rawFilter[key])}$`, "i");
+    } else {
+      dbFilter[key] = rawFilter[key];
+    }
+  }
 
-  // Case A: Express parsed it as nested object: ?search[brandName]=ford -> query.search.brandName
+  /* 2. PARSE SEARCHES */
+  const rawSearch = {};
+  const search = {};
+
   if (query.search && typeof query.search === "object") {
     for (let key in query.search) {
       if (typeof query.search[key] === "string" && query.search[key].trim() !== "") {
@@ -32,7 +38,6 @@ module.exports = (req, res, next) => {
     }
   }
 
-  // Case B: Express parsed it as flat key: ?search[brandName]=ford -> query['search[brandName]']
   for (let key in query) {
     const match = key.match(/^search\[(.*?)\]$/);
     if (match && typeof query[key] === "string" && query[key].trim() !== "") {
@@ -58,7 +63,7 @@ module.exports = (req, res, next) => {
   /* DB HELPER FUNCTIONS */
 
   res.getModelList = async (Model, customFilter = {}, populate = null) => {
-    const finalQuery = { ...filter, ...search, ...customFilter };
+    const finalQuery = { ...dbFilter, ...search, ...customFilter };
     return await Model.find(finalQuery)
       .sort(sort)
       .skip(skip)
@@ -67,13 +72,13 @@ module.exports = (req, res, next) => {
   };
 
   res.getModelListDetails = async (Model, customFilter = {}) => {
-    const finalQuery = { ...filter, ...search, ...customFilter };
+    const finalQuery = { ...dbFilter, ...search, ...customFilter };
 
     const totalRecords = await Model.countDocuments(finalQuery);
     const totalPages = Math.ceil(totalRecords / limit) || 1;
 
     let details = {
-      filter,
+      filter: rawFilter, // 👈 FIXED: Return raw filter string object for JSON response
       search: rawSearch,
       sort,
       skip,
