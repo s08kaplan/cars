@@ -61,7 +61,7 @@ export const authAPI = {
     await axios.post(`${BASE_URL}auth/logout`);
   },
 
-  getCurrentUser: async (): Promise<User | null> => {
+  getCurrentUser: async (): Promise<User | null | undefined> => {
     try {
       const { data } = await axios.get<AuthResponse>(`${BASE_URL}auth/me`);
       return data.user;
@@ -69,7 +69,7 @@ export const authAPI = {
       if (error?.response?.status === 401) {
         return null;
       }
-      throw error;
+     /*  throw error; */
     }
   },
   update: async (userData: UpdateUserData): Promise<User> => {

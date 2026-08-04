@@ -7,7 +7,7 @@ const authorized = require("../middlewares/authorized")
 const authenticatedUser = require("../middlewares/authentication")
 
 router.route("/")
-.get(authorized,user.list)
+.get(user.list)
 .post(user.create)
 
 router.route("/:userId")

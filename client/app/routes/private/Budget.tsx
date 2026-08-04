@@ -6,7 +6,7 @@ import BarChart from "src/components/Charts/BarChart";
 import LineChart from "src/components/Charts/LineChart";
 import MainChart from "src/components/Charts/MainChart";
 import PieChart from "src/components/Charts/PieChart";
-import { getBudgetData } from "src/helpers/functions";
+import { getBudgetData } from "src/functions/budgetApiCalls";
 import { BarChart3, AreaChart as AreaIcon, LineChart as LineIcon, PieChart as PieIcon, Plus, LayoutGrid, X } from "lucide-react";
 
 type ChartType = "main" | "bar" | "area" | "line" | "pie";

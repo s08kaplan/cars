@@ -13,18 +13,20 @@ const MobileMenu = () => {
         {navigation.map((item) => {
           const isActive = location.pathname === item.to;
           return (
-            <Link
-              key={item.id}
-              to={item.to}
-              className={classNames(
-                isActive
-                  ? "bg-gray-900 text-white font-semibold"
-                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium transition-colors",
-              )}
-            >
-              {item.name}
-            </Link>
+            /* Label wrapper forces the checkbox to uncheck on click */
+            <label key={item.id} htmlFor="mobile-menu-toggle" className="block">
+              <Link
+                to={item.to}
+                className={classNames(
+                  isActive
+                    ? "bg-gray-900 text-white font-semibold"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "block rounded-md px-3 py-2 text-base font-medium transition-colors"
+                )}
+              >
+                {item.name}
+              </Link>
+            </label>
           );
         })}
       </div>

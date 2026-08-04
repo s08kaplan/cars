@@ -7,7 +7,6 @@ export const contactSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
   lastName: z.string().min(2, "Last name is required"),
   email: z
-    .string()
     .email("Please enter a valid email address")
     .min(1, "Email is required"),
   phone: z
@@ -50,7 +49,7 @@ const ContactForm = () => {
     console.log(`DATA:`, data);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}`,
+        `${import.meta.env.VITE_BASE_URL}messages`,
         data
       );
       return response?.data;

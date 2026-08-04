@@ -6,9 +6,10 @@ module.exports = {
   list: async (req, res) => {
     const data = await res.getModelList(Car);
     console.log("data in cars controller, ", data);
+    const details = await res.getModelListDetails(Car)
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(Car),
+      details,
       data,
     });
   },

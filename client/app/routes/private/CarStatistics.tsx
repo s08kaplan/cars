@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, type ReactEventHandler } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getCarStatus } from "src/helpers/functions";
+import { getCarStatus } from "src/functions/carApiCalls";
 import MyTable from "src/components/Table/MyTable";
 import MyError from "src/components/Error/MyError";
 import CarStatisticLoader from "src/components/Spinners/CarStatisticLoader";
@@ -10,7 +10,6 @@ const options = [
   { value: "", label: "Select Car Info" },
   { value: "false", label: "SOLD" },
   { value: "true", label: "AVAILABLE" },
-  /* { value: "moderator", label: "Moderator" } */
 ];
 
 const TABLE_HEADERS = [
@@ -83,11 +82,12 @@ const CarStatistics = () => {
             className="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200 cursor-pointer"
             onChange={handleChange}
             value={url}
-          >
+          > 
             {options.map((option) => (
               <option
                 key={option.value}
                 value={option.value}
+                disabled= {!option.value}
                 className="bg-slate-900 text-slate-100"
               >
                 {option.label}

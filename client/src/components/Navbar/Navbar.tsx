@@ -1,6 +1,6 @@
 "use client";
 
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import { Menu, X } from "lucide-react";
 import Search from "../../Search-Bar/Search";
 import { useAuthStore } from "src/store/useAuthStore";
@@ -24,14 +24,14 @@ const Navbar = () => {
     <nav className="bg-gray-800 border-b border-gray-700/50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          {/* Peer Checkbox - Must be placed FIRST */}
+          {/* Peer Checkbox - Must be top-level direct sibling */}
           <input
             type="checkbox"
             id="mobile-menu-toggle"
             className="peer hidden"
           />
 
-          {/* Mobile menu trigger */}
+          {/* Mobile menu trigger button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <label
               htmlFor="mobile-menu-toggle"
@@ -39,9 +39,9 @@ const Navbar = () => {
             >
               <span className="sr-only">Open main menu</span>
 
-              <Menu className="h-6 w-6 peer-checked:hidden" />
-
-              <X className="h-6 w-6 peer-checked:block hidden" />
+              {/* Toggles based on peer-checked state */}
+              <Menu className="h-6 w-6 block peer-checked:hidden" />
+              <X className="h-6 w-6 hidden peer-checked:block" />
             </label>
           </div>
 
