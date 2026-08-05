@@ -87,7 +87,7 @@ const About = () => {
           {textArray.map((paragraph, i) => (
             <p
               key={i}
-              className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal slow-visible hover:text-white transition-colors duration-200"
+              className=" bg-transparent! text-slate-300 text-base sm:text-lg leading-relaxed font-normal slow-visible hover:text-white transition-colors duration-200"
               style={
                 {
                   "--animation-duration": "6s",
