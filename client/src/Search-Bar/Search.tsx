@@ -1,31 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getCarByQuery } from "src/helpers/search";
+import { searchCars } from "src/helpers/search";
 
 const Search = () => {
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [search, setSearch]                   = useState("")
+  const [debouncedSearch, setDebouncedSearch] = useState("")
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearch(search);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [search]);
+    const timer = setTimeout(() => setDebouncedSearch(search), 500)
+    return () => clearTimeout(timer)
+  }, [search])
 
   useEffect(() => {
-  const query = debouncedSearch.trim();
-    if (query) {
-      console.log("Searching for:", query);
-      getCarByQuery(query);
-    }
-  }, [debouncedSearch]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //console.log(e.target.value)
-    setSearch(e.target.value);
-  };
+    const query = debouncedSearch.trim()
+    if (!query) return
+    // Single field, backend does the $or across all searchable fields
+    searchCars({ keyword: query })
+  }, [debouncedSearch])
 
   return (
     <section className="relative w-full max-w-xs sm:max-w-sm ml-5">
@@ -47,13 +38,13 @@ const Search = () => {
         <input
           type="search"
           value={search}
-          placeholder="Search cars..."
+          placeholder="Brand, model, fuel type, color..."
           className="w-full bg-transparent outline-none border-none px-2.5 py-1 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0"
-          onChange={handleChange}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
