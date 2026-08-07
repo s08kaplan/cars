@@ -53,7 +53,7 @@ const COLORS: Record<string, string> = {
   blue:   "Blue",
   green:  "Green",
   gray:   "Gray",
-  grey:   "Gray", // alias
+  grey:   "Gray",
   yellow: "Yellow",
   orange: "Orange",
 };
