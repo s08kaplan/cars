@@ -51,7 +51,7 @@ module.exports = {
       const data = await Message.findByIdAndUpdate(
         id,
         { $set: { isRead: targetStatus } },
-        { new: true, runValidators: true },
+        { returnDocument: 'after', runValidators: true },
       );
 
       if (!data) {
