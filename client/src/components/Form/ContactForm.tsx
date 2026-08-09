@@ -2,6 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import useNewMessage from "src/hooks/messages/useNewMessage";
 
 export const contactSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -42,19 +43,22 @@ const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
-
+const { mutateAsync, isSuccess, isError, isPending } = useNewMessage()
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
     console.log(`DATA:`, data);
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}messages`,
-        data
-      );
-      return response?.data;
+      await mutateAsync(data);
+      reset(); 
+
+      const popover = document.getElementById("success-popover");
+      if (popover && "showPopover" in popover) {
+        (popover as HTMLElement).showPopover();
+      }
     } catch (error) {
-      console.error("Messagwe could not be sent", error);
+      console.error("Failed to send message:", error);
     }
   };
 
@@ -111,9 +115,11 @@ const ContactForm = () => {
       {/* Submit Button */}
       <button 
         type="submit"
+        disabled={isPending}
+        /* popoverTarget={isSuccess ? "success-popover" : ""} */
         className="w-full mt-2 py-4 px-6 bg-linear-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-sm rounded-2xl shadow-lg shadow-cyan-500/20 hover:brightness-110 active:scale-[0.99] transition-all duration-200 cursor-pointer"
       >
-        Send Message
+       {isPending ? "Sending..." : "Send Message"}
       </button>
     </form>
   );

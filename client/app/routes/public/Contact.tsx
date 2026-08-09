@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Clock, ShieldCheck, Car } from "lucide-react";
 import ContactForm from "src/components/Form/ContactForm";
+import SuccessModal from "src/components/Modals/SuccessModal";
 
 const Contact = () => {
   return (
@@ -116,6 +117,7 @@ const Contact = () => {
         </div>
 
       </div>
+      <SuccessModal/>
     </div>
   );
 };
