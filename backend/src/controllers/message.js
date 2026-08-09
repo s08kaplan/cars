@@ -15,8 +15,6 @@ module.exports = {
   },
 
   create: async (req, res) => {
-
-  
     const data = await Message.create(req.body);
 
     res.status(201).send({
@@ -35,13 +33,45 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    const data = await Message.updateOne({ _id: req.params.id }, req.body);
+    try {
+      const { id } = req.params;
+      const { isRead } = req.body;
 
-    res.status(202).send({
-      error: false,
-      data,
-      new: await Message.findOne({ _id: req.params.id }),
-    });
+      // Validate that id exists and isRead was provided in request body
+      if (typeof isRead === "undefined") {
+        return res.status(400).send({
+          error: true,
+          message: "isRead status is required",
+        });
+      }
+
+      const targetStatus =
+        typeof isRead === "boolean" ? isRead : isRead === "true";
+
+      const data = await Message.findByIdAndUpdate(
+        id,
+        { $set: { isRead: targetStatus } },
+        { new: true, runValidators: true },
+      );
+
+      if (!data) {
+        return res.status(404).send({
+          error: true,
+          message: "Message not found",
+        });
+      }
+
+      return res.status(202).send({
+        error: false,
+        data,
+      });
+    } catch (error) {
+      console.error("Error updating message status:", error);
+      return res.status(500).send({
+        error: true,
+        message: error.message,
+      });
+    }
   },
 
   delete: async (req, res) => {
