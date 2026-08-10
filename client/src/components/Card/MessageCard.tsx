@@ -26,6 +26,14 @@ const MessageCard = ({
   onToggleStatus,
   isUpdating,
 }: MessageCardProps) => {
+  const dateFormatter = new Intl.DateTimeFormat("tr-Tr", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
   return (
     <div className="group relative flex flex-col justify-between gap-3 rounded-xl border border-slate-800/80 bg-slate-950/40 p-4 text-slate-300 transition-all duration-200 hover:border-slate-700 hover:bg-slate-800/50 hover:text-white hover:shadow-lg hover:shadow-amber-500/5">
       <div className="flex flex-col space-y-2">
@@ -76,14 +84,14 @@ const MessageCard = ({
             {firstName} {lastName}
           </span>
           <span>•</span>
-          <span className="flex items-center gap-1 text-slate-400">
-            <Send className="h-3 w-3 text-slate-500" />
+          <a href="mailto:{email}" className="flex items-center gap-1 text-slate-400">
+            <Send className="h-3 w-3 text-slate-500"/>
             {email}
-          </span>
+          </a>
         </div>
         <time className="flex items-center gap-1 text-slate-500">
           <Clock className="h-3 w-3" />
-          {createdAt}
+          {dateFormatter.format(new Date(createdAt))}
         </time>
       </div>
     </div>
