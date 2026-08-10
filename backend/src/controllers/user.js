@@ -55,7 +55,7 @@ module.exports = {
   },
 
    update: async (req, res) => {
-   /*  console.log("req.user in update controller: ", req.user); */
+    console.log("req.user in update controller: ", req.user);
     const { userId } = req.params;
 
     if (!userId) {

@@ -15,6 +15,7 @@ export default [
       route("contact", "routes/public/Contact.tsx"),
       route("dashboard", "routes/public/Dashboard.tsx"),
       route("car-detail/:carId", "routes/public/CarDetail.tsx"),
+      route("search", "routes/public/Search.tsx" )
     ]),
     layout("routes/private/layout.tsx", [
       route("car-statistics", "routes/private/CarStatistics.tsx"),

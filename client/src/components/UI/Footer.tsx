@@ -83,7 +83,7 @@ const FOOTER_NAV = [
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+ /*  console.log(location); */
 
   const scrollToTop = () => {
     try {
@@ -93,7 +93,6 @@ const Footer = () => {
       window.scrollTo(0, 0);
     }
 
-    // Backup for container-based overflow
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   };
@@ -108,13 +107,11 @@ const Footer = () => {
         <ArrowUp className="w-5 h-5 stroke-[2.5] transition-transform group-hover:-translate-y-0.5" />
       </button>
       <footer className="relative bg-slate-950 border-t border-slate-800/80 text-slate-400 py-12 px-4 sm:px-6 lg:px-8 selection:bg-cyan-500 selection:text-slate-950">
-        {/* Background Accent Glow */}
+      
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-24 bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-8 relative z-10">
-          {/* Scroll To Top Button */}
-
-          {/* Navigation Links */}
+         
           <nav className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 text-sm font-medium">
             {FOOTER_NAV.map(({ href, label }) => (
               <Link
@@ -131,9 +128,8 @@ const Footer = () => {
             ))}
           </nav>
 
-          {/* Social Icons Strip */}
           <div className="flex items-center gap-3 pt-2">
-            {/* Facebook */}
+        
             <a
               href="#"
               rel="noopener noreferrer"
@@ -153,7 +149,6 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* Instagram */}
             <a
               href="#"
               rel="noopener noreferrer"
@@ -175,7 +170,6 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* LinkedIn */}
             <a
               href="#"
               rel="noopener noreferrer"
@@ -197,7 +191,6 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* Twitter / X */}
             <a
               href="#"
               rel="noopener noreferrer"
@@ -217,7 +210,6 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* GitHub */}
             <a
               href="#"
               rel="noopener noreferrer"
@@ -239,7 +231,6 @@ const Footer = () => {
             </a>
           </div>
 
-          {/* Copyright */}
           <p className="text-xs text-slate-500 text-center font-medium">
             Copyright © 2026. All rights reserved.
           </p>

@@ -73,6 +73,7 @@ export const authAPI = {
     }
   },
   update: async (userData: UpdateUserData): Promise<User> => {
+    console.log("user data in update api call", userData)
     const { data } = await axios.put<UpdateUserResponse>(
       `${BASE_URL}users/${userData.userId}`,
       userData,

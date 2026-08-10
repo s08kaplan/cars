@@ -13,7 +13,7 @@ export const useRegister = () => {
       queryClient.setQueryData(["auth", "current-user"], user);
       
       
-      navigate("/private/media-files");
+      navigate("/profile");
     },
     onError: (error: any) => {
       console.error("Registration failed:", error);

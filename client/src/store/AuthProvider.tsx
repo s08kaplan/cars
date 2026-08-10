@@ -4,41 +4,14 @@ import { useAuthStore } from "./useAuthStore";
 import { useNavigate } from "react-router";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user, isLoading, isError } = useAuth();
-  const { user: storedUser, setUser, setIsAuthenticate } = useAuthStore();
-  const navigate = useNavigate();
-
-  const isInitialized = useRef(false);
-
-  useEffect(() => {
-    if (isError) {navigate("/dashboard")};
-
-    if(!user || !storedUser) return
-
-    if (isInitialized.current && user?.id === storedUser?.id) return;
-
-    if (!isError && user) {
-      const roleAsNumber =
-        typeof user.role === "string" ? parseInt(user.role) : user.role;
-
-      if (roleAsNumber === 1 && user.id !== storedUser?.id) {
-        console.log("Setting authenticated user:", user.id);
-        setUser(user);
-        setIsAuthenticate(true);
-        isInitialized.current = true;
-      }
-    } else if ((isError || !user) && storedUser) {
-      console.log("Clearing authentication");
-      setUser(null);
-      setIsAuthenticate(false);
-      isInitialized.current = false;
-    } else if (!user && !storedUser) {
-      isInitialized.current = true;
-    }
-  }, [isLoading, isError, user, storedUser, setUser, setIsAuthenticate]);
+ const { isLoading } = useAuth();
 
   if (isLoading) {
-    return <div className="text-center text-gray-500">Checking auth...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center bg-slate-950 text-slate-400">
+        <p className="text-sm font-medium">Checking authentication...</p>
+      </div>
+    );
   }
 
   return <>{children}</>;

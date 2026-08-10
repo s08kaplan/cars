@@ -3,7 +3,7 @@ import { useAuth } from "src/hooks/auth-hooks/useAuth";
 
 const PrivateLayout = () => {
   const { user, isAuthenticated, isLoading } = useAuth();
-  console.log("data in private layout: ", user);
+ /*  console.log("data in private layout: ", user); */
   const navigate = useNavigate();
 
   if (isLoading) {

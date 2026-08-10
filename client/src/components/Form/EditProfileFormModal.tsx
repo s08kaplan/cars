@@ -18,23 +18,29 @@ const EditProfileFormModal = ({
   contactNumber,
   userId,
 }: Props) => {
-  const { mutateAsync: updateUser, isError } = useUpdateUser();
-  const [update, setUpdate] = useState({
+  const { mutateAsync: updateUser, isPending } = useUpdateUser();
+const [formData, setFormData] = useState({
     firstName,
     lastName,
-    image,
+    image: image || "",
     contactNumber,
   });
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const data = { ...update, userId };
-      /* console.log('update fields data before sent:', data) */
-      const res = await updateUser(data);
-      /*  console.log('update profile res: ', res) */
+   try {
+      await updateUser({ ...formData, userId });
+      // Close popover programmatically if needed
+      const modal = document.getElementById("edit-profile");
+      if (modal && "hidePopover" in modal) {
+        (modal as any).hidePopover();
+      }
     } catch (error) {
-      console.error("update profile error: ", error);
+      console.error("Profile update failed:", error);
     }
   };
 
@@ -76,7 +82,7 @@ const EditProfileFormModal = ({
         </header>
 
         {/* Form Body */}
-        <form method="post" encType="multipart/form-data" className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           
           {/* Avatar Upload Preview */}
           <div className="flex flex-col items-center gap-4 py-2">
@@ -117,15 +123,10 @@ const EditProfileFormModal = ({
               </label>
               <input
                 name="firstName"
-                value={update.firstName}
+                value={formData.firstName}
                 required
                 className="w-full rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                onChange={(e) =>
-                  setUpdate((prev) => ({
-                    ...prev,
-                    firstName: e.target.value,
-                  }))
-                }
+                onChange={handleChange}
               />
             </div>
 
@@ -135,15 +136,10 @@ const EditProfileFormModal = ({
               </label>
               <input
                 name="lastName"
-                value={update.lastName}
+                value={formData.lastName}
                 required
                 className="w-full rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                onChange={(e) =>
-                  setUpdate((prev) => ({
-                    ...prev,
-                    lastName: e.target.value,
-                  }))
-                }
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -161,10 +157,10 @@ const EditProfileFormModal = ({
 
             <button
               type="submit"
+              disabled={isPending}
               className="inline-flex items-center gap-2 px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg shadow-cyan-500/20 cursor-pointer"
-              onClick={handleSubmit}
             >
-              <Save className="w-4 h-4" /> Save Changes
+              <Save className="w-4 h-4" /> {isPending ? "Saving..." : "Save Changes"}
             </button>
           </footer>
         </form>

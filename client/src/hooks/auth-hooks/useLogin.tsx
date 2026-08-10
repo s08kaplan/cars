@@ -13,7 +13,7 @@ export const useLogin = () => {
       queryClient.setQueryData(["auth", "current-user"], user);
       
      
-      navigate("/private/media-files");
+      navigate("/profile");
     },
     onError: (error: any) => {
       console.error("Login failed:", error);

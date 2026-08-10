@@ -5,7 +5,7 @@ export const useCurrentUser = () => {
   return useQuery({
     queryKey: ["auth", "current-user"],
     queryFn: authAPI.getCurrentUser,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 15 * 60 * 1000, // 15 minutes
     retry: false,
   });
 };

@@ -11,6 +11,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import useLanguageStore from "src/store/useLanguageStore";
 import { Shield, Lock, Mail, User, Phone, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { useAuth } from "src/hooks/auth-hooks/useAuth";
+import { useLogin } from "src/hooks/auth-hooks/useLogin";
+import { useRegister } from "src/hooks/auth-hooks/useRegister";
 
 const loginSchema = z.object({
   email: z.email("Invalid email"),
@@ -95,29 +97,28 @@ export default function AuthForm({ formType }: { formType: FormType }) {
     formType === "login" ? navigate("/register") : navigate("/login");
   };
 
+  const { mutateAsync: loginMutate, isPending: isLoginPending } = useLogin();
+  const { mutateAsync: registerMutate, isPending: isRegisterPending } = useRegister();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(getSchema(formType)) });
 
-
-  const queryClient = useQueryClient();
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(`${formType.toUpperCase()} DATA:`, data);
-    let user;
+    
     try {
       if (formType === "login") {
-        user = await login(data as LoginFormData);
+        await loginMutate(data as LoginFormData);
       } else {
-        await registerUser(data as RegisterFormData);
-        user = await login({
+        await registerMutate(data as RegisterFormData);
+        await login({
           email: (data as RegisterFormData).email,
           password: (data as RegisterFormData).password,
         });
       }
-      queryClient.setQueryData(["auth", "current-user"], user);
       navigate("/dashboard");
     } catch (error) {
       console.log("error login/register", error);
@@ -127,10 +128,8 @@ export default function AuthForm({ formType }: { formType: FormType }) {
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 sm:p-6 selection:bg-cyan-500 selection:text-slate-950">
       
-      {/* Form Container Card */}
       <div className="w-full max-w-md bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
         
-        {/* Header */}
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 mb-1">
             <Shield className="w-6 h-6" />
@@ -143,7 +142,6 @@ export default function AuthForm({ formType }: { formType: FormType }) {
           </p>
         </div>
 
-        {/* Social Authentication */}
         <div className="flex justify-center gap-3">
           {socialIcons.map((icon, idx) => (
             <a
@@ -163,7 +161,6 @@ export default function AuthForm({ formType }: { formType: FormType }) {
           </span>
         </div>
 
-        {/* Form Inputs */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {translatedFields[formType].map((field) => {
             const Icon = field.icon;
@@ -187,7 +184,6 @@ export default function AuthForm({ formType }: { formType: FormType }) {
             );
           })}
 
-          {/* Forgot Password */}
           {formType === "login" && (
             <div className="text-right">
               <a href="#" className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
@@ -196,7 +192,6 @@ export default function AuthForm({ formType }: { formType: FormType }) {
             </div>
           )}
 
-          {/* Action Button */}
           <button
             type="submit"
             className="w-full py-3 px-4 rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-cyan-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"

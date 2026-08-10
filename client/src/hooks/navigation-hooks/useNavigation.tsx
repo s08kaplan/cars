@@ -5,7 +5,7 @@ import useLanguageStore from "src/store/useLanguageStore";
 const useNavigation = () => {
   const { user, isLoading, isError } = useAuth();
   const authorized = user && user.firstName;
-  console.log(user);
+ /*  console.log(user) */;
   const lang = useLanguageStore((s) => s.lang);
   const setLang = useLanguageStore((s) => s.setLang);
   const t = useLanguageStore((s) => s.t);
