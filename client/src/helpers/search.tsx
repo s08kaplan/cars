@@ -2,6 +2,8 @@ import axios from "axios";
 
 export type CarSearchParams = {
   keyword?:      string;
+  page?:         number;
+  limit?:        number;
   brandName?:    string;
   model?:        string;
   fuelType?:     string;
@@ -132,6 +134,9 @@ const RANGE_FIELD_MAP: {
 
 const buildSearchQuery = (params: CarSearchParams): string => {
   const parts: string[] = [];
+
+  if (params.page) parts.push(`page=${params.page}`);
+  if (params.limit) parts.push(`limit=${params.limit}`);
 
   if (params.keyword?.trim()) {
     parts.push(`keyword=${encodeURIComponent(params.keyword.trim())}`);

@@ -14,6 +14,10 @@ const PrivateLayout = () => {
     );
   }
 
+  if (!isLoading && (!isAuthenticated || !user)) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   if (!isAuthenticated || !user) {
     return <Navigate to="/dashboard" replace />;
   }

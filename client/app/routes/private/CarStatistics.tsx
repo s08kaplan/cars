@@ -120,39 +120,59 @@ import { getCarStatus } from "src/functions/carApiCalls";
 import MyTable from "src/components/Table/MyTable";
 import MyError from "src/components/Error/MyError";
 import CarStatisticLoader from "src/components/Spinners/CarStatisticLoader";
+import { useCars } from "src/hooks/cars/useCars";
 
 const options = [
-  { value: "",      label: "Select Car Info" },
+  { value: "", label: "Select Car Info" },
   { value: "false", label: "SOLD" },
-  { value: "true",  label: "AVAILABLE" },
+  { value: "true", label: "AVAILABLE" },
 ];
 
 const TABLE_HEADERS = [
-  "MAKE", "COLOR", "MODEL", "TYPE", "FUEL",
-  "MILE", "BOUGHT", "SOLD", "REQUIRED", "PROFIT",
+  "MAKE",
+  "COLOR",
+  "MODEL",
+  "TYPE",
+  "FUEL",
+  "MILE",
+  "BOUGHT",
+  "SOLD",
+  "REQUIRED",
+  "PROFIT",
 ];
 
 const CarStatistics = () => {
   const [available, setAvailable] = useState("true");
+  const [page, setPage] = useState(1);
 
-  const { data: carDetail, isLoading, error } = useQuery({
-    queryKey:  ["carStatus", available],
-    queryFn:   () => getCarStatus(available),
-    enabled:   available !== "",         // no call when placeholder option is selected
+  const {
+    data: carDetail,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["carStatus", available, page],
+    queryFn: () => getCarStatus(available, page, 20),
+    enabled: available !== "",
     staleTime: 10 * 60 * 1000,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAvailable(e.target.value);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
 
   if (isLoading && !carDetail) return <CarStatisticLoader />;
-  if (error && !carDetail)     return <MyError />;
-  if (!carDetail)              return (
-    <div className="flex items-center justify-center p-8 text-slate-400 font-medium">
-      No car data available
-    </div>
-  );
+  if (error && !carDetail) return <MyError />;
+  if (!carDetail)
+    return (
+      <div className="flex items-center justify-center p-8 text-slate-400 font-medium">
+        No car data available
+      </div>
+    );
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto p-4 sm:p-6 bg-slate-950 text-slate-100 min-h-screen">
@@ -198,7 +218,12 @@ const CarStatistics = () => {
         </h2>
 
         <div className="overflow-x-auto">
-          <MyTable title={TABLE_HEADERS} data={carDetail?.data} />
+          <MyTable
+            title={TABLE_HEADERS}
+            data={carDetail?.data || []}
+            details={carDetail?.details}
+            onPageChange={(newPage) => handlePageChange(newPage)}
+          />
         </div>
       </div>
     </div>

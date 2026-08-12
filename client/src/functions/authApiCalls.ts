@@ -1,4 +1,5 @@
-import axios from "axios";
+/* import axios from "axios"; */
+import { api } from "src/api/axiosInstance";
 import type {
   LoginFormData,
   RegisterFormData,
@@ -6,7 +7,7 @@ import type {
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-axios.defaults.withCredentials = true;
+/* axios.defaults.withCredentials = true; */
 
 interface User {
   id: string;
@@ -42,7 +43,7 @@ interface UpdateUserResponse {
 
 export const authAPI = {
   login: async (credentials: LoginFormData): Promise<User> => {
-    const { data } = await axios.post<AuthResponse>(
+    const { data } = await api.post<AuthResponse>(
       `${BASE_URL}auth/login`,
       credentials,
     );
@@ -50,7 +51,7 @@ export const authAPI = {
   },
 
   register: async (userData: RegisterFormData): Promise<User> => {
-    const { data } = await axios.post<AuthResponse>(
+    const { data } = await api.post<AuthResponse>(
       `${BASE_URL}users`,
       userData,
     );
@@ -58,12 +59,12 @@ export const authAPI = {
   },
 
   logout: async (): Promise<void> => {
-    await axios.post(`${BASE_URL}auth/logout`);
+    await api.post(`${BASE_URL}auth/logout`);
   },
 
   getCurrentUser: async (): Promise<User | null | undefined> => {
     try {
-      const { data } = await axios.get<AuthResponse>(`${BASE_URL}auth/me`);
+      const { data } = await api.get<AuthResponse>(`${BASE_URL}auth/me`);
       return data.user;
     } catch (error: any) {
       if (error?.response?.status === 401) {
@@ -74,7 +75,7 @@ export const authAPI = {
   },
   update: async (userData: UpdateUserData): Promise<User> => {
     console.log("user data in update api call", userData)
-    const { data } = await axios.put<UpdateUserResponse>(
+    const { data } = await api.put<UpdateUserResponse>(
       `${BASE_URL}users/${userData.userId}`,
       userData,
     );
