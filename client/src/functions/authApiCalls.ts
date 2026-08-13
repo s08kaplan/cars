@@ -4,6 +4,7 @@ import type {
   LoginFormData,
   RegisterFormData,
 } from "../components/Form/AuthForm";
+import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -44,17 +45,14 @@ interface UpdateUserResponse {
 export const authAPI = {
   login: async (credentials: LoginFormData): Promise<User> => {
     const { data } = await api.post<AuthResponse>(
-      `${BASE_URL}auth/login`,
+      `auth/login`,
       credentials,
     );
     return data.user;
   },
 
   register: async (userData: RegisterFormData): Promise<User> => {
-    const { data } = await api.post<AuthResponse>(
-      `${BASE_URL}users`,
-      userData,
-    );
+    const { data } = await api.post<AuthResponse>(`users`, userData);
     return data.user;
   },
 
@@ -64,19 +62,20 @@ export const authAPI = {
 
   getCurrentUser: async (): Promise<User | null | undefined> => {
     try {
-      const { data } = await api.get<AuthResponse>(`${BASE_URL}auth/me`);
+      const { data } = await api.get<AuthResponse>(`auth/me`);
+      console.log("data in get current user api call:", data);
       return data.user;
     } catch (error: any) {
       if (error?.response?.status === 401) {
         return null;
       }
-     /*  throw error; */
+      /*  throw error; */
     }
   },
   update: async (userData: UpdateUserData): Promise<User> => {
-    console.log("user data in update api call", userData)
+    console.log("user data in update api call", userData);
     const { data } = await api.put<UpdateUserResponse>(
-      `${BASE_URL}users/${userData.userId}`,
+      `users/${userData.userId}`,
       userData,
     );
     return data.user;

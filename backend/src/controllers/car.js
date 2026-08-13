@@ -5,7 +5,7 @@ const Car = require("../models/car");
 module.exports = {
   list: async (req, res) => {
     const data = await res.getModelList(Car);
-    console.log("data in cars controller, ", data);
+    /* console.log("data in cars controller, ", data); */
     const details = await res.getModelListDetails(Car)
     res.status(200).send({
       error: false,

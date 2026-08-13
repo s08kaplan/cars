@@ -74,17 +74,17 @@ module.exports = {
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
-        maxAge: 15 * 60 * 1000, // 15 minutes
+        maxAge: 15 * 60 * 1000, 
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
-        path: "/auth/refresh-token",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        path: "/",
+        maxAge: 7 * 24 * 60 * 60 * 1000, 
       });
 
       return res.status(200).send({
@@ -141,9 +141,9 @@ module.exports = {
       res.cookie("accessToken", newAccessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
+        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
-        maxAge: 15 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
       return res.send({
@@ -165,14 +165,14 @@ module.exports = {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
+        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
       res.clearCookie("refreshToken", {
-        path: "/auth/refresh-token",
+        path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
+        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
       return res.status(200).send({
@@ -244,7 +244,7 @@ module.exports = {
   getCurrentUser: async (req, res) => {
   try {
     const token = req.cookies?.accessToken;
-
+console.log("get current user token data in backend: ",token)
     if (!token) {
       return res.status(401).send({
         error: true,

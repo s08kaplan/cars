@@ -13,7 +13,7 @@ const QueryClientProvider = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
-        queryCache: new QueryCache({
+      /*   queryCache: new QueryCache({
           onError: (error: any) => {
             if (error?.status === 401) {
               queryClient.removeQueries({ queryKey: ["auth", 'current-user'] });
@@ -26,14 +26,15 @@ const QueryClientProvider = ({ children }: { children: React.ReactNode }) => {
               queryClient.removeQueries({ queryKey: ["auth", 'current-user'] });
             }
           },
-        }),
+        }), */
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: 15 * 60 * 1000,
             refetchOnMount: false,
             refetchOnReconnect: false,
-            refetchOnWindowFocus: true,
-            retry: (failureCount, error: any) => {
+            refetchOnWindowFocus: false,
+            retry: false
+            /* (failureCount, error: any) => {
               if (
                 error?.message === "UNAUTHENTICATED" ||
                 error?.status === 401 ||
@@ -42,15 +43,16 @@ const QueryClientProvider = ({ children }: { children: React.ReactNode }) => {
                 return false;
               }
               return failureCount < 2;
-            },
+            }, */
           },
           mutations: {
-            retry: (failureCount, error: any) => {
+            retry: false
+            /* (failureCount, error: any) => {
               if (error?.status === 401 || error?.status === 403) {
                 return false;
               }
               return failureCount < 2;
-            },
+            }, */
           },
         },
       })
@@ -59,7 +61,7 @@ const QueryClientProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <TanStackQueryClientProvider client={queryClient}>
       {children}
-      {import.meta.env.NODE_ENV === "development" && (
+      {import.meta.env.MODE === "development" && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
     </TanStackQueryClientProvider>

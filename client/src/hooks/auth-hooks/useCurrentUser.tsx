@@ -1,4 +1,4 @@
-import { authAPI } from "../../functions/authApiCalls";
+import { authAPI } from "src/functions/authApiCalls";
 import { useQuery } from "@tanstack/react-query";
 
 export const useCurrentUser = () => {
@@ -7,5 +7,7 @@ export const useCurrentUser = () => {
     queryFn: authAPI.getCurrentUser,
     staleTime: 15 * 60 * 1000, // 15 minutes
     retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };

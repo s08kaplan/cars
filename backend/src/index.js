@@ -16,7 +16,7 @@ const PORT = process.env?.PORT || 8000
 /* const { dbConnection } = require('./configs/dbConnection')
 dbConnection() */
 const corsOptions = {
-  origin: ['http://0.0.0.0:5173', 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true, 
 };

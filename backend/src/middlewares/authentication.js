@@ -26,6 +26,7 @@ console.log("Cookies:", req.cookies);
       return res.status(401).send({
         error: true,
         message: "Token expired. Please login again.",
+        shouldRefresh: true,
       });
     }
 
