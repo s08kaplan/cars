@@ -89,7 +89,7 @@ UserSchema.virtual("roleLabel").get(function () {
 UserSchema.set("toJSON", { virtuals: true });
 UserSchema.set("toObject", { virtuals: true });
 
-UserSchema.pre("save", function (next) {
+UserSchema.pre("save", async function () {
   if (this.isModified("password")) {
    
     const salt = randomBytes(16).toString("hex");
@@ -98,7 +98,7 @@ UserSchema.pre("save", function (next) {
 
     this.password = passwordEncrypt(this.password, salt);
   }
-  next();
+ 
 });
 
 module.exports = model("User", UserSchema);
