@@ -7,12 +7,13 @@ const { checkFileExists } = require("../helpers/fileCheck")
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        console.log('Middleware - req.body.type:', req.body.type);
-         const { type, carName = 'Unknown' } = req.body;
-         const safeCarName = sanitizeCarName(carName);
+        console.log('Middleware - req.body.brandName:', req.body.brandName);
+         const { type } = req.body;
+        
         let folder = '';
-        if (type === 'cars') {
-            folder = path.join('uploads', 'cars', safeCarName);
+        if (type) {
+             const safeCarName = sanitizeCarName(type);
+            folder = path.join('uploads', safeCarName);
         } 
      
         else {

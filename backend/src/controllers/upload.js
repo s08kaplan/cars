@@ -18,7 +18,8 @@ module.exports = {
   create: async (req, res) => {
     const { files } = req;
     const { type } = req.body;
-
+    console.log("upload create files: ", files)
+console.log("upload create brandName: ", type)
     if (!files || files.length === 0) {
       return res.status(400).send({
         error: true,
@@ -32,7 +33,7 @@ module.exports = {
       originalName: file.originalname,
       mimetype: file.mimetype,
       size: file.size,
-      type,
+     type,
     }));
 
     const newFiles = await Upload.insertMany(fileData);
