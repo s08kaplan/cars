@@ -56,7 +56,7 @@ app.use(require('./middlewares/queryHandler'))
 // Routes:
 
 // HomePath:
-app.all('/', (req, res) => {
+app.all('/api', (req, res) => {
     res.send({
         error: false,
         message: 'Welcome to CAR API',
