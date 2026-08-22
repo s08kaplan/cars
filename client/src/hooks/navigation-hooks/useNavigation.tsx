@@ -19,6 +19,7 @@ const useNavigation = () => {
   const privateNavigation = [
     ...publicNavigation,
     {id: "car_statistics", name: t("navbar.car_statistics"), to: "/car-statistics" },
+    {id: "add-car", name: t("navbar.add-car"), to: "/add-car" },
     { id: "budget", name: t("navbar.budget"), to: "/budget" },
     {id: "messages", name: t("navbar.messages"), to: "/messages" },
   ];

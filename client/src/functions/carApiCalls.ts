@@ -1,4 +1,5 @@
 import axios from "axios";
+import { api } from "src/api/axiosInstance";
 import { z } from "zod";
 export interface CarQueryParams {
   page?: number;
@@ -108,7 +109,7 @@ export const uploadCarImages = async (
   const formData = new FormData();
   Array.from(files).forEach((file) => formData.append("files", file));
 
-  const { data } = await axios.post<{ url: string }>(
+  const { data } = await api.post<{ url: string }>(
     `${baseUrl}uploads`,
     formData,
     {
@@ -160,6 +161,7 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
 
 export const addNewCar = async (carData: NewCar) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
+  console.log("car data in add new car func: ", carData)
   try {
     const { data } = await axios.post(`${baseUrl}cars`, carData);
     return data;
