@@ -44,15 +44,15 @@ interface UpdateUserResponse {
 
 export const authAPI = {
   login: async (credentials: LoginFormData): Promise<User> => {
-    const { data } = await api.post<AuthResponse>(
-      `auth/login`,
+    const { data } = await axios.post<AuthResponse>(
+      `${BASE_URL}auth/login`,
       credentials,
     );
     return data.user;
   },
 
   register: async (userData: RegisterFormData): Promise<User> => {
-    const { data } = await api.post<AuthResponse>(`users`, userData);
+    const { data } = await axios.post<AuthResponse>(`${BASE_URL}users`, userData);
     return data.user;
   },
 

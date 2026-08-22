@@ -114,7 +114,7 @@ export default function AuthForm({ formType }: { formType: FormType }) {
         await loginMutate(data as LoginFormData);
       } else {
         await registerMutate(data as RegisterFormData);
-        await login({
+        await loginMutate({
           email: (data as RegisterFormData).email,
           password: (data as RegisterFormData).password,
         });

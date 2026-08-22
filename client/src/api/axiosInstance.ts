@@ -1,40 +1,3 @@
-/* import axios from "axios";
-
-export const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
-  withCredentials: true,
-});
-
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-
-    const isRefreshEndpoint = originalRequest.url?.includes("/auth/refresh");
-
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry &&
-      !isRefreshEndpoint
-    ) {
-      originalRequest._retry = true;
-
-      try {
-       
-        await api.post(
-          `auth/refresh`
-        );
-
-        return api(originalRequest);
-      } catch (refreshError) {
-        return Promise.reject(refreshError);
-      }
-    }
-
-    return Promise.reject(error);
-  }
-); */
-
 import axios from "axios";
 
 export const api = axios.create({
@@ -42,8 +5,8 @@ export const api = axios.create({
  baseURL: "/api/", 
   withCredentials: true,
 });
-console.log(import.meta.env.DEV)
-console.log(import.meta.env.VITE_BASE_URL)
+console.log("test api in client",import.meta.env.DEV)
+console.log("test api base url in client",import.meta.env.VITE_BASE_URL)
 let isRefreshing = false;
 
 api.interceptors.response.use(
