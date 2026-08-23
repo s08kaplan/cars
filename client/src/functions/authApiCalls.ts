@@ -18,6 +18,7 @@ interface User {
   email: string;
   contactNumber: string;
   role: number;
+  file?: File | null;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -34,6 +35,8 @@ export type UpdateUserData = {
   image?: string;
   password?: string;
   userId: string;
+  contactNumber?: string
+  file?: File | null;
 };
 
 interface UpdateUserResponse {
@@ -52,7 +55,27 @@ export const authAPI = {
   },
 
   register: async (userData: RegisterFormData): Promise<User> => {
-    const { data } = await axios.post<AuthResponse>(`${BASE_URL}users`, userData);
+    const { file, image, ...textData } = userData;
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      Object.entries(textData).forEach(([key, val]) => {
+        if (val !== undefined && val !== null) {
+          formData.append(key, String(val));
+        }
+      });
+      const { data } = await api.post<AuthResponse>("/users", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return data.user;
+    }
+
+    const payload = {
+      ...textData,
+      ...(image ? { image } : {}),
+    };
+    const { data } = await api.post<AuthResponse>("/users", payload);
     return data.user;
   },
 
@@ -73,10 +96,29 @@ export const authAPI = {
     }
   },
   update: async (userData: UpdateUserData): Promise<User> => {
-    console.log("user data in update api call", userData);
+    const { userId, file, ...textData } = userData;
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      Object.entries(textData).forEach(([key, val]) => {
+        if (val !== undefined && val !== null) {
+          formData.append(key, String(val));
+        }
+      });
+      const { data } = await api.put<UpdateUserResponse>(
+        `/users/${userId}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
+      return data.user;
+    }
+
     const { data } = await api.put<UpdateUserResponse>(
-      `users/${userData.userId}`,
-      userData,
+      `/users/${userId}`,
+      textData,
     );
     return data.user;
   },

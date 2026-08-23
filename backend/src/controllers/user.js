@@ -24,10 +24,10 @@ module.exports = {
         req.body;
       const file = req.file;
 
-      if (!(firstName && lastName && password)) {
+      if (!(firstName && lastName && password && contactNumber)) {
         return res.status(400).send({
           error: true,
-          message: "First name, last name and password are required",
+          message: "First name, last name, email, contact number and password are required",
         });
       }
 

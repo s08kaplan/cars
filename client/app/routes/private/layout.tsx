@@ -24,7 +24,6 @@ const PrivateLayout = () => {
 
   const roleAsNumber = typeof user.role === "string" ? parseInt(user.role, 10) : user.role;
   if (roleAsNumber !== 1) {
-    return <Navigate to="/dashboard" replace />;
   }
 
 

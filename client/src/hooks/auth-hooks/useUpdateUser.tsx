@@ -20,7 +20,7 @@ export const useUpdateUser = () => {
     onSuccess: (user) => {
       
       queryClient.setQueryData(["auth", "current-user"], user);
-      
+      queryClient.invalidateQueries({ queryKey: ["auth"] });
       
       navigate("/profile");
     },

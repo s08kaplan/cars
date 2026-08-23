@@ -23,7 +23,6 @@ const useNavigation = () => {
     {id: "add-car", name: t("navbar.add-car"), to: "/add-car" },
     { id: "budget", name: t("navbar.budget"), to: "/budget" },
     {id: "messages", name: t("navbar.messages"), to: "/messages" },
-     {id: "profile", name: t("navbar.profile"), to: "/profile" },
   ];
 
   const navigation = authorized ? privateNavigation : publicNavigation;
