@@ -4,7 +4,8 @@ import useLanguageStore from "src/store/useLanguageStore";
 
 const useNavigation = () => {
   const { user, isLoading, isError } = useAuth();
-  const authorized = user && user.firstName;
+  const role = Number(user?.role)
+  const authorized = user && role === 1;
  /*  console.log(user) */;
   const lang = useLanguageStore((s) => s.lang);
   const setLang = useLanguageStore((s) => s.setLang);
@@ -22,6 +23,7 @@ const useNavigation = () => {
     {id: "add-car", name: t("navbar.add-car"), to: "/add-car" },
     { id: "budget", name: t("navbar.budget"), to: "/budget" },
     {id: "messages", name: t("navbar.messages"), to: "/messages" },
+     {id: "profile", name: t("navbar.profile"), to: "/profile" },
   ];
 
   const navigation = authorized ? privateNavigation : publicNavigation;
