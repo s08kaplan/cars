@@ -2,13 +2,12 @@
 
 const jwt = require("../configs/requiredBasics").jwt;
 
-
 module.exports = async (req, res, next) => {
- try {
+  try {
     const token = req.cookies?.accessToken;
     console.log("Headers:", req.headers);
-console.log("Cookie header:", req.headers.cookie);
-console.log("Cookies:", req.cookies);
+    console.log("Cookie header:", req.headers.cookie);
+    console.log("Cookies:", req.cookies);
     if (!token) {
       return res.status(401).send({
         error: true,

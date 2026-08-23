@@ -1,14 +1,13 @@
 "use strict";
 
 const User = require("../models/user");
+const Upload = require("../models/upload");
 
-const {passwordEncrypt}  = require("../helpers/validationHelpers");
+const { passwordEncrypt } = require("../helpers/validationHelpers");
 // const jwt = require("jsonwebtoken");
 
 module.exports = {
   list: async (req, res) => {
-   
-    
     const data = await res.getModelList(User);
 
     res.status(200).send({
@@ -19,34 +18,64 @@ module.exports = {
   },
 
   create: async (req, res) => {
-    console.log("create user req.body", req.body)
-     const { firstName, lastName, password, role } = req.body
+    try {
+      console.log("create user req.body", req.body);
+      const { firstName, lastName, password, role, email, contactNumber } =
+        req.body;
+      const file = req.file;
 
-    if (!(firstName && lastName && password)) {
-      return res.status(400).send({ error: true, message: "First name, last name and password are required" });
-  }
+      if (!(firstName && lastName && password)) {
+        return res.status(400).send({
+          error: true,
+          message: "First name, last name and password are required",
+        });
+      }
 
-  if(role === "1"){
-    return res.status(401).send({
-      error: true,
-      message: "You are not allowed for this role"
-    })
-  }
+      if (role === "1") {
+        return res.status(401).send({
+          error: true,
+          message: "You are not allowed for this role",
+        });
+      }
 
-  const data = await User.create(req.body)
+      let imagePath = req.body.image || "";
 
-    res.status(201).send({
-      error: false,
-       message: "User registered successfully",
-      userData: data
-    });
+      if (file) {
+        const normalizedPath = file.path.replace(/\\/g, "/");
+        imagePath = normalizedPath.startsWith("/")
+          ? normalizedPath
+          : `/${normalizedPath}`;
+      }
+
+      const data = await User.create({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: email.trim().toLowerCase(),
+        contactNumber: contactNumber ? contactNumber.trim() : "",
+        password: password.trim(),
+        role: role || "2",
+        image: imagePath,
+      });
+
+      const userResponse = data.toObject();
+      delete userResponse.password;
+
+      res.status(201).send({
+        error: false,
+        message: "User registered successfully",
+        user: userResponse,
+      });
+    } catch (error) {
+      console.error("User Creation Error:", error);
+      res.status(500).send({
+        error: true,
+        message: error.message || "Internal server error",
+      });
+    }
   },
 
   read: async (req, res) => {
-   
-
     const data = await User.findOne({ _id: req.params.userId });
-    
 
     res.status(200).send({
       error: false,
@@ -54,7 +83,7 @@ module.exports = {
     });
   },
 
-   update: async (req, res) => {
+  update: async (req, res) => {
     console.log("req.user in update controller: ", req.user);
     const { userId } = req.params;
 
@@ -79,9 +108,10 @@ module.exports = {
       });
     }
 
-    const { firstName, lastName, email, password } = req.body;
+    const updatePayload = {};
 
-    let updatePayload;
+    const { firstName, lastName, email, password, image, contactNumber } =
+      req.body;
 
     if (typeof firstName === "string" && firstName.trim().length > 0) {
       updatePayload.firstName = firstName.trim();
@@ -98,36 +128,18 @@ module.exports = {
     if (typeof password === "string" && password.trim().length > 0) {
       updatePayload.password = passwordEncrypt(password);
     }
-    //! TODO handle user image upload and path
+
+    if (typeof image === "string") {
+      updatePayload.image = image.trim();
+    }
+
     const file = req.file;
 
     if (file) {
-      updatePayload.image = file.filename;
-      // or file.path
-      // or `/uploads/${file.filename}`
-      // depending on your storage strategy
-    }
-/* 
-    if (updatePayload.email) {
-      const existing = await User.findOne({
-        email: updatePayload.email,
-        _id: { $ne: userId },
-      });
-
-      if (existing) {
-        return res.status(409).json({
-          error: true,
-          message: "Email is already in use.",
-        });
-      }
-    }
-    let newPassword
-    if (password) {
-       newPassword = await passwordEncrypt(password);
+      const normalizedPath = file.path.replace(/\\/g, "/");
+      updatePayload.image = `/${normalizedPath}`;
     }
 
-    updatePayload = {...updatePayload,password:newPassword}
- */
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       {
@@ -154,17 +166,15 @@ module.exports = {
   },
 
   delete: async (req, res) => {
-   const data = await User.updateOne({ _id: req.params.userId }, { isDeleted: true });
-      
-    res.status(200).send({  
-      error: false, 
+    const data = await User.updateOne(
+      { _id: req.params.userId },
+      { isDeleted: true },
+    );
+
+    res.status(200).send({
+      error: false,
       message: "User account deleted successfully",
-      data, 
+      data,
     });
-
-    
   },
-   
-
-  
 };

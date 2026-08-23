@@ -110,7 +110,7 @@ module.exports = {
 
   refresh: async (req, res) => {
     try {
-      const refreshToken = req.cookies.refreshToken;
+      const refreshToken = req.cookies?.refreshToken;
 
       if (!refreshToken) {
         return res.status(401).send({
@@ -190,7 +190,7 @@ module.exports = {
 
   verifyToken: async (req, res) => {
     try {
-      let accessToken = req.cookies.accessToken;
+      let accessToken = req.cookies?.accessToken;
 
       if (!accessToken) {
         const authHeader = req.headers.authorization;
