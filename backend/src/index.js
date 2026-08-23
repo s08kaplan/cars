@@ -16,7 +16,7 @@ const PORT = process.env?.PORT || 8000
 /* const { dbConnection } = require('./configs/dbConnection')
 dbConnection() */
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true, 
 };
@@ -45,7 +45,7 @@ app.use(require('./middlewares/logger'))
 
 
 // Call static uploadFile:
-const uploadPath = path.join(__dirname, 'uploads');
+const uploadPath = path.join(process.cwd(), 'uploads');
 app.use('/uploads', express.static(uploadPath));
 // app.use('/uploads', express.static('./upload'))
 
