@@ -39,7 +39,7 @@ const LanguageDropdown = ({
   const { Component: SelectedFlagComponent } = selectedFlag;
 
   return (
-    <section className="ml-0.5">
+    <section className="ml-4.5 p-1">
       <details className="group relative inline-block text-left">
         {/* Trigger Button */}
         <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 transition-colors hover:bg-white/20 focus:outline-none">
