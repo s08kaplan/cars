@@ -271,7 +271,8 @@ console.log("get current user token data in backend: ",token)
         lastName: user.lastName,
         image: user.image,
         email: user.email,
-        role: user.role
+        role: user.role,
+        contactNumber: user.contactNumber
       },
     });
   } catch (error) {
