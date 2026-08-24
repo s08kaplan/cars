@@ -3,5 +3,5 @@ export const updateInputs = [
   { name: 'lastName', type: 'text', label: 'Last Name' },
   { name: 'image', type: 'text', label: 'Image' },
   { name: 'contactNumber', type: 'text', label: 'Contact Number' },
-  { name: 'password', type: 'password', label: 'Password' },
+  /* { name: 'password', type: 'password', label: 'Password' }, */
 ]

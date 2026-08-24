@@ -1,4 +1,5 @@
 import { useUpdateUser } from "../../hooks/auth-hooks/useUpdateUser";
+import { updateInputs } from "./ProfileUpdateInputs";
 import { useState } from "react";
 import {
   Edit3,
@@ -41,6 +42,7 @@ const EditProfileFormModal = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    /* console.log("input values: ", name, value) */
     if (name === "image") {
       setPreviewUrl(value);
     }
@@ -171,7 +173,7 @@ const EditProfileFormModal = ({
               <input
                 type="text"
                 name="image"
-                placeholder="/car.webp"
+                placeholder="https://unsplash.com/car.webp"
                 value={formData.image}
                 onChange={handleChange}
                 className="w-full max-w-xs rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2 text-xs text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 transition-all"
@@ -180,31 +182,21 @@ const EditProfileFormModal = ({
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">
-                First Name
-              </label>
-              <input
-                name="firstName"
-                value={formData.firstName}
-                required
-                className="w-full rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 transition-all"
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">
-                Last Name
-              </label>
-              <input
-                name="lastName"
-                value={formData.lastName}
-                required
-                className="w-full rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 transition-all"
-                onChange={handleChange}
-              />
-            </div>
+            {updateInputs.map(({ name, type, label }) => (
+              <div id={name} className="space-y-1.5">
+                <label className="block text-xs font-medium text-slate-300">
+                  {label}
+                </label>
+                <input
+                  name={name}
+                  value={`${formData[name as keyof typeof formData] ?? ""}`}
+                  type={type}
+                  required
+                  className="w-full rounded-xl bg-slate-900/80 border border-slate-800 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 transition-all"
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
           </div>
 
           <footer className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800/80">
