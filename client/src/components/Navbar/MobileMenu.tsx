@@ -13,7 +13,6 @@ const MobileMenu = () => {
 
   return (
     <>
-      {/* Backdrop: Allows clicking outside to uncheck checkbox */}
       <label
         htmlFor="mobile-menu-toggle"
         className="hidden peer-checked:block fixed inset-0 z-40 bg-black/40 sm:hidden"

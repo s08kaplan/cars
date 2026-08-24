@@ -33,7 +33,7 @@ const Navbar = () => {
           />
 
           {/* 2. Icon Container: Uses arbitrary peer selectors to target SVG children */}
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden 
+          <div className="absolute inset-y-0 left-0 flex items-center  
             peer-checked:[&_.menu-icon]:opacity-0 peer-checked:[&_.menu-icon]:-rotate-90 peer-checked:[&_.menu-icon]:scale-75 
             peer-checked:[&_.close-icon]:opacity-100 peer-checked:[&_.close-icon]:rotate-0 peer-checked:[&_.close-icon]:scale-100"
           >
@@ -52,7 +52,7 @@ const Navbar = () => {
             </label>
           </div>
 
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 sm:ml-12  items-center justify-center sm:items-stretch sm:justify-start">
             <Link to="/dashboard" className="flex shrink-0 items-center">
               <img
                 alt="AutoDen Car Selling Company"
@@ -61,8 +61,8 @@ const Navbar = () => {
               />
             </Link>
 
-            <div className="hidden sm:ml-6 sm:flex items-center gap-4">
-              <DesktopMenu />
+            <div className="w-full hidden sm:ml-6 sm:flex justify-center items-center gap-4">
+              {/* <DesktopMenu /> */}
               <Search />
             </div>
           </div>
