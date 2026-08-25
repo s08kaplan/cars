@@ -106,17 +106,19 @@ export type CarFormData = z.infer<typeof carSchema>;
 export const uploadCarImages = async (
   files: FileList | File[],
 ): Promise<string> => {
-  const formData = new FormData();
-  Array.from(files).forEach((file) => formData.append("files", file));
-
-  const { data } = await api.post<{ url: string }>(
-    `${baseUrl}uploads`,
-    formData,
-    {
+  try {
+    const formData = new FormData();
+    Array.from(files).forEach((file) => formData.append("files", file));
+    const { data } = await api.post<{ url: string }>(`uploads`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
-    },
-  );
-  return data.url;
+    });
+    return data.url;
+  } catch (error: any) {
+    console.error("upload error: ", error);
+    throw new Error(
+      error?.response?.data?.message || error?.message || "Upload failed",
+    );
+  }
 };
 
 export const getCarStatus = async (
@@ -161,9 +163,9 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
 
 export const addNewCar = async (carData: NewCar) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  console.log("car data in add new car func: ", carData)
+  console.log("car data in add new car func: ", carData);
   try {
-    const { data } = await axios.post(`${baseUrl}cars`, carData);
+    const { data } = await api.post(`cars`, carData);
     return data;
   } catch (error) {
     console.error("Cars data not provided", error);
