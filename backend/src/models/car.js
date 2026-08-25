@@ -9,6 +9,7 @@ const CarSchema = new Schema(
     brandName: {
       type: String,
       trim: true,
+      uppercase: true,
       required: [true, "Brand name of the Car is required"],
       minLength: 1,
       maxLength: 50,
@@ -56,6 +57,7 @@ const CarSchema = new Schema(
     color: {
       type: String,
       trim: true,
+      set: (name) => name.toUpperCase()
     },
 
     mileAge: {
