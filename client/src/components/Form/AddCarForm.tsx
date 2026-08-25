@@ -43,13 +43,14 @@ export const carFields = [
 ] as const;
 
 const AddCarForm = () => {
-  const { mutate, isPending } = useAddCar();
+  const { mutateAsync, isPending, isSuccess } = useAddCar();
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
+    reset
   } = useForm<CarFormData>({
     resolver: zodResolver(carSchema),
     defaultValues: {
@@ -67,8 +68,18 @@ const AddCarForm = () => {
     name: "features" as never,
   });
 
-  const onSubmit = (data: CarFormData) => {
-    mutate(data);
+  const onSubmit = async (data: CarFormData) => {
+     try {
+      await mutateAsync(data);
+      reset(); 
+
+      const popover = document.getElementById("success-add-car-popover");
+      if (popover && "showPopover" in popover) {
+        (popover as HTMLElement).showPopover();
+      }
+    } catch (error) {
+      console.error("Failed to add new car data:", error);
+    }
   };
 
   const inputStyles = (hasError: boolean) =>
