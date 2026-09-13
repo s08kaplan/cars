@@ -7,13 +7,13 @@ export const useAddCar = () => {
   return useMutation({
     mutationFn: async (formData: CarFormData) => {
      
-      const imageUrl = await uploadCarImages(formData.imageFiles);
+      const imageUrls = await uploadCarImages(formData.imageFiles, formData.brandName);
 
       const { imageFiles, ...carFields } = formData;
 
       const finalCarPayload: NewCar = {
         ...carFields,
-        image: imageUrl,
+        image: imageUrls,
         available: carFields.available ?? true,
         features: carFields.features ?? [],
         trafficInfo: {

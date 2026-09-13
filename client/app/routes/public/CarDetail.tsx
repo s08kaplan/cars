@@ -4,6 +4,7 @@ import React from "react";
 import { useLocation, useParams } from "react-router";
 import Swipe from "src/components/Swipe/Swipe";
 import { getCars } from "src/helpers/functions";
+import { getImageUrl } from "src/helpers/getImageUrl"
 import {
   ShieldCheck,
   Fuel,
@@ -32,7 +33,8 @@ const CarDetail = () => {
   });
 
   const displayData = carDetail || carData;
-
+console.log("car detail data in car detail: ",carDetail)
+console.log("car data in car detail: ",carData)
   if (isLoading && !carData)
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-cyan-400 font-semibold animate-pulse">
@@ -95,7 +97,8 @@ const CarDetail = () => {
           {/* Hero Main Image Showcase */}
           <div className="relative rounded-3xl overflow-hidden border border-slate-800 shadow-2xl group bg-slate-900">
             <img
-              src={displayData?.image?.[0]}
+              /* src={displayData?.image?.[0]} */
+              src={getImageUrl(displayData?.image?.[0])}
               alt="car"
               className="w-full h-80 sm:h-105 lg:h-120 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />

@@ -4,6 +4,12 @@ export const getImageUrl = (imagePath?: string): string => {
     return imagePath;
   }
 
-  const backendBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:4040";
-  return `${backendBaseUrl}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
+const cleanPath = imagePath.startsWith("/") ? imagePath : `/${imagePath}`;
+
+if (import.meta.env.DEV) {
+return cleanPath;
+}
+
+const backendBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:4040/api";
+return `${backendBaseUrl}${cleanPath}`
 };

@@ -3,7 +3,7 @@ import axios from "axios";
 export const api = axios.create({
  /*  baseURL: import.meta.env.DEV ? "/api/" : import.meta.env.VITE_BASE_URL, */
  baseURL: "/api/", 
-  withCredentials: true,
+ withCredentials: true,
 });
 console.log("test api in client",import.meta.env.DEV)
 console.log("test api base url in client",import.meta.env.VITE_BASE_URL)

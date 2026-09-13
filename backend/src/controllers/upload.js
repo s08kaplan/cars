@@ -17,9 +17,8 @@ module.exports = {
 
   create: async (req, res) => {
     const { files } = req;
-    const { type } = req.body;
-    console.log("upload create files: ", files)
-console.log("upload create brandName: ", type)
+    const brandName = req.body.brandName || req.body.type;
+
     if (!files || files.length === 0) {
       return res.status(400).send({
         error: true,
@@ -29,11 +28,11 @@ console.log("upload create brandName: ", type)
 
     const fileData = files.map((file) => ({
       filename: file.filename,
-      path: file.path,
+      path: file.path.replace(/\\/g, "/"),
       originalName: file.originalname,
       mimetype: file.mimetype,
       size: file.size,
-     type,
+      type: brandName || "general",
     }));
 
     const newFiles = await Upload.insertMany(fileData);
@@ -59,7 +58,7 @@ console.log("upload create brandName: ", type)
       req.body,
       {
         runValidators: true,
-      }
+      },
     );
 
     res.status(202).send({

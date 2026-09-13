@@ -1,15 +1,23 @@
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { carSchema, type CarFormData } from "src/functions/carApiCalls";
+import {
+  carSchema,
+  uploadCarImages,
+  type CarFormData,
+} from "src/functions/carApiCalls";
 import { useAddCar } from "src/hooks/cars/useAddCar";
 
 export const carFields = [
   { name: "brandName", type: "text", placeholder: "Brand Name" },
   { name: "model", type: "text", placeholder: "Model" },
-  { name: "vehicleIdentificationNumber", type: "text", placeholder: "VIN Number" },
+  {
+    name: "vehicleIdentificationNumber",
+    type: "text",
+    placeholder: "VIN Number",
+  },
   { name: "color", type: "text", placeholder: "Color" },
-  { name: "year", type: "number", placeholder: "Year (Min 1950)", min: 1950 },
+  { name: "year", type: "number", placeholder: "Year (Min 1955)", min: 1955 },
   { name: "mileAge", type: "number", placeholder: "Mileage (km)", min: 0 },
   {
     name: "typeOfCar",
@@ -32,7 +40,12 @@ export const carFields = [
     options: ["Waiting", "Dealing", "Sold", "Repair", "Cleaning"],
   },
   { name: "boughtPrice", type: "number", placeholder: "Bought Price", min: 0 },
-  { name: "requiredPrice", type: "number", placeholder: "Required Price", min: 0 },
+  {
+    name: "requiredPrice",
+    type: "number",
+    placeholder: "Required Price",
+    min: 0,
+  },
   {
     name: "soldPrice",
     type: "number",
@@ -50,7 +63,7 @@ const AddCarForm = () => {
     handleSubmit,
     control,
     formState: { errors },
-    reset
+    reset,
   } = useForm<CarFormData>({
     resolver: zodResolver(carSchema),
     defaultValues: {
@@ -69,9 +82,9 @@ const AddCarForm = () => {
   });
 
   const onSubmit = async (data: CarFormData) => {
-     try {
+    try {
       await mutateAsync(data);
-      reset(); 
+      reset();
 
       const popover = document.getElementById("success-add-car-popover");
       if (popover && "showPopover" in popover) {
@@ -92,7 +105,7 @@ const AddCarForm = () => {
   // Custom arrow styling for <select> elements
   const selectStyles = (hasError: boolean) =>
     `${inputStyles(
-      hasError
+      hasError,
     )} appearance-none bg-[right_0.75rem_center] sm:bg-[right_1rem_center] bg-no-repeat pr-8 sm:pr-10 cursor-pointer [&>option]:bg-slate-900 [&>option]:text-white [background-image:url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2306b6d4%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')]`;
 
   const renderError = (message?: string) =>
@@ -117,7 +130,10 @@ const AddCarForm = () => {
         }
       `}</style>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 sm:space-y-6"
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
           {carFields.map((field) => {
             const fieldName = field.name as keyof CarFormData;
@@ -128,7 +144,9 @@ const AddCarForm = () => {
               <div
                 key={field.name}
                 className={`flex flex-col ${
-                  isFullWidth ? "col-span-1 sm:col-span-2 lg:col-span-3" : "col-span-1"
+                  isFullWidth
+                    ? "col-span-1 sm:col-span-2 lg:col-span-3"
+                    : "col-span-1"
                 }`}
               >
                 <div className="relative">
@@ -154,7 +172,7 @@ const AddCarForm = () => {
                               setValueAs: (v) =>
                                 v === "" ? undefined : Number(v),
                             }
-                          : {}
+                          : {},
                       )}
                       placeholder={field.placeholder}
                       className={inputStyles(!!fieldError)}

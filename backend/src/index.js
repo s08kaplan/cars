@@ -59,7 +59,7 @@ app.use(require('./middlewares/queryHandler'))
 app.all('/api', (req, res) => {
     res.send({
         error: false,
-        message: 'Welcome to CAR API',
+        message: 'API is running well...',
         user: req.user
     })
 })

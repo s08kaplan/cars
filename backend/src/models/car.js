@@ -31,9 +31,9 @@ const CarSchema = new Schema(
 
     year: {
       type: Number,
-      required: true,
-      min: [2000, "Less than 2000 model is not required"],
-      max: [new Date().getFullYear(), "Newest Car of the model"],
+      required: [true, "Car year is required"],
+      min: [1950, "Year cannot be earlier than 1950"],
+      max: [new Date().getFullYear() + 1, "Invalid future model year"],
     },
 
     image: {
@@ -57,7 +57,7 @@ const CarSchema = new Schema(
     color: {
       type: String,
       trim: true,
-      set: (name) => name.toUpperCase()
+      set: (name) => name.toUpperCase(),
     },
 
     mileAge: {
@@ -153,7 +153,7 @@ const CarSchema = new Schema(
   {
     collection: "cars",
     timestamps: true,
-  }
+  },
 );
 
 module.exports = model("Car", CarSchema);

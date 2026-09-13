@@ -8,22 +8,22 @@ const { checkFileExists } = require("../helpers/fileCheck");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log("Middleware - req.body.brandName:", req.body.brandName);
-    const { type } = req.body;
+    const brand = req.body.brandName || req.body.type;
 
     let folder = "";
-    if (type) {
-      const safeCarName = sanitizeCarName(type);
-      folder = path.join("uploads", safeCarName);
+    if (brand) {
+      const safeBrandName = sanitizeCarName(brand);
+      folder = path.join("uploads", safeBrandName);
     } else if (
-      req.baseUrl.includes("/users") ||
-      req.originalUrl.includes("/users")
+      req.baseUrl?.includes("/users") ||
+      req.originalUrl?.includes("/users")
     ) {
       folder = path.join("uploads", "users");
     } else {
       folder = path.join("uploads", "others");
     }
 
-    console.log("Middleware - folder:", folder);
+    console.log("Middleware - Dynamic folder created:", folder);
     checkFileExists(folder);
     cb(null, folder);
   },

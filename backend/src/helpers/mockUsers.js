@@ -90,8 +90,7 @@ const createFakeUsers = async (count = 100) => {
         //  gender: faker.helpers.arrayElement(['male', 'female', 'other']),
         image: faker.image.avatar(),
       };
-
-      console.log("salt is adding to all users ");
+      
       const usersCollection = connection.collection("users");
       const usersWithoutSalt = await usersCollection
         .find({ salt: { $exists: false } })

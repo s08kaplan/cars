@@ -1,0 +1,9 @@
+* [33m57f400e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Remove .env from repository and ignore it
+* [33mdaeb1f1[m fix: gitignore
+* [33m83a4144[m chore: authorized navigation
+* [33ma2be64e[m fix: upload
+* [33m7caf12e[m chore: update upload for users option
+* [33mad64e7e[m fix: upload
+* [33md049670[m fix: uploads database sync
+* [33m20f7997[m fix: user controller for uploading image
+* [33m3a5afff[m fix: auth api calls endpoint and credentials

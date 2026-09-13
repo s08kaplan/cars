@@ -27,7 +27,7 @@ export interface NewCar {
   model: string;
   typeOfCar: "SUV" | "Sedan" | "Hatchback";
   year: number;
-  image: string;
+  image: string | string[];
   carStatus: "Sold" | "Waiting" | "Dealing" | "Repair" | "Cleaning";
   vehicleIdentificationNumber: string;
   color: string;
@@ -81,7 +81,7 @@ export const carSchema = z.object({
   brandName: z.string().min(1, "Brand name is required"),
   model: z.string().min(1, "Model is required"),
   typeOfCar: z.enum(["SUV", "Sedan", "Hatchback"]),
-  year: z.number().min(1900),
+  year: z.number().min(1950),
   carStatus: z.enum(["Sold", "Waiting", "Dealing", "Repair", "Cleaning"]),
   vehicleIdentificationNumber: z.string().min(1),
   color: z.string().min(1),
@@ -104,15 +104,28 @@ export const carSchema = z.object({
 export type CarFormData = z.infer<typeof carSchema>;
 
 export const uploadCarImages = async (
-  files: FileList | File[],
-): Promise<string> => {
+  files: FileList | File[]| undefined | null,
+  brandName?: string
+): Promise<string[]> => {
   try {
+    if (!files || (files instanceof FileList && files.length === 0)) {
+      return [];
+    }
+
     const formData = new FormData();
-    Array.from(files).forEach((file) => formData.append("files", file));
-    const { data } = await api.post<{ url: string }>(`uploads`, formData, {
+
+    if (brandName) {
+      formData.append("brandName", brandName);
+    }
+
+    const fileArray = Array.from(files);
+    fileArray.forEach((file) => formData.append("files", file));
+
+    const { data } = await api.post<{ files: Array<{ path: string }> }>(`uploads`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    return data.url;
+    console.log("data from upload car img: ", data)
+    return data.files ? data.files.map((fileDoc) => fileDoc.path) : [];
   } catch (error: any) {
     console.error("upload error: ", error);
     throw new Error(
@@ -144,7 +157,8 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
 
   if (carId) {
     try {
-      const { data } = await axios.get(`${baseUrl}cars/${carId}`);
+      const { data } = await api.get(`cars/${carId}`);
+      console.log("get cars data in getCars func.: ",data)
       return data;
     } catch (error) {
       console.error(`Car ${carId} data not fetched`, error);
@@ -153,7 +167,7 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
   }
 
   try {
-    const { data } = await axios.get(`${baseUrl}cars/`, { params });
+    const { data } = await api.get(`cars/`, { params });
     return data;
   } catch (error) {
     console.error("Cars data not fetched", error);
