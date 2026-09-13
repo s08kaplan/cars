@@ -116,7 +116,7 @@ console.log("car data in car detail: ",carData)
           {/* Gallery Slider Component */}
           {displayData?.image && displayData.image.length > 0 && (
             <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-xl">
-              <Swipe source={displayData.image} autoPlayInterval={5000} />
+              <Swipe source={displayData.image.map((img: string) => getImageUrl(img))} autoPlayInterval={5000} />
             </div>
           )}
         </div>
