@@ -70,5 +70,26 @@
     "type": "Type de Carrosserie",
     "year": "Année",
     "mileAge": "Kilométrage"
+  },
+  "contact": {
+    "directSupport": "Support Direct",
+    "getInTouch": "Contactez-Nous",
+    "haveQuestions": "Des questions sur l'achat, la location ou les réservations de flotte personnalisées ? Notre équipe de conciergerie est disponible 24/7.",
+    "concierge": "Service Conciergerie",
+    "online": "En Ligne",
+    "call": "Appeler ou WhatsApp",
+    "emailUs": "Envoyez-nous un E-mail",
+    "showroomAddress": "Adresse du Showroom",
+    "days": "Lun - Dim",
+    "sendUs": "Envoyez-nous un Message",
+    "fillOutForm": "Remplissez le formulaire ci-dessous et un conseiller vous contactera dans les 15 minutes."
+  },
+  "contactFormPlaceholders": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Numéro de téléphone (Optionnel)",
+    "title": "Sujet (Optionnel)",
+    "content": "Votre message"
   }
 }

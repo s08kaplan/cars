@@ -70,5 +70,26 @@
     "type": "Kasa Tipi",
     "year": "Yıl",
     "mileAge": "Kilometre"
+  },
+  "contact": {
+    "directSupport": "Doğrudan Destek",
+    "getInTouch": "Bizimle İletişime Geçin",
+    "haveQuestions": "Satın alma, kiralama veya özel filo rezervasyonları hakkında sorularınız mı var? Müşteri hizmetleri ekibimiz 7/24 hazır.",
+    "concierge": "Resepsiyon / Danışma",
+    "online": "Çevrim İçi",
+    "call": "Arayın veya WhatsApp'tan Yazın",
+    "emailUs": "E-posta Gönderin",
+    "showroomAddress": "Galeri Adresi",
+    "days": "Pzt - Paz",
+    "sendUs": "Bize Mesaj Gönderin",
+    "fillOutForm": "Aşağıdaki formu doldurun, temsilcimiz 15 dakika içinde sizinle iletişime geçsin."
+  },
+  "contactFormPlaceholders": {
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "phone": "Telefon Numarası (İsteğe Bağlı)",
+    "title": "Konu (İsteğe Bağlı)",
+    "content": "Mesajınız"
   }
 }

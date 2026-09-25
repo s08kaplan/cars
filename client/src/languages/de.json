@@ -70,5 +70,26 @@
     "type": "Fahrzeugtyp",
     "year": "Baujahr",
     "mileAge": "Kilometerstand"
+  },
+  "contact": {
+    "directSupport": "Direkter Support",
+    "getInTouch": "Kontaktieren Sie Uns",
+    "haveQuestions": "Haben Sie Fragen zum Kauf, zur Miete oder zu individuellen Flottenreservierungen? Unser Concierge-Team ist rund um die Uhr für Sie da.",
+    "concierge": "Concierge-Desk",
+    "online": "Jetzt Online",
+    "call": "Anrufen oder WhatsApp",
+    "emailUs": "E-Mail Senden",
+    "showroomAddress": "Showroom-Adresse",
+    "days": "Mo - So",
+    "sendUs": "Senden Sie Uns Eine Nachricht",
+    "fillOutForm": "Füllen Sie das folgende Formular aus und ein Mitarbeiter wird sich innerhalb von 15 Minuten bei Ihnen melden."
+  },
+  "contactFormPlaceholders": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefonnummer (Optional)",
+    "title": "Betreff (Optional)",
+    "content": "Ihre Nachricht"
   }
 }

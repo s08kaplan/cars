@@ -70,5 +70,26 @@
     "type":"Type",
     "year":"Year",
     "mileAge":"Mileage"
+  },
+  "contact": {
+    "directSupport":"Direct Support",
+    "getInTouch":"Get in Touch With Us",
+    "haveQuestions":"Have questions about buying, renting, or custom fleet reservations? Our concierge team is ready 24/7.",
+    "concierge":"Concierge Desk",
+    "online":"Online Now",
+    "call":"Call or WhatsApp",
+    "emailUs":"Email Us",
+    "showroomAddress":"Showroom Address",
+    "days":"Mon - Sun",
+    "sendUs":"Send Us a Message",
+    "fillOutForm":"Fill out the form below and an agent will reach out within 15 minutes."
+  },
+  "contactFormPlaceholders": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number (Optional)",
+    "title": "Subject (Optional)",
+    "content": "Your Message"
   }
 }
