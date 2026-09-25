@@ -1,66 +1,14 @@
 export const images = [
-    "https://images.pexels.com/photos/1058594/pexels-photo-1058594.jpeg",
-    "https://images.pexels.com/photos/1058595/pexels-photo-1058595.jpeg "
-,
-"https://images.pexels.com/photos/1058596/pexels-photo-1058596.jpeg",
-
-
-"https://images.pexels.com/photos/1058597/pexels-photo-1058597.jpeg", 
-
-"https://images.pexels.com/photos/1058598/pexels-photo-1058598.jpeg", 
-
-"https://images.pexels.com/photos/1058599/pexels-photo-1058599.jpeg ",
-
-
-"https://images.pexels.com/photos/1058600/pexels-photo-1058600.jpeg", 
-
-"https://images.pexels.com/photos/1058601/pexels-photo-1058601.jpeg",
-
-"https://cdn.pixabay.com/photo/2024/07/13/07/40/cars-8891625_1280.jpg",
-
-
-"https://cdn.pixabay.com/photo/2022/07/04/10/46/vintage-car-7300881_640.jpg",
-
-"https://cdn.pixabay.com/photo/2023/07/19/12/16/car-8136751_640.jpg",
-
-"https://cdn.pixabay.com/photo/2017/03/10/10/13/vehicle-2132360_640.jpg",
-
-"https://cdn.pixabay.com/photo/2016/05/18/10/52/buick-1400243_640.jpg",
-
-"https://images.pexels.com/photos/1058607/pexels-photo-1058607.jpeg",
-
-"https://images.pexels.com/photos/1058608/pexels-photo-1058608.jpeg",
-
-"https://images.pexels.com/photos/1058609/pexels-photo-1058609.jpeg",
-
-
-"https://images.pexels.com/photos/1058610/pexels-photo-1058610.jpeg",
-
-"https://images.pexels.com/photos/1058611/pexels-photo-1058611.jpeg",
-
-"https://images.pexels.com/photos/1058612/pexels-photo-1058612.jpeg",
-
-"https://images.pexels.com/photos/1058613/pexels-photo-1058613.jpeg",
-
-"https://images.pexels.com/photos/1058614/pexels-photo-1058614.jpeg",
-
-"https://images.pexels.com/photos/1058615/pexels-photo-1058615.jpeg",
-
-"https://images.pexels.com/photos/1058616/pexels-photo-1058616.jpeg",
-
-"https://images.pexels.com/photos/1058617/pexels-photo-1058617.jpeg",
-
-"https://images.pexels.com/photos/1058618/pexels-photo-1058618.jpeg",
-
-"https://images.pexels.com/photos/1058619/pexels-photo-1058619.jpeg",
-
-"https://images.pexels.com/photos/1058620/pexels-photo-1058620.jpeg",
-
-"https://images.pexels.com/photos/1058621/pexels-photo-1058621.jpeg",
-
-"https://images.pexels.com/photos/1058622/pexels-photo-1058622.jpeg",
-
-"https://images.pexels.com/photos/1058623/pexels-photo-1058623.jpeg"
+"https://plus.unsplash.com/premium_photo-1664303847960-586318f59035?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D",
+"https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D",
+"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1506610654-064fbba4780c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1494905998402-395d579af36f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+"https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGNhcnN8ZW58MHx8MHx8fDA%3D"
 ]
 
 export const leftArrow = "https://cdn.pixabay.com/photo/2012/04/28/18/59/left-44037_640.png"
