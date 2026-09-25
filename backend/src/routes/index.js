@@ -14,7 +14,10 @@ router.use('/api/visitors', require('./visitor'))
 
 router.use("/api/budgets", require("./budget"))
 
+router.use("/api/uploads/dashboard-cars", require("./upload"))
+
 router.use("/api/uploads", require("./upload"))
+
 
 
 module.exports = router
