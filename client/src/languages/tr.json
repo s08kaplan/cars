@@ -54,5 +54,21 @@
     "satisfaction": "Özenle hazırlanmış ekspertiz standartlarıyla memnuniyet garantisi",
     "driveHome": "Eve mutlu",
     "happy": "dönün"
+  },
+  "carDetail": {
+    "verifiedVehicle": "Onaylanmış Araç",
+    "onSale": "Satılık",
+    "sold": "Satıldı",
+    "carSpecifications": "Araç Özellikleri",
+    "detailed": "Detaylı teknik özellikler ve onaylanmış durum.",
+    "make": "Marka",
+    "model": "Model",
+    "saleStatus": "Satış Durumu",
+    "price": "Fiyat",
+    "fuelType": "Yakıt Tipi",
+    "transmission": "Vites Tipi",
+    "type": "Kasa Tipi",
+    "year": "Yıl",
+    "mileAge": "Kilometre"
   }
 }

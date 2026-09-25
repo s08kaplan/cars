@@ -54,5 +54,21 @@
     "satisfaction": "Satisfacción garantizada con estándares de inspección rigurosos",
    "driveHome": "Vuelve a casa",
     "happy": "feliz"
+  },
+  "carDetail": {
+    "verifiedVehicle": "Vehículo Verificado",
+    "onSale": "En Venta",
+    "sold": "Vendido",
+    "carSpecifications": "Especificaciones del Vehículo",
+    "detailed": "Especificaciones técnicas detalladas y estado verificado.",
+    "make": "Marca",
+    "model": "Modelo",
+    "saleStatus": "Estado de Venta",
+    "price": "Precio",
+    "fuelType": "Tipo de Combustible",
+    "transmission": "Transmisión",
+    "type": "Tipo de Carrocería",
+    "year": "Año",
+    "mileAge": "Kilometraje"
   }
 }

@@ -54,5 +54,21 @@
     "satisfaction": "Satisfaction garantie avec des normes d'inspection rigoureuses",
     "driveHome": "Rentrez chez vous",
     "happy": "heureux"
+  },
+  "carDetail": {
+    "verifiedVehicle": "Véhicule Vérifié",
+    "onSale": "En Vente",
+    "sold": "Vendu",
+    "carSpecifications": "Caractéristiques du Véhicule",
+    "detailed": "Spécifications techniques détaillées et statut vérifié.",
+    "make": "Marque",
+    "model": "Modèle",
+    "saleStatus": "Statut de Vente",
+    "price": "Prix",
+    "fuelType": "Carburant",
+    "transmission": "Boîte de Vitesses",
+    "type": "Type de Carrosserie",
+    "year": "Année",
+    "mileAge": "Kilométrage"
   }
 }

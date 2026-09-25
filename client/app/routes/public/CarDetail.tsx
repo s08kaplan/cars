@@ -4,7 +4,7 @@ import React from "react";
 import { useLocation, useParams } from "react-router";
 import Swipe from "src/components/Swipe/Swipe";
 import { getCars } from "src/helpers/functions";
-import { getImageUrl } from "src/helpers/getImageUrl"
+import { getImageUrl } from "src/helpers/getImageUrl";
 import {
   ShieldCheck,
   Fuel,
@@ -14,8 +14,11 @@ import {
   Car,
   Tag,
 } from "lucide-react";
+import useLanguageStore from "src/store/useLanguageStore";
 
 const CarDetail = () => {
+  const lang = useLanguageStore((s) => s.lang);
+  const t = useLanguageStore((s) => s.t);
   const { carId } = useParams();
   const location = useLocation();
   const carData = location.state?.carData;
@@ -33,8 +36,8 @@ const CarDetail = () => {
   });
 
   const displayData = carDetail || carData;
-console.log("car detail data in car detail: ",carDetail)
-console.log("car data in car detail: ",carData)
+  console.log("car detail data in car detail: ", carDetail);
+  console.log("car data in car detail: ", carData);
   if (isLoading && !carData)
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-cyan-400 font-semibold animate-pulse">
@@ -60,7 +63,7 @@ console.log("car data in car detail: ",carData)
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/80 pb-6">
         <div>
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-cyan-400 tracking-wider uppercase mb-2">
-            <ShieldCheck className="w-3.5 h-3.5" /> Verified Vehicle
+            <ShieldCheck className="w-3.5 h-3.5" /> {t("carDetail.verifiedVehicle")}
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
             {displayData?.brandName}{" "}
@@ -79,7 +82,7 @@ console.log("car data in car detail: ",carData)
                 : "bg-red-950/80 border border-red-800/80 text-red-400"
             }`}
           >
-            {displayData?.available ? "On Sale" : "Sold"}
+            {displayData?.available ? t("carDetail.onSale") : t("carDetail.sold")}
           </span>
 
           {displayData?.available && displayData?.requiredPrice && (
@@ -116,7 +119,12 @@ console.log("car data in car detail: ",carData)
           {/* Gallery Slider Component */}
           {displayData?.image && displayData.image.length > 0 && (
             <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-xl">
-              <Swipe source={displayData.image.map((img: string) => getImageUrl(img))} autoPlayInterval={5000} />
+              <Swipe
+                source={displayData.image.map((img: string) =>
+                  getImageUrl(img),
+                )}
+                autoPlayInterval={5000}
+              />
             </div>
           )}
         </div>
@@ -125,17 +133,17 @@ console.log("car data in car detail: ",carData)
           <div>
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Car className="w-5 h-5 text-cyan-400" />
-              Car Specifications
+              {t("carDetail.carSpecifications")}
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              Detailed technical specifications and verified status.
+              {t("carDetail.detailed")}
             </p>
           </div>
 
           <div className="divide-y divide-slate-800/80 text-sm">
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Car className="w-4 h-4 text-cyan-400/80" /> Make
+                <Car className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.make")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.brandName}
@@ -144,7 +152,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Tag className="w-4 h-4 text-cyan-400/80" /> Model
+                <Tag className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.model")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.model}
@@ -153,7 +161,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <ShieldCheck className="w-4 h-4 text-cyan-400/80" /> Sale Status
+                <ShieldCheck className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.saleStatus")}
               </span>
               <span
                 className={`px-3 py-1 rounded-lg font-bold text-xs text-right border ${
@@ -162,14 +170,14 @@ console.log("car data in car detail: ",carData)
                     : "bg-red-950 border-red-800 text-red-400"
                 }`}
               >
-                {displayData?.available ? "On Sale" : "Sold"}
+                {displayData?.available ? t("carDetail.onSale") : t("carDetail.sold")}
               </span>
             </div>
 
             {displayData?.available && (
               <div className="py-3.5 flex items-center justify-between gap-4">
                 <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                  <Tag className="w-4 h-4 text-cyan-400/80" /> Price
+                  <Tag className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.price")}
                 </span>
                 <span className="px-3 py-1 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 font-bold text-xs text-right">
                   {displayData?.requiredPrice}
@@ -179,7 +187,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Fuel className="w-4 h-4 text-cyan-400/80" /> Fuel Type
+                <Fuel className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.fuelType")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.fuelType?.toUpperCase()}
@@ -188,7 +196,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Cog className="w-4 h-4 text-cyan-400/80" /> Transmission
+                <Cog className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.transmission")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.transmission || "N/A"}
@@ -197,7 +205,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Car className="w-4 h-4 text-cyan-400/80" /> Type
+                <Car className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.type")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.typeOfCar}
@@ -206,7 +214,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Calendar className="w-4 h-4 text-cyan-400/80" /> Year
+                <Calendar className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.year")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.year}
@@ -215,7 +223,7 @@ console.log("car data in car detail: ",carData)
 
             <div className="py-3.5 flex items-center justify-between gap-4">
               <span className="text-slate-400 font-medium flex items-center gap-2 shrink-0">
-                <Gauge className="w-4 h-4 text-cyan-400/80" /> Mileage
+                <Gauge className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.mileAge")}
               </span>
               <span className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700/60 text-slate-100 font-semibold text-xs text-right truncate">
                 {displayData?.mileAge} km

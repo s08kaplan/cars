@@ -54,5 +54,21 @@
     "satisfaction":"Satisfaction guaranteed with curated inspection standards",
     "driveHome": "Drive home",
     "happy": "happy"
+  },
+  "carDetail":{
+    "verifiedVehicle":"Verified Vehicle",
+    "onSale":"On Sale",
+    "sold":"Sold",
+    "carSpecifications":"Car Specifications",
+    "detailed":"Detailed technical specifications and verified status.",
+    "make":"Make",
+    "model":"Model",
+    "saleStatus":"Sale Status",
+    "price":"Price",
+    "fuelType":"Fuel Type",
+    "transmission":"Transmission",
+    "type":"Type",
+    "year":"Year",
+    "mileAge":"Mileage"
   }
 }

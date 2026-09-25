@@ -54,5 +54,21 @@
     "satisfaction": "Zufriedenheitsgarantie durch kuratierte Inspektionsstandards",
     "driveHome": "Fahren Sie glücklich",
     "happy": "nach Hause"
+  },
+  "carDetail": {
+    "verifiedVehicle": "Geprüftes Fahrzeug",
+    "onSale": "Zu Verkaufen",
+    "sold": "Verkauft",
+    "carSpecifications": "Fahrzeugdaten",
+    "detailed": "Detaillierte technische Daten und geprüfter Status.",
+    "make": "Marke",
+    "model": "Modell",
+    "saleStatus": "Verkaufsstatus",
+    "price": "Preis",
+    "fuelType": "Kraftstoffart",
+    "transmission": "Getriebe",
+    "type": "Fahrzeugtyp",
+    "year": "Baujahr",
+    "mileAge": "Kilometerstand"
   }
 }
