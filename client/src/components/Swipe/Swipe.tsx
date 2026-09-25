@@ -123,7 +123,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
                 key={i}
                 src={src}
                 alt={`Thumbnail ${i}`}
-                className={`flex-shrink-0 w-16 h-16 object-cover rounded-xl cursor-pointer transition-all duration-200 ${
+                className={`shrink-0 w-16 h-16 object-cover rounded-xl cursor-pointer transition-all duration-200 ${
                   i === index 
                     ? "ring-2 ring-cyan-400 scale-110 opacity-100 shadow-lg shadow-cyan-500/20" 
                     : "hover:scale-105 opacity-50 hover:opacity-90 border border-slate-800"
@@ -154,7 +154,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
             key={i}
             src={src}
             alt={`Image ${i}`}
-            className="w-full flex-shrink-0 object-cover h-64 fancy-hover cursor-pointer"
+            className="w-full shrink-0 object-cover h-64 fancy-hover cursor-pointer"
             onClick={handleImageClick}
           />
         ))}

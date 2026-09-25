@@ -8,8 +8,11 @@ import CarSpinner from "src/components/Spinners/CarSpinner";
 import Pagination from "src/components/Pagination/Pagination";
 import { images } from "src/helpers/test-swipe/test";
 import { useCars } from "src/hooks/cars/useCars";
+import useLanguageStore from "src/store/useLanguageStore";
 
 const Dashboard = () => {
+  const lang = useLanguageStore((s) => s.lang)
+  const t = useLanguageStore((s) => s.t)
   const { cars, details, isLoading, isError, error, handlePageChange } = useCars(1, 10);
   const inventoryRef = useRef<HTMLElement>(null);
 
@@ -47,10 +50,10 @@ const Dashboard = () => {
       <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-2 mb-4">
           <h2 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100">
-            Featured Collections
+            {t("dashboardCars.featuredCollections")}
           </h2>
           <p className="text-sm text-slate-400">
-            Hand-picked selections updated daily
+             {t("dashboardCars.handPicked")}
           </p>
         </div>
         <div className="rounded-2xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/50 p-2">
@@ -63,14 +66,14 @@ const Dashboard = () => {
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-slate-100">
-              Available Inventory
+              {t("dashboardCars.availableInventory")}
             </h2>
             <p className="text-sm text-slate-400 mt-0.5">
-              Explore our wide variety of premium vehicles
+              {t("dashboardCars.explore")}
             </p>
           </div>
           <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/60 text-amber-400">
-            {details?.totalRecords || cars.length} Vehicles
+            {details?.totalRecords || cars.length} {t("dashboardCars.vehicles")}
           </span>
         </div>
 

@@ -41,5 +41,18 @@
     "signUpTitle": "Créer un compte",
     "signInSubtitle": "ou utilisez votre e-mail pour vous connecter",
     "signUpSubtitle": "ou utilisez votre e-mail pour l'inscription"
+  },
+  "dashboardCars": {
+    "featuredCollections": "Collections en Vedette",
+    "handPicked": "Sélections soigneusement choisies, mises à jour quotidiennement",
+    "availableInventory": "Inventaire Disponible",
+    "explore": "Découvrez notre vaste sélection de véhicules haut de gamme",
+    "vehicles": "Véhicules"
+  },
+  "banner": {
+    "premium": "Marché Automobile Haut de Gamme",
+    "satisfaction": "Satisfaction garantie avec des normes d'inspection rigoureuses",
+    "driveHome": "Rentrez chez vous",
+    "happy": "heureux"
   }
 }

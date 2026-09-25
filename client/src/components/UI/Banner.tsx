@@ -1,6 +1,9 @@
+import useLanguageStore from "src/store/useLanguageStore";
 import "../../animations/definitions.css";
 
 const Banner = () => {
+  const lang = useLanguageStore((s) => s.lang);
+   const t = useLanguageStore((s) => s.t);
   return (
     <header className="relative w-full overflow-hidden rounded-b-3xl shadow-2xl border-b border-slate-800/80">
      
@@ -19,15 +22,15 @@ const Banner = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto">
         <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-widest backdrop-blur-md mb-4 shadow-inner">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          Premium Automotive Marketplace
+         {t("banner.premium")}
         </span>
 
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight fade-in-up leading-tight drop-shadow-lg">
-          Drive home <span className="bg-linear-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">happy</span>
+          {t("banner.driveHome")} <span className="bg-linear-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">{t("banner.happy")}</span>
         </h1>
 
         <h3 className="text-base md:text-xl lg:text-2xl text-slate-300 font-medium mt-3 slide-in-right max-w-lg leading-relaxed drop-shadow">
-          Satisfaction guaranteed with curated inspection standards
+          {t("banner.satisfaction")}
         </h3>
       </div>
     </header>

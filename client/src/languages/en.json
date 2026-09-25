@@ -41,5 +41,18 @@
     "signUpTitle":"Create Account",
     "signInSubtitle":"or use your email to sign in",
     "signUpSubtitle":"or use your email for registration"
+  },
+  "dashboardCars": {
+    "featuredCollections":"Featured Collections",
+    "handPicked":" Hand-picked selections updated daily",
+    "availableInventory":" Available Inventory",
+    "explore":"Explore our wide variety of premium vehicles",
+    "vehicles":"Vehicles"
+  },
+  "banner":{
+    "premium":"Premium Automotive Marketplace",
+    "satisfaction":"Satisfaction guaranteed with curated inspection standards",
+    "driveHome": "Drive home",
+    "happy": "happy"
   }
 }

@@ -41,5 +41,18 @@
   "signUpTitle": "Konto erstellen",
   "signInSubtitle": "oder verwenden Sie Ihre E-Mail zum Anmelden",
   "signUpSubtitle": "oder verwenden Sie Ihre E-Mail zur Registrierung"
-}
+},
+"dashboardCars": {
+    "featuredCollections": "Hervorgehobene Kollektionen",
+    "handPicked": "Täglich aktualisierte, handverlesene Auswahlen",
+    "availableInventory": "Verfügbarer Bestand",
+    "explore": "Entdecken Sie unsere große Auswahl an Premium-Fahrzeugen",
+    "vehicles": "Fahrzeuge"
+  },
+  "banner": {
+    "premium": "Premium-Automobil-Marktplatz",
+    "satisfaction": "Zufriedenheitsgarantie durch kuratierte Inspektionsstandards",
+    "driveHome": "Fahren Sie glücklich",
+    "happy": "nach Hause"
+  }
 }

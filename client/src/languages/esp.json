@@ -7,7 +7,7 @@
     "add-car": "Añadir Coche",
     "budget": "Presupuesto",
     "contact": "Contacto",
-    "messages":"Mensajes"
+    "messages": "Mensajes"
   },
   "profile": {
     "profile": "Perfil",
@@ -41,5 +41,18 @@
     "signUpTitle": "Crear cuenta",
     "signInSubtitle": "o usa tu correo electrónico para iniciar sesión",
     "signUpSubtitle": "o usa tu correo electrónico para registrarte"
+  },
+  "dashboardCars": {
+    "featuredCollections": "Colecciones Destacadas",
+    "handPicked": "Selecciones cuidadosamente elegidas y actualizadas a diario",
+    "availableInventory": "Inventario Disponible",
+    "explore": "Explore nuestra amplia variedad de vehículos de alta gama",
+    "vehicles": "Vehículos"
+  },
+  "banner": {
+    "premium": "Mercado Automotriz de Alta Gama",
+    "satisfaction": "Satisfacción garantizada con estándares de inspección rigurosos",
+   "driveHome": "Vuelve a casa",
+    "happy": "feliz"
   }
 }

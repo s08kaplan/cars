@@ -41,5 +41,18 @@
     "signUpTitle": "Hesap Oluştur",
     "signInSubtitle": "veya giriş yapmak için e-postanızı kullanın",
     "signUpSubtitle": "veya kayıt için e-postanızı kullanın"
+  },
+  "dashboardCars": {
+    "featuredCollections": "Öne Çıkan Koleksiyonlar",
+    "handPicked": "Her gün güncellenen özenle seçilmiş koleksiyonlar",
+    "availableInventory": "Mevcut Stok",
+    "explore": "Geniş lüks araç yelpazemizi keşfedin",
+    "vehicles": "Araçlar"
+  },
+  "banner": {
+    "premium": "Lüks Otomotiv Pazaryeri",
+    "satisfaction": "Özenle hazırlanmış ekspertiz standartlarıyla memnuniyet garantisi",
+    "driveHome": "Eve mutlu",
+    "happy": "dönün"
   }
 }
