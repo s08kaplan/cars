@@ -9,16 +9,21 @@ import Pagination from "src/components/Pagination/Pagination";
 import { images } from "src/helpers/test-swipe/test";
 import { useCars } from "src/hooks/cars/useCars";
 import useLanguageStore from "src/store/useLanguageStore";
+import DashboardCars from "src/components/Dasboard-Cars/DashboardCars";
 
 const Dashboard = () => {
-  const lang = useLanguageStore((s) => s.lang)
-  const t = useLanguageStore((s) => s.t)
-  const { cars, details, isLoading, isError, error, handlePageChange } = useCars(1, 10);
+  const lang = useLanguageStore((s) => s.lang);
+  const t = useLanguageStore((s) => s.t);
+  const { cars, details, isLoading, isError, error, handlePageChange } =
+    useCars(1, 10);
   const inventoryRef = useRef<HTMLElement>(null);
 
   const onPageChange = (newPage: number) => {
     handlePageChange(newPage);
-    inventoryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    inventoryRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   if (isLoading) {
@@ -35,7 +40,8 @@ const Dashboard = () => {
         <div className="p-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 max-w-md text-center shadow-2xl backdrop-blur-md">
           <p className="font-semibold text-lg">Error loading cars</p>
           <p className="text-sm text-rose-300/80 mt-1">
-            {(error as Error)?.message || "Unknown error occurred while fetching inventory."}
+            {(error as Error)?.message ||
+              "Unknown error occurred while fetching inventory."}
           </p>
         </div>
       </div>
@@ -53,16 +59,20 @@ const Dashboard = () => {
             {t("dashboardCars.featuredCollections")}
           </h2>
           <p className="text-sm text-slate-400">
-             {t("dashboardCars.handPicked")}
+            {t("dashboardCars.handPicked")}
           </p>
         </div>
         <div className="rounded-2xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/50 p-2">
-          <Swipe source={images} />
+          {/* <Swipe source={images} /> */}
+          <DashboardCars />
         </div>
       </section>
 
       {/* Main Inventory Section */}
-      <section ref={inventoryRef} className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+      <section
+        ref={inventoryRef}
+        className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-6"
+      >
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-slate-100">

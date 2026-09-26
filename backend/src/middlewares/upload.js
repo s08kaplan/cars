@@ -9,15 +9,15 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log("Middleware - req.body.brandName:", req.body.brandName);
     const brand = req.body.brandName || req.body.type;
+    const url = req.baseUrl || req.originalUrl || "";
 
     let folder = "";
-    if (brand) {
+    if (url.includes("/dashboard-cars") || brand === "dashboard") {
+      folder = path.join("uploads", "dashboard");
+    } else if (brand) {
       const safeBrandName = sanitizeCarName(brand);
       folder = path.join("uploads", safeBrandName);
-    } else if (
-      req.baseUrl?.includes("/users") ||
-      req.originalUrl?.includes("/users")
-    ) {
+    } else if (url.includes("/users")) {
       folder = path.join("uploads", "users");
     } else {
       folder = path.join("uploads", "others");
