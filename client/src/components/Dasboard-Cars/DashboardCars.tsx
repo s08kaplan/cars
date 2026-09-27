@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import AddDashboardCarForm from "src/components/Form/AddDashboardCarForm";
-import Swipe from "src/components/Swipe/Swipe"; 
+import Swipe from "src/components/Swipe/Swipe";
 import {
   getDashboardCars,
   deleteDashboardCar,
@@ -24,16 +24,15 @@ const DashboardCars: React.FC = () => {
     },
   });
 
-  const { user } = useAuth()
-  const isAuthorized = Number(user?.role) === 1 ? true : false
+  const { user } = useAuth();
+  const isAuthorized = Number(user?.role) === 1 ? true : false;
 
   const swipeImages: string[] = cars.map((car) =>
-    car.path.startsWith("http") ? car.path : `${baseUrl}${car.path}`
+    car.path.startsWith("http") ? car.path : `${baseUrl}${car.path}`,
   );
-console.log("cars data in dashboard cars comp. :", cars)
+  console.log("cars data in dashboard cars comp. :", cars);
   return (
     <div className="min-h-screen flex flex-col justify-start items-center py-12 px-4 space-y-10">
-      
       <div className="w-full max-w-5xl">
         <h3 className="text-lg font-semibold text-slate-200 mb-4 pl-1">
           Live Swipe Preview
@@ -52,7 +51,7 @@ console.log("cars data in dashboard cars comp. :", cars)
       </div>
 
       <div className="w-full max-w-5xl">
-       {isAuthorized && <AddDashboardCarForm />}
+        {isAuthorized && <AddDashboardCarForm />}
       </div>
 
       <div className="w-full max-w-5xl">
@@ -65,10 +64,10 @@ console.log("cars data in dashboard cars comp. :", cars)
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {cars.map((car) => {
-              const imageSrc = car.path.startsWith("http")
+              /*  const imageSrc = car.path.startsWith("http")
                 ? car.path
-                : `${baseUrl}${car.path}`;
-
+                : `${baseUrl}${car.path}`; */
+              const imageSrc = `http://localhost:4040/${car.path}`;
               return (
                 <div
                   key={car._id}

@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import CarCard from "src/components/Card/CarCard";
-import Swipe from "src/components/Swipe/Swipe";
 import Banner from "src/components/UI/Banner";
 import CarSpinner from "src/components/Spinners/CarSpinner";
 import Pagination from "src/components/Pagination/Pagination";
-import { images } from "src/helpers/test-swipe/test";
 import { useCars } from "src/hooks/cars/useCars";
 import useLanguageStore from "src/store/useLanguageStore";
 import DashboardCars from "src/components/Dasboard-Cars/DashboardCars";
@@ -25,6 +23,7 @@ const Dashboard = () => {
       block: "start",
     });
   };
+
 
   if (isLoading) {
     return (
