@@ -46,6 +46,7 @@ app.use(require('./middlewares/logger'))
 
 // Call static uploadFile:
 const uploadPath = path.join(process.cwd(), 'uploads');
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 app.use('/uploads', express.static(uploadPath));
 // app.use('/uploads', express.static('./upload'))
 

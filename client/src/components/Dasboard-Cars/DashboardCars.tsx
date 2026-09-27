@@ -6,6 +6,7 @@ import {
   getDashboardCars,
   deleteDashboardCar,
 } from "src/functions/dashboardCarsApiCalls";
+import { useAuth } from "src/hooks/auth-hooks/useAuth";
 
 const DashboardCars: React.FC = () => {
   const queryClient = useQueryClient();
@@ -23,10 +24,13 @@ const DashboardCars: React.FC = () => {
     },
   });
 
+  const { user } = useAuth()
+  const isAuthorized = Number(user?.role) === 1 ? true : false
+
   const swipeImages: string[] = cars.map((car) =>
     car.path.startsWith("http") ? car.path : `${baseUrl}${car.path}`
   );
-
+console.log("cars data in dashboard cars comp. :", cars)
   return (
     <div className="min-h-screen flex flex-col justify-start items-center py-12 px-4 space-y-10">
       
@@ -48,7 +52,7 @@ const DashboardCars: React.FC = () => {
       </div>
 
       <div className="w-full max-w-5xl">
-        <AddDashboardCarForm />
+       {isAuthorized && <AddDashboardCarForm />}
       </div>
 
       <div className="w-full max-w-5xl">

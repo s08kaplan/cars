@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { leftArrow, rightArrow } from "../../helpers/test-swipe/test";
 
 interface SwipeProps {
@@ -75,14 +76,16 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
     return () => clearTimeout(timer);
   }, [index]);
 
-
+  //console.log("car data in swipe: ",source)
+  const fixedSrc = source.map(i => i.slice(5))
+ // console.log("fixed source: ",fixedSrc)
   if (isImageFocused) {
     return (
       <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col">
        
         <div className="flex-1 relative flex items-center justify-center p-4">
           <img
-            src={source[index]}
+            src={fixedSrc[index]}
             alt={`Image ${index}`}
             className="max-w-full max-h-full object-contain cursor-pointer rounded-2xl shadow-2xl border border-slate-800/60"
             onClick={() => setIsImageFocused(false)}
@@ -94,7 +97,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
             className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 text-cyan-400 p-4 rounded-full hover:border-cyan-500 hover:bg-slate-800 transition-all duration-200 shadow-xl cursor-pointer"
             aria-label="Previous"
           >
-            <img src={leftArrow} alt="left arrow image" width={16} className="invert brightness-200" />
+             <ArrowLeft width={16} className="invert brightness-200 text-blue-600"/>
           </button>
 
           <button
@@ -102,7 +105,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
             className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 text-cyan-400 p-4 rounded-full hover:border-cyan-500 hover:bg-slate-800 transition-all duration-200 shadow-xl cursor-pointer"
             aria-label="Next"
           >
-            <img src={rightArrow} alt="right arrow image" width={16} className="invert brightness-200" />
+            <ArrowRight width={16} className="invert brightness-200 text-blue-600" />
           </button>
 
           {/* Close button */}
@@ -118,7 +121,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         {/* Thumbnail row at bottom */}
         <div className="bg-slate-900/90 border-t border-slate-800 p-4">
           <div className="flex gap-3 overflow-x-auto justify-center max-w-full">
-            {source.map((src, i) => (
+            {fixedSrc.map((src, i) => (
               <img
                 key={i}
                 src={src}
@@ -149,7 +152,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
-        {source.map((src, i) => (
+        {fixedSrc.map((src, i) => (
           <img
             key={i}
             src={src}
@@ -165,7 +168,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         className="absolute top-1/2 left-3 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 p-2.5 rounded-full hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-lg"
         aria-label="Previous"
       >
-       <img src={leftArrow} alt="" width={12} className="invert brightness-200" />
+       <ArrowLeft width={12} className="invert brightness-200 text-blue-600"/>
       </button>
 
       <button
@@ -173,11 +176,11 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-slate-900/80 border border-slate-700/80 p-2.5 rounded-full hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-lg"
         aria-label="Next"
       >
-        <img src={rightArrow} alt="" width={12} className="invert brightness-200" />
+        <ArrowRight width={12} className="invert brightness-200 text-blue-600"/>
       </button>
 
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5 bg-slate-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-800/80">
-        {source.map((_, i) => (
+        {fixedSrc.map((_, i) => (
           <div
             key={i}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
