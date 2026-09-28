@@ -5,7 +5,7 @@ export const getCars = async (carId?: string) => {
     //console.log(import.meta.env.VITE_BASE_URL)
     if(carId){
         try {
-        const { data } = await axios(`${import.meta.env.VITE_BASE_URL}cars/${carId}`)
+        const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}cars/${carId}`)
        // console.log(data)
         return data
     } catch (error) {
@@ -15,7 +15,7 @@ export const getCars = async (carId?: string) => {
     }
   else {
     try {
-        const { data } = await axios(`${import.meta.env.VITE_BASE_URL}cars/`)
+        const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}cars/`)
       //  console.log(data) 
         return data
     } catch (error) {
@@ -28,7 +28,7 @@ export const getCars = async (carId?: string) => {
 export const login = async (userData: LoginFormData) => {
     //console.log(userData)
    try {
-    const  { data }  = await axios.post(`${import.meta.env.VITE_BASE_URL}auth/login`,userData)
+    const  { data }  = await axios.post(`${import.meta.env.VITE_BACKEND_URL}auth/login`,userData)
   //  console.log("api response for user: ",data.user)
     return data.user
    } catch (error) {
@@ -39,7 +39,7 @@ export const login = async (userData: LoginFormData) => {
 
 export const registerUser = async (userData: RegisterFormData) => {
    try {
-    const { data } =await axios.post(`${import.meta.env.VITE_BASE_URL}users`, userData)
+    const { data } =await axios.post(`${import.meta.env.VITE_BACKEND_URL}users`, userData)
     return data.user
    } catch (error) {
     console.error("Register error", error);
@@ -49,7 +49,7 @@ export const registerUser = async (userData: RegisterFormData) => {
 
 export const logout = async () => {
   try {
-    const { data } = await axios(`${import.meta.env.VITE_BASE_URL}auth/logout`, {withCredentials: true})
+    const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}auth/logout`, {withCredentials: true})
   } catch (error) {
     console.error("Logout failed", error);
     
@@ -61,7 +61,7 @@ export const logout = async () => {
 export const getCarStatus = async (url?:string) => {
     if(!url) return
     try {
-        const { data } = await axios(`${import.meta.env.VITE_BASE_URL}cars?filter[available]=${url}`)
+        const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}cars?filter[available]=${url}`)
        // console.log("car status: ", data)
         return data
     } catch (error) {
@@ -72,7 +72,7 @@ export const getCarStatus = async (url?:string) => {
 
 export const getBudgetData = async () => {
   try {
-    const { data } = await axios(`${import.meta.env.VITE_BASE_URL}budgets?limit=30`)
+    const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}budgets?limit=30`)
      //   console.log("budget data: ", data)
         return data
   } catch (error) {
