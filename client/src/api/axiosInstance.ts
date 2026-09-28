@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://cars-backend-hp2t.onrender.com";
+
 export const api = axios.create({
- /*  baseURL: import.meta.env.DEV ? "/api/" : import.meta.env.VITE_BASE_URL, */
- baseURL: "/api/", 
+ baseURL: import.meta.env.DEV ? "/api/" : `${backendUrl}/api/`, 
+// baseURL: "/api/", 
  withCredentials: true,
 });
 /* console.log("test api in client",import.meta.env.DEV)

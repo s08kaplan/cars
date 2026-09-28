@@ -19,7 +19,7 @@ export default defineConfig({
         secure: false,
       },
       "/uploads": {
-        target: "hhttps://cars-backend-hp2t.onrender.com",
+        target: "https://cars-backend-hp2t.onrender.com",
         changeOrigin: true,
         secure: false,
       },
