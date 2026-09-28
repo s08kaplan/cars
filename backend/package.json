@@ -4,10 +4,10 @@
   "description": "Handled for selling cars by OtoDen",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch --env-file=.env src/index.js",
-    "build": "echo \"No build step required for Node.js ES Modules\"",
-    "start": "node --env-file=.env src/index.js"
-  },
+  "dev": "node --watch --env-file=.env src/index.js",
+  "build": "echo \"No build required\"",
+  "start": "node src/index.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
