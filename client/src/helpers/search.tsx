@@ -174,7 +174,7 @@ export const getCarByQuery = async (rawInput: string | CarSearchParams) => {
       typeof rawInput === "string" ? parseQueryString(rawInput) : rawInput;
 
     const query = buildSearchQuery(params);
-    const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}/cars?${query}`);
+    const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}/api/cars?${query}`);
     return data;
   } catch (error) {
     console.error("Search error:", error);
