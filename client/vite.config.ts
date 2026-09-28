@@ -12,13 +12,14 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "http://localhost:4040",
+        /* target: "http://localhost:4040", */
+        target: "https://cars-backend-hp2t.onrender.com",
         changeOrigin: true,
         /* rewrite: (path) => path.replace(/^\/api/, ""), */
         secure: false,
       },
       "/uploads": {
-        target: "http://localhost:4040",
+        target: "hhttps://cars-backend-hp2t.onrender.com",
         changeOrigin: true,
         secure: false,
       },
