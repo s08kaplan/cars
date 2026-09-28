@@ -10,7 +10,7 @@ import { useAuth } from "src/hooks/auth-hooks/useAuth";
 
 const DashboardCars: React.FC = () => {
   const queryClient = useQueryClient();
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   const { data: cars = [], isLoading } = useQuery({
     queryKey: ["dashboard-cars"],
@@ -69,7 +69,7 @@ const DashboardCars: React.FC = () => {
                 /*  const imageSrc = car.path.startsWith("http")
                 ? car.path
                 : `${baseUrl}${car.path}`; */
-                const imageSrc = `http://localhost:4040/${car.path}`;
+                const imageSrc = `https://cars-backend-hp2t.onrender.com/${car.path}`;
                 return (
                   <div
                     key={car._id}

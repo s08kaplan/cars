@@ -143,7 +143,7 @@ export const getCarStatus = async (
 
   try {
     const { data } = await axios(
-      `${import.meta.env.VITE_BACKEND_URL}cars?filter[available]=${url}&page=${page}&limit=${limit}`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/cars?filter[available]=${url}&page=${page}&limit=${limit}`,
     );
     return data;
   } catch (error) {

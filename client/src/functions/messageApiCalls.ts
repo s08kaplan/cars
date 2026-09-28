@@ -10,7 +10,7 @@ export const messageApi = {
   getMessageData: async (url: string) => {
     try {
       const { data } = await axios.get(
-        `${URL_PRODUCTION}messages/${url}`,
+        `${URL_PRODUCTION}/api/messages/${url}`,
       );
       //console.log("message data: ", data);
       return data;
@@ -23,7 +23,7 @@ export const messageApi = {
   getMessageList: async () => {
     try {
       const { data } = await axios.get(
-        `${URL_PRODUCTION}messages`,
+        `${URL_PRODUCTION}/api/messages`,
       );
       //console.log("message list data: ", data);
       return data;
@@ -35,7 +35,7 @@ export const messageApi = {
 
   newMessage: async (data: ContactFormData) => {
     const response = await axios.post(
-      `${URL_PRODUCTION}messages`,
+      `${URL_PRODUCTION}/api/messages`,
       data,
     );
     return response.data;
@@ -45,7 +45,7 @@ export const messageApi = {
     try {
      // console.log(`Axios PATCH payload sent to backend:`, { isRead: Boolean(isRead) });
       const { data } = await axios.patch(
-        `${URL_PRODUCTION}messages/${id}`,
+        `${URL_PRODUCTION}/api/messages/${id}`,
         { isRead: Boolean(isRead) },
        { withCredentials: true},
       );
