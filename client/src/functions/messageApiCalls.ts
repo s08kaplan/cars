@@ -5,12 +5,12 @@ export interface UpdateMessageStatusParams {
   id: string;
   isRead: boolean;
 }
-
+const URL_PRODUCTION = import.meta.env.VITE_BACKEND_URL
 export const messageApi = {
   getMessageData: async (url: string) => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}messages/${url}`,
+        `${URL_PRODUCTION}messages/${url}`,
       );
       //console.log("message data: ", data);
       return data;
@@ -23,7 +23,7 @@ export const messageApi = {
   getMessageList: async () => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}messages`,
+        `${URL_PRODUCTION}messages`,
       );
       //console.log("message list data: ", data);
       return data;
@@ -35,7 +35,7 @@ export const messageApi = {
 
   newMessage: async (data: ContactFormData) => {
     const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}messages`,
+      `${URL_PRODUCTION}messages`,
       data,
     );
     return response.data;
@@ -45,7 +45,7 @@ export const messageApi = {
     try {
      // console.log(`Axios PATCH payload sent to backend:`, { isRead: Boolean(isRead) });
       const { data } = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}messages/${id}`,
+        `${URL_PRODUCTION}messages/${id}`,
         { isRead: Boolean(isRead) },
        { withCredentials: true},
       );
