@@ -41,7 +41,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(require('./middlewares/logger'))
 
 //! LIMITER
-//app.use(limiter)
+app.use(limiter)
 
 
 // Call static uploadFile:

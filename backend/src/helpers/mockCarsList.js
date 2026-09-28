@@ -5,18 +5,11 @@ const cars = [
     "typeOfCar": "Sedan",
     "year": 2005,
     "image": [
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/BTgftE_ht-FDTy074iaF-7z80ZQ.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/TiZadbJqCwM3hLquy4pnf4nTmWQ.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/MfmMvnhzjxegPEilUdl_1Yk60Qg.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/SK9NChRwRan4MnnRySePGdUiOkk.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/MiUdw1O5ISkdBYSlunIEIF9No1Q.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/S1wluhfDQbRGaaUybUc-9T3a0_g.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/jkpxhA6hVfDPclpV06X_BG0qwjw.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/9e9yG5EPqMIYY2mNSzqzQNP1HZY.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/RsKOkNqP_-ajgaoSYC4wmz8XHFs.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/YZSJtLR38fE7NvN3Ker5i7evM2Q.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/WdgKkovaJesAkbHpNSCLQpYSO98.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/77bd276a-bab9-4114-9b45-9a2f2991309d/febdcdaf-7f2b-41fe-9e3c-7b0375c79a9b/B2UUwwCieB7pD2_Z09BSFpF6nBI.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/rIdiAwX_UCDtR7FBPDPgnpg1AXU.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/M_5os4SGPDzF4DPBvK1G6fX22Xs.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/aSS34pOY-7Xf9Fnhtnt632Ii6K0.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/N23o8R2B8uxF7cZk1bFfTQnNvU0.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/34oOID92EFfwLcLFmHEiL0UnWD0.jpg",
     ],
     "vehicleIdentificationNumber": "UXPWT4BGP05FGWRW3",
     "color": "Metalic",
@@ -80,14 +73,11 @@ const cars = [
     "typeOfCar": "Sedan",
     "year": 2009,
     "image": [
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/EajIw_MrXNBiczxhlSwommXJZik.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/_RkE5QganhdzK5xH4M6HBzQMjRo.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/K2Fg59t64ITOyH_T4Lx-G564e9Y.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/606e76e2-5d13-51f5-8ff6-fdeb1b96758e/f61f979f-47de-45d9-8312-21b2676a0791/3ugw-gYyLsBHAJMZlGj9ddFCtnc.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/fOkxXLp43IQnf30b5q_qwBm1HO8.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/RWYl-dF-4x5zqSbpYWx5t3mEJy0.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/Nm-hcllqA0g1gSMheEArqMPKheU.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/4cc2c83b-0c24-5b77-a836-835f66f64a44/0625eb62-adf4-470a-ac65-9cd2a54d8131/BLrfXiLkaLtdcnDHb370IEng3vw.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/5b97c310-f1e2-5a83-86da-e6d6ff7a2544/621038f5-d1b4-435f-bdc2-c393f67acfc4/oWFh2Mfv8veqw_sUE2XBxn7kbpE.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/5b97c310-f1e2-5a83-86da-e6d6ff7a2544/621038f5-d1b4-435f-bdc2-c393f67acfc4/B04uO8TgghsuWgk-GeTBylWrYO8.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/5b97c310-f1e2-5a83-86da-e6d6ff7a2544/621038f5-d1b4-435f-bdc2-c393f67acfc4/ZgW8iqaeO9tLLxbH-f7Xdg82VeA.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/5b97c310-f1e2-5a83-86da-e6d6ff7a2544/621038f5-d1b4-435f-bdc2-c393f67acfc4/oXRGwb_7NE-tPlQAoj96mVHi_-U.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/5b97c310-f1e2-5a83-86da-e6d6ff7a2544/621038f5-d1b4-435f-bdc2-c393f67acfc4/dqdRy_2_lz8OqBgEftYXQzIfkvk.jpg",
     ],
     "vehicleIdentificationNumber": "VK2HZWUS9D3XT7A48",
     "color": "White",
@@ -157,12 +147,10 @@ const cars = [
     "typeOfCar": "Sedan",
     "year": 2020,
     "image": [
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/0tVKjWgByBOoZ8hNk2a_dQvq_hs.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/kczQxFjtRbbxcDDplS8nthAUd7g.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/igICkcTmkwvUACvev4ng5FgZAN8.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/ptIyDaO_xKVKuOc4M0J-Hz63Ew0.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/fJoN1C0xIUpPvkJG4o9ogaTrA7w.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/308c3556-a008-449a-a3ad-0c253fd96b33/ewiwqWl4VU5MC91vF5C1fGg43cs.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/9fa055cb-d8e2-5275-85fb-9ef5deae9590/1669ddaa-b8b7-4e93-b554-91a106751c6e/tH42Pf3dUg-Q5qMTZ1ocQQw661A.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/9fa055cb-d8e2-5275-85fb-9ef5deae9590/1669ddaa-b8b7-4e93-b554-91a106751c6e/4kW3AzrjLtuBfoswQc_IqAm5AU8.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/9fa055cb-d8e2-5275-85fb-9ef5deae9590/1669ddaa-b8b7-4e93-b554-91a106751c6e/7vN5vU2MsWG2Acamyoy21gJ3uFI.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/9fa055cb-d8e2-5275-85fb-9ef5deae9590/1669ddaa-b8b7-4e93-b554-91a106751c6e/XAg6MO5WWxNqNJ3CoHtYzwW9nwY.jpg",
     ],
     "vehicleIdentificationNumber": "6AMH5J1YA3GY25RT4",
     "color": "Black",
@@ -220,12 +208,10 @@ const cars = [
     "typeOfCar": "Sedan",
     "year": 2023,
     "image": [
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/fMUzTaOWzhPnMQ64JJtViWx6gFw.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/ifjrB0aSzfS5boPXO9bkvcexhlQ.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/0hKJ2gWG2Dfj3z-cOwZ0Jbp6bpY.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/zSAnVU7lTgO95exoKemiIuxmtEo.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/SiGdeGj0YcZeMNX6QARc1BpPmN0.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/72a8140d-051b-464b-b731-f02677ac93c0/790a909b-87fa-418b-8324-01c43afb1853/tWsbMbrB_mh5A0gVzDACraxYU3c.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/rIdiAwX_UCDtR7FBPDPgnpg1AXU.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/uu6mX9jW0PkI8lgbdEzO1xgbBjQ.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/aSS34pOY-7Xf9Fnhtnt632Ii6K0.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8eeaf4e2-f1ce-5f40-8a55-8ae6bfec8a03/67ff290b-7de6-4521-a349-9b2c0c59dc1f/N23o8R2B8uxF7cZk1bFfTQnNvU0.jpg",
     ],
     "vehicleIdentificationNumber": "7F4TFCPB3SAHUZCE1",
     "color": "Silver",
@@ -280,9 +266,9 @@ const cars = [
     "typeOfCar": "Hatchback",
     "year": 2024,
     "image": [
-      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/835b2aa0-8ae3-4554-a824-1815b1a51364/Hc_do4kHIImjw_TnGxHKCaXJsnI.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/835b2aa0-8ae3-4554-a824-1815b1a51364/yy4JqYxMHGo0Mbb3h0fb7M_lpU0.jpg",
-      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/835b2aa0-8ae3-4554-a824-1815b1a51364/TCIsSxSvNkPCMkCGszDe7-4WR8o.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/6122d768-6258-5060-ac81-d314da38fec4/c461ebcf-a237-4928-97fb-1d67a3b379c9/lKDo6ZXc_7mVGakOQHCCOq2kvOU.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/6122d768-6258-5060-ac81-d314da38fec4/c461ebcf-a237-4928-97fb-1d67a3b379c9/M3JzXBdsU0xzBDxTTxzvg-XUg4E.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/6122d768-6258-5060-ac81-d314da38fec4/c461ebcf-a237-4928-97fb-1d67a3b379c9/BmqjKETcT-Yg1jgujwRFes3e7Cg.jpg"
     ],
     "vehicleIdentificationNumber": "2AAE9S4HWKJJJUW3P",
     "color": "Metallic",
@@ -357,9 +343,9 @@ const cars = [
     "typeOfCar": "SUV",
     "year": 2025,
     "image": [
-      "https://platform.cstatic-images.com/xlarge/in/v2/4b6c9831-2f9c-54b0-bcb1-6e26574d9d30/3cb1a06c-5ff9-4d8a-beef-00478fe15c23/q9NCHPOxNVFgOJyh_KKnJ79mQz8.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/4b6c9831-2f9c-54b0-bcb1-6e26574d9d30/3cb1a06c-5ff9-4d8a-beef-00478fe15c23/S_8w9I_NVqIP65uYc7r3kCo4rxg.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/4b6c9831-2f9c-54b0-bcb1-6e26574d9d30/3cb1a06c-5ff9-4d8a-beef-00478fe15c23/ozuD7ccr0Lf3037Dl371wZOAWnY.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/497bf6c6-fe22-4fb4-b9a9-6b992b97c27a/fb656f90-a4c8-483d-835b-dcfba67cfb2d/2Q2GSOi4JrYG7XSqUOqmAoHtQlQ.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/497bf6c6-fe22-4fb4-b9a9-6b992b97c27a/fb656f90-a4c8-483d-835b-dcfba67cfb2d/LRKeUJUooje9VkJuOUh0X38nijM.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/497bf6c6-fe22-4fb4-b9a9-6b992b97c27a/fb656f90-a4c8-483d-835b-dcfba67cfb2d/pK7GCTfxAjN_8FXtqci1zkkg060.jpg"
     ],
     "vehicleIdentificationNumber": "8SLNUL2YAV3A0XCMF",
     "color": "Black",
@@ -432,10 +418,10 @@ const cars = [
     "typeOfCar": "Hatchback",
     "year": 2009,
     "image": [
-      "https://platform.cstatic-images.com/xlarge/in/v2/994bb349-6e61-4dfb-92b3-0a7c4ce60a82/9051c13f-2adb-4b10-8c01-9449ae24ead1/QYKmjAoA-HXOFB8w5EpA_sfHMLY.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/994bb349-6e61-4dfb-92b3-0a7c4ce60a82/9051c13f-2adb-4b10-8c01-9449ae24ead1/S24zE9mOwU0memVV7NPMTV66bHo.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/994bb349-6e61-4dfb-92b3-0a7c4ce60a82/9051c13f-2adb-4b10-8c01-9449ae24ead1/QAzVtGJCSUSGcpZwPVkWrzsMTds.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/994bb349-6e61-4dfb-92b3-0a7c4ce60a82/9051c13f-2adb-4b10-8c01-9449ae24ead1/jCyQL8WIr2qZdafjDNkAk2cOnWM.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/eed161bd-4ca5-5948-a4a5-83e7ebc83ab2/821f3d8e-7a32-4140-8c63-22b8b763d3b4/PEHUHAa8hkoMrGj8zpGbQADp6tw.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/eed161bd-4ca5-5948-a4a5-83e7ebc83ab2/821f3d8e-7a32-4140-8c63-22b8b763d3b4/ywCDadhmHkSibyqQWgyDe0sA0FE.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/eed161bd-4ca5-5948-a4a5-83e7ebc83ab2/821f3d8e-7a32-4140-8c63-22b8b763d3b4/FKV39h2Yb_vyYQEag5r7NFn07iw.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/eed161bd-4ca5-5948-a4a5-83e7ebc83ab2/821f3d8e-7a32-4140-8c63-22b8b763d3b4/mZCx1c1muXcvY8GVw_DPC8kEJP0.jpg"
     ],
     "vehicleIdentificationNumber": "2K3MRB6KB32XXMC53",
     "color": "Gray",
@@ -491,10 +477,10 @@ const cars = [
     "typeOfCar": "SUV",
     "year": 2009,
     "image": [
-      "https://platform.cstatic-images.com/xlarge/in/v2/0f99a508-953d-502a-8da8-365409c775c4/bda218f1-99b0-41fa-995d-66700f5c698d/u-QjhTM6pBaGMcZVaO7HesDq51s.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/0f99a508-953d-502a-8da8-365409c775c4/bda218f1-99b0-41fa-995d-66700f5c698d/E52x6ndaGpUoXMQ_kxiFwEbc3SM.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/0f99a508-953d-502a-8da8-365409c775c4/bda218f1-99b0-41fa-995d-66700f5c698d/b6Mu4Hulc0gkPPgat3_7KoAwi_8.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/0f99a508-953d-502a-8da8-365409c775c4/bda218f1-99b0-41fa-995d-66700f5c698d/UtMfnVApP8LEkIY33JVDAWQGmWE.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8bd45b1a-356c-55ba-b734-ff694f351515/b522cee8-996e-40db-8d27-f800dc5aac12/MhURAtgkzVhDZ402L-PFo92Qarg.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8bd45b1a-356c-55ba-b734-ff694f351515/b522cee8-996e-40db-8d27-f800dc5aac12/DjXTtOS-fmrDviqdAanHuA9G93I.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8bd45b1a-356c-55ba-b734-ff694f351515/b522cee8-996e-40db-8d27-f800dc5aac12/N7uId8M9nagJQlvI9QFhOHnio-Q.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/8bd45b1a-356c-55ba-b734-ff694f351515/b522cee8-996e-40db-8d27-f800dc5aac12/TJ2OdYukkMQzpIJOdIry_pSALi0.jpg"
     ],
     "vehicleIdentificationNumber": "898AVXG6LYX1XNMVB",
     "color": "Gray",
@@ -558,12 +544,12 @@ const cars = [
     "typeOfCar": "Sedan",
     "year": 2014,
     "image": [
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/ThhmOzKeV0u-Zgn3fHZgCgzPALU.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/FPfiMt87QkY4Vj-nPAq8xeDGgHk.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/wbyefx02yK_28StutW5GrROyIGY.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/s9-Z7dpfOurO-L1LNcgsssbQSlE.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/givA4fuIIfhPuqkcQtaG2N-4dQ8.jpg",
-      "https://platform.cstatic-images.com/xlarge/in/v2/12a36857-3104-5941-a456-e6775b80da8e/14977520-f8e3-47a3-89c7-5a8ae4f60614/FDiD7wouXStNoKTzVkgsDg5AZjY.jpg"
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/wVJQXQoX63di209R5K1fIs0JIFc.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/mRIIM0e00DGkvO_XgXPyzzyszK8.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/d33CpmurlBRy6RCprn-T-65J0y0.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/Ik7FtnOg-yh4Ne5FB_EHv3Yd_Us.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/OxoA4sGPouqmsVMqJIGpJheSLkw.jpg",
+      "https://platform.cstatic-images.com/xxlarge/in/v2/a4171c05-9a34-5616-a276-61c80ca53ec5/d8afb6cd-058a-486b-84fc-a4be9d20505a/V_cY7NNHmUycMhJg4fsTlHeXvlQ.jpg"
     ],
     "vehicleIdentificationNumber": "LZ0R1NMZGGYGHTA8V",
     "color": "Silver",

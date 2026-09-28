@@ -14,7 +14,7 @@ export interface DashboardCarItem {
 }
 
 export const dashboardCarSchema = z.object({
-  type: z.literal("dashboard").default("dashboard"),
+  type: z.literal("dashboard").optional(),
   imageFiles: z
     .custom<FileList>()
     .refine(
@@ -66,7 +66,7 @@ export const getDashboardCars = async (): Promise<DashboardCarItem[]> => {
 
     return data.data || [];
   } catch (error: any) {
-    console.error("Dashboard cars fetch error: ", error);
+    //console.error("Dashboard cars fetch error: ", error);
     throw error;
   }
 };
@@ -75,7 +75,7 @@ export const deleteDashboardCar = async (id: string): Promise<void> => {
   try {
     await api.delete(`uploads/dashboard-cars/${id}`);
   } catch (error: any) {
-    console.error(`Error deleting dashboard car ${id}: `, error);
+    //console.error(`Error deleting dashboard car ${id}: `, error);
     throw error;
   }
 };

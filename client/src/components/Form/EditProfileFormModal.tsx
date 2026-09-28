@@ -183,7 +183,7 @@ const EditProfileFormModal = ({
 
           <div className="grid gap-4 sm:grid-cols-2">
             {updateInputs.map(({ name, type, label }) => (
-              <div id={name} className="space-y-1.5">
+              <div key={name} className="space-y-1.5">
                 <label className="block text-xs font-medium text-slate-300">
                   {label}
                 </label>

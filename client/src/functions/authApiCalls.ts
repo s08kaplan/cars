@@ -47,8 +47,8 @@ interface UpdateUserResponse {
 
 export const authAPI = {
   login: async (credentials: LoginFormData): Promise<User> => {
-    const { data } = await axios.post<AuthResponse>(
-      `${BASE_URL}auth/login`,
+    const { data } = await api.post<AuthResponse>(
+      `auth/login`,
       credentials,
     );
     return data.user;
@@ -65,7 +65,7 @@ export const authAPI = {
           formData.append(key, String(val));
         }
       });
-      const { data } = await api.post<AuthResponse>("/users", formData, {
+      const { data } = await api.post<AuthResponse>("users", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return data.user;
@@ -75,12 +75,12 @@ export const authAPI = {
       ...textData,
       ...(image ? { image } : {}),
     };
-    const { data } = await api.post<AuthResponse>("/users", payload);
+    const { data } = await api.post<AuthResponse>("users", payload);
     return data.user;
   },
 
   logout: async (): Promise<void> => {
-    await api.post(`${BASE_URL}auth/logout`);
+    await api.post(`auth/logout`);
   },
 
   getCurrentUser: async (): Promise<User | null | undefined> => {

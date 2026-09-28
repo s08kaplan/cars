@@ -42,7 +42,10 @@ const AddDashboardCarForm: React.FC = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 sm:space-y-6"
+      >
         <div className="flex flex-col space-y-2">
           <label className="text-xs font-medium text-slate-400 pl-1">
             Dashboard Car Images

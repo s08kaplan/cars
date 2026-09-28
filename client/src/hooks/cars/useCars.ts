@@ -11,7 +11,7 @@ export const useCars = (initialPage = 1, limit = 10) => {
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
-  console.log("data in useCars:" ,data)
+ // console.log("data in useCars:" ,data)
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
