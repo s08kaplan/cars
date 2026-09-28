@@ -24,8 +24,8 @@ module.exports = {
     parser.setUA(req.headers["user-agent"]);
     const { browser, os, device } = parser.getResult();
 
-    console.log(userAgent);
-    console.log(ip);
+    /* console.log(userAgent);
+    console.log(ip); */
 
     const data = await Visitor.create({
       ip,

@@ -12,7 +12,7 @@ export const messageApi = {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}messages/${url}`,
       );
-      console.log("message data: ", data);
+      //console.log("message data: ", data);
       return data;
     } catch (error) {
       console.error("could not get total message number: ", error);
@@ -25,7 +25,7 @@ export const messageApi = {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}messages`,
       );
-      console.log("message list data: ", data);
+      //console.log("message list data: ", data);
       return data;
     } catch (error) {
       console.error("could not get message list: ", error);
@@ -43,7 +43,7 @@ export const messageApi = {
 
   updateMessageStatus: async ({ id, isRead }: UpdateMessageStatusParams) => {
     try {
-      console.log(`Axios PATCH payload sent to backend:`, { isRead: Boolean(isRead) });
+     // console.log(`Axios PATCH payload sent to backend:`, { isRead: Boolean(isRead) });
       const { data } = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}messages/${id}`,
         { isRead: Boolean(isRead) },

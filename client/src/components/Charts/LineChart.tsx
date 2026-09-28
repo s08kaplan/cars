@@ -60,7 +60,7 @@ export const data = {
 const LineChart = ({ budget }:{ budget: IBudget[]}) => {
   const expense = budget.filter((b) => b.type === "expense");
   const income = budget.filter((b) => b.type === "income");
-  console.log("expense data in bar chart: ", expense);
+ // console.log("expense data in bar chart: ", expense);
 
   const groupByMonth = (items:any) => {
     const monthData = Array(12).fill(0);

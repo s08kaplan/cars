@@ -32,7 +32,7 @@ const BudgetForm = () => {
   } = useForm<BudgetFormData>({ resolver: zodResolver(budgetSchema) });
 
   const onSubmit: SubmitHandler<BudgetFormData> = async (data) => {
-    console.log(`DATA:`, data);
+   // console.log(`DATA:`, data);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}budgets`,

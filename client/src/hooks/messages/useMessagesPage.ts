@@ -25,7 +25,7 @@ export const useMessagesPage = () => {
     const latestStatus = currentMessage ? currentMessage.isRead : currentStatus;
     
     const nextStatus = !latestStatus;
-    console.log(`Toggling message ${id} from ${currentStatus} to ${nextStatus}`);
+   // console.log(`Toggling message ${id} from ${currentStatus} to ${nextStatus}`);
     
     toggleStatusMutation.mutate({ id, isRead: nextStatus });
   };

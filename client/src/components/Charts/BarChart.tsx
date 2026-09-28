@@ -40,7 +40,7 @@ export const options = {
 const BarChart = ({budget}:{budget:IBudget[]}) => {
   const expense = budget.filter(b => b.type === "expense")
   const income = budget.filter(b => b.type === "income")
-  console.log("expense data in bar chart: ", expense)
+  //console.log("expense data in bar chart: ", expense)
   const data = {
   labels: MONTHS,
   datasets: [

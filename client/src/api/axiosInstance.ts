@@ -5,8 +5,8 @@ export const api = axios.create({
  baseURL: "/api/", 
  withCredentials: true,
 });
-console.log("test api in client",import.meta.env.DEV)
-console.log("test api base url in client",import.meta.env.VITE_BASE_URL)
+/* console.log("test api in client",import.meta.env.DEV)
+console.log("test api base url in client",import.meta.env.VITE_BASE_URL) */
 let isRefreshing = false;
 
 api.interceptors.response.use(

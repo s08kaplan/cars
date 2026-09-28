@@ -54,7 +54,7 @@ const ContactForm = () => {
   } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
   const { mutateAsync, isSuccess, isError, isPending } = useNewMessage();
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-    console.log(`DATA:`, data);
+   // console.log(`DATA:`, data);
     try {
       await mutateAsync(data);
       reset();

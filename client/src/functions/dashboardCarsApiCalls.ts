@@ -62,7 +62,7 @@ export const getDashboardCars = async (): Promise<DashboardCarItem[]> => {
     const { data } = await api.get<{ data: DashboardCarItem[] }>(
       "uploads/dashboard-cars",
     );
-    console.log("data in dashboard:", data);
+   // console.log("data in dashboard:", data);
 
     return data.data || [];
   } catch (error: any) {

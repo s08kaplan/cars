@@ -80,7 +80,7 @@ module.exports = {
 
       const filePath = path.resolve(upload.path);
       const data = await Upload.deleteOne({ _id: req.params.uploadId });
-      console.log(req.params.uploadId);
+      //console.log(req.params.uploadId);
       /*  if (data.deletedCount) {
         const HOST = process.env.HOST;
         const PORT = process.env.PORT;

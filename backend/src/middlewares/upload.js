@@ -7,7 +7,7 @@ const { checkFileExists } = require("../helpers/fileCheck");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log("Middleware - req.body.brandName:", req.body.brandName);
+    //console.log("Middleware - req.body.brandName:", req.body.brandName);
     const brand = req.body.brandName || req.body.type;
     const url = req.baseUrl || req.originalUrl || "";
 
@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
       folder = path.join("uploads", "others");
     }
 
-    console.log("Middleware - Dynamic folder created:", folder);
+    //console.log("Middleware - Dynamic folder created:", folder);
     checkFileExists(folder);
     cb(null, folder);
   },

@@ -124,7 +124,7 @@ export const uploadCarImages = async (
     const { data } = await api.post<{ files: Array<{ path: string }> }>(`uploads`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log("data from upload car img: ", data)
+   // console.log("data from upload car img: ", data)
     return data.files ? data.files.map((fileDoc) => fileDoc.path) : [];
   } catch (error: any) {
     console.error("upload error: ", error);
@@ -158,7 +158,7 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
   if (carId) {
     try {
       const { data } = await api.get(`cars/${carId}`);
-      console.log("get cars data in getCars func.: ",data)
+     // console.log("get cars data in getCars func.: ",data)
       return data;
     } catch (error) {
       console.error(`Car ${carId} data not fetched`, error);
@@ -177,12 +177,12 @@ export const getCars = async (carId?: string, params?: CarQueryParams) => {
 
 export const addNewCar = async (carData: NewCar) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  console.log("car data in add new car func: ", carData);
+ // console.log("car data in add new car func: ", carData);
   try {
     const { data } = await api.post(`cars`, carData);
     return data;
   } catch (error) {
-    console.error("Cars data not provided", error);
+    //console.error("Cars data not provided", error);
     throw error;
   }
 };

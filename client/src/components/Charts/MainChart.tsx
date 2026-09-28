@@ -14,7 +14,7 @@ const MainChart = ({budget}:{budget:IBudget}) => {
   });
 
   const handleChart = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e.currentTarget.textContent);
+   // console.log(e.currentTarget.textContent);
     const value = e.currentTarget.textContent;
     if (value.includes("Bar")) {
       setSelectChart({

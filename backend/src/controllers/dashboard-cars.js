@@ -79,7 +79,7 @@ module.exports = {
 
       const filePath = path.resolve(upload.path);
       const data = await DashboardCars.deleteOne({ _id: req.params.dashboardCarId });
-      console.log(req.params.dashboardCarId);
+      //console.log(req.params.dashboardCarId);
      
         require("fs").unlinkSync(filePath);
       deleteEmpty(path.dirname(filePath));

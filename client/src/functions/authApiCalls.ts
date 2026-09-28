@@ -86,7 +86,7 @@ export const authAPI = {
   getCurrentUser: async (): Promise<User | null | undefined> => {
     try {
       const { data } = await api.get<AuthResponse>(`auth/me`);
-      console.log("data in get current user api call:", data);
+     // console.log("data in get current user api call:", data);
       return data.user;
     } catch (error: any) {
       if (error?.response?.status === 401) {

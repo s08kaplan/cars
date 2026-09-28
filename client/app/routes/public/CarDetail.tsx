@@ -36,8 +36,8 @@ const CarDetail = () => {
   });
 
   const displayData = carDetail || carData;
-  console.log("car detail data in car detail: ", carDetail);
-  console.log("car data in car detail: ", carData);
+/*   console.log("car detail data in car detail: ", carDetail);
+  console.log("car data in car detail: ", carData); */
   if (isLoading && !carData)
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-cyan-400 font-semibold animate-pulse">

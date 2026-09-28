@@ -19,7 +19,7 @@ module.exports = {
 
   create: async (req, res) => {
     try {
-      console.log("create user req.body", req.body);
+     // console.log("create user req.body", req.body);
       const { firstName, lastName, password, role, email, contactNumber } =
         req.body;
       const file = req.file;
@@ -84,7 +84,7 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    console.log("req.user in update controller: ", req.user);
+    //console.log("req.user in update controller: ", req.user);
     const { userId } = req.params;
 
     if (!userId) {

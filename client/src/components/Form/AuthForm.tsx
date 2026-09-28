@@ -126,7 +126,7 @@ export default function AuthForm({ formType }: { formType: FormType }) {
       }
       navigate("/dashboard");
     } catch (error) {
-      console.log("error login/register", error);
+     // console.log("error login/register", error);
     }
   };
 
@@ -141,12 +141,12 @@ export default function AuthForm({ formType }: { formType: FormType }) {
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             {formType === "login" ? t("formFields.signIn") : t("formFields.signUpTitle")}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+        {/*   <p className="text-xs sm:text-sm text-slate-400">
             {formType === "login" ? t("formFields.signInSubtitle") : t("formFields.signUpSubtitle")}
-          </p>
+          </p> */}
         </div>
 
-        <div className="flex justify-center gap-3">
+      {/*   <div className="flex justify-center gap-3">
           {socialIcons.map((icon, idx) => (
             <a
               key={idx}
@@ -163,7 +163,7 @@ export default function AuthForm({ formType }: { formType: FormType }) {
           <span className="bg-slate-900 px-3 text-[11px] font-medium uppercase tracking-wider text-slate-500 absolute">
             or continue with
           </span>
-        </div>
+        </div> */}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {translatedFields[formType].map((field) => {

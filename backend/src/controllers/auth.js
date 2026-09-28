@@ -76,7 +76,7 @@ module.exports = {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
-        maxAge: 15 * 60 * 1000, 
+        maxAge: 15 * 60 * 1000,
       });
 
       res.cookie("refreshToken", refreshToken, {
@@ -84,7 +84,7 @@ module.exports = {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
-        maxAge: 7 * 24 * 60 * 60 * 1000, 
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
       return res.status(200).send({
@@ -141,7 +141,7 @@ module.exports = {
       res.cookie("accessToken", newAccessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
@@ -165,14 +165,14 @@ module.exports = {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
       res.clearCookie("refreshToken", {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite:  process.env.NODE_ENV === "production" ? "none" : "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
       return res.status(200).send({
@@ -240,47 +240,47 @@ module.exports = {
       });
     }
   },
-  
+
   getCurrentUser: async (req, res) => {
-  try {
-    const token = req.cookies?.accessToken;
-console.log("get current user token data in backend: ",token)
-    if (!token) {
+    try {
+      const token = req.cookies?.accessToken;
+      //console.log("get current user token data in backend: ",token)
+      if (!token) {
+        return res.status(401).send({
+          error: true,
+          message: "Not authenticated",
+        });
+      }
+
+      const decoded = jwt.verify(token, process.env.ACCESS_KEY);
+
+      const user = await User.findById(decoded.id).select("-password");
+
+      if (!user) {
+        return res.status(401).send({
+          error: true,
+          message: "User not found",
+        });
+      }
+
+      return res.status(200).send({
+        error: false,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          image: user.image,
+          email: user.email,
+          role: user.role,
+          contactNumber: user.contactNumber,
+        },
+      });
+    } catch (error) {
+      console.error("Get current user error:", error);
       return res.status(401).send({
         error: true,
-        message: "Not authenticated",
+        message: "Invalid or expired token",
       });
     }
-
-    const decoded = jwt.verify(token, process.env.ACCESS_KEY);
-    
-    const user = await User.findById(decoded.id).select("-password");
-
-    if (!user) {
-      return res.status(401).send({
-        error: true,
-        message: "User not found",
-      });
-    }
-
-    return res.status(200).send({
-      error: false,
-      user: {
-        id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        image: user.image,
-        email: user.email,
-        role: user.role,
-        contactNumber: user.contactNumber
-      },
-    });
-  } catch (error) {
-    console.error("Get current user error:", error);
-    return res.status(401).send({
-      error: true,
-      message: "Invalid or expired token",
-    });
-  }
-  }
+  },
 };
