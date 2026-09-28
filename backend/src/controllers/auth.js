@@ -5,7 +5,7 @@ const jwt = require("../configs/requiredBasics").jwt;
 const { encryptFunc } = require("../helpers/validationHelpers");
 const process = require("node:process");
 
-process.loadEnvFile(".env");
+/* process.loadEnvFile(".env"); */
 
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const REFRESH_KEY = process.env.REFRESH_KEY;

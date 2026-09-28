@@ -8,7 +8,12 @@ const limiter = require("./middlewares/rateLimiter")
 const cookieParser = require("cookie-parser")
 const startServer = require("./configs/server")
 
-process.loadEnvFile(".env")
+if (process.env.NODE_ENV !== "production") {
+  try {
+    process.loadEnvFile(".env");
+  } catch (err) {
+  }
+}
 const HOST = process.env?.HOST || '0.0.0.0'
 const PORT = process.env?.PORT || 8000
 
