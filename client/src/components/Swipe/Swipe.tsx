@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { leftArrow, rightArrow } from "../../helpers/test-swipe/test";
+
 
 interface SwipeProps {
   source: string[];
@@ -77,7 +77,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
   }, [index]);
 
   //console.log("car data in swipe: ",source)
-  const fixedSrc = source.map(i => i.slice(5))
+ // const fixedSrc = source.map(i => i.slice(5))
  // console.log("fixed source: ",fixedSrc)
   if (isImageFocused) {
     return (
@@ -85,7 +85,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
        
         <div className="flex-1 relative flex items-center justify-center p-4">
           <img
-            src={fixedSrc[index]}
+            src={source[index]}
             alt={`Image ${index}`}
             className="max-w-full max-h-full object-contain cursor-pointer rounded-2xl shadow-2xl border border-slate-800/60"
             onClick={() => setIsImageFocused(false)}
@@ -121,7 +121,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         {/* Thumbnail row at bottom */}
         <div className="bg-slate-900/90 border-t border-slate-800 p-4">
           <div className="flex gap-3 overflow-x-auto justify-center max-w-full">
-            {fixedSrc.map((src, i) => (
+            {source.map((src, i) => (
               <img
                 key={i}
                 src={src}
@@ -152,7 +152,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
-        {fixedSrc.map((src, i) => (
+        {source.map((src, i) => (
           <img
             key={i}
             src={src}
@@ -180,7 +180,7 @@ const Swipe: React.FC<SwipeProps> = ({ source, autoPlayInterval = 2000 }) => {
       </button>
 
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5 bg-slate-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-800/80">
-        {fixedSrc.map((_, i) => (
+        {source.map((_, i) => (
           <div
             key={i}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${

@@ -96,7 +96,7 @@ const CarDetail = () => {
       {/* Main Showcase Section */}
       <div className="grid lg:grid-cols-12 gap-8 items-start">
         {/* Gallery / Image Column */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-6 relative z-20">
           {/* Hero Main Image Showcase */}
           <div className="relative rounded-3xl overflow-hidden border border-slate-800 shadow-2xl group bg-slate-900">
             <img
@@ -129,7 +129,7 @@ const CarDetail = () => {
           )}
         </div>
 
-        <div className="lg:col-span-5 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+        <div className="lg:col-span-5 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6 relative z-10">
           <div>
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Car className="w-5 h-5 text-cyan-400" />
@@ -180,7 +180,7 @@ const CarDetail = () => {
                   <Tag className="w-4 h-4 text-cyan-400/80" /> {t("carDetail.price")}
                 </span>
                 <span className="px-3 py-1 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 font-bold text-xs text-right">
-                  {displayData?.requiredPrice}
+                  ${displayData?.requiredPrice}
                 </span>
               </div>
             )}

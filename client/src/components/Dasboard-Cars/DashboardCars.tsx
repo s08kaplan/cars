@@ -29,9 +29,9 @@ const DashboardCars: React.FC = () => {
   //console.log("isAuthorized, user",isAuthorized,user)
 
   const swipeImages: string[] = cars.map((car) =>
-    car.path.startsWith("http") ? car.path : `${baseUrl}${car.path}`,
+    car.path.startsWith("http") ? car.path : `${baseUrl}/${car.path}`,
   );
-  //console.log("cars data in dashboard cars comp. :", cars);
+  console.log("cars data in dashboard cars comp. :", cars);
   return (
     <div className={`${isAuthorized ? 'min-h-screen' : 'h-fit'} flex flex-col justify-start items-center py-12 px-4 space-y-10`}>
       <div className="w-full max-w-5xl}">
