@@ -58,6 +58,7 @@ app.use('/uploads', express.static(uploadPath));
 // res.getModelList():
 app.use(require('./middlewares/queryHandler'))
 
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes:
 
