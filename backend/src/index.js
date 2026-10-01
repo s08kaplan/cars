@@ -7,6 +7,8 @@ const { cors } = require("./configs/requiredBasics")
 const limiter = require("./middlewares/rateLimiter")
 const cookieParser = require("cookie-parser")
 const startServer = require("./configs/server")
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 if (process.env.NODE_ENV !== "production") {
   try {
