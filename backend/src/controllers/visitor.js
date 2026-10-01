@@ -20,8 +20,7 @@ module.exports = {
 
   create: async (req, res) => {
     const ip = req.clientIp || req.ip;
-    const parser = new UAParser();
-    parser.setUA(req.headers["user-agent"]);
+    const parser = new UAParser(req.headers["user-agent"]);
     const { browser, os, device } = parser.getResult();
 
     /* console.log(userAgent);
@@ -52,12 +51,11 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    const data = await Visitor.updateOne({ _id: req.params.id }, req.body);
+    const data = await Visitor.findByIdAndUpdate(req.params.id, req.body, { returnDocument: "after" });
 
     res.status(202).send({
       error: false,
       data,
-      new: await Visitor.findOne({ _id: req.params.id }),
     });
   },
 

@@ -3,7 +3,6 @@
 const { express } = require("../configs/requiredBasics")
 const auth = require("../controllers/auth")
 const authMiddleware = require("../middlewares/authentication")
-const getCurrentUser = require("../controllers/auth")
 
 const router = express.Router()
 

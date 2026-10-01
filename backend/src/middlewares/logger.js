@@ -9,8 +9,7 @@ if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir, { recursive: true });
 }
 
-const now = new Date()
-const today = now.toISOString().split('T')[0]
+const today = new Date().toISOString().split("T")[0];
 
 
 module.exports = morgan('combined', {

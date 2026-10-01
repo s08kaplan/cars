@@ -1,0 +1,333 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Car Dealership & Management System API",
+    "description": "Comprehensive API specification including User Management, Vehicle Inventory, Finance/Budgets, Messages, File Uploads, and Analytics.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+    "url": "https://cars-backend-hp2t.onrender.com/api",
+    "description": "Production Server (Render)"
+  },
+  {
+    "url": "http://localhost:4040/api",
+    "description": "Local Development Server"
+  }
+  ],
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "accessToken",
+        "description": "JWT Access Token stored inside HTTP-Only Cookie"
+      }
+    },
+    "schemas": {
+      "StandardError": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "boolean", "example": true },
+          "message": { "type": "string", "example": "Access denied / Invalid parameters" }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string", "example": "651f8a2b3c1d1e0012345678" },
+          "firstName": { "type": "string", "example": "John" },
+          "lastName": { "type": "string", "example": "Doe" },
+          "email": { "type": "string", "format": "email", "example": "john.doe@example.com" },
+          "contactNumber": { "type": "string", "example": "+15551234567" },
+          "role": { "type": "integer", "description": "Numeric role identifier", "example": 1 },
+          "roleLabel": { "type": "string", "example": "Admin" },
+          "image": { "type": "string", "example": "uploads/users/1700000000-avatar.png" },
+          "isDeleted": { "type": "boolean", "example": false }
+        }
+      },
+      "Car": {
+        "type": "object",
+        "required": ["brandName", "model", "typeOfCar", "year", "vehicleIdentificationNumber", "mileAge", "fuelType", "transmission", "boughtPrice"],
+        "properties": {
+          "_id": { "type": "string" },
+          "brandName": { "type": "string", "example": "TOYOTA" },
+          "model": { "type": "string", "example": "CAMRY" },
+          "typeOfCar": { "type": "string", "enum": ["SUV", "Sedan", "Hatchback"], "example": "Sedan" },
+          "year": { "type": "integer", "example": 2023 },
+          "vehicleIdentificationNumber": { "type": "string", "example": "1HGCR2F83HA000000" },
+          "color": { "type": "string", "example": "BLACK" },
+          "mileAge": { "type": "number", "example": 12500 },
+          "fuelType": { "type": "string", "enum": ["Petrol", "Diesel", "Electric", "Hybrid"], "example": "Hybrid" },
+          "transmission": { "type": "string", "enum": ["Automatic", "Manual"], "example": "Automatic" },
+          "boughtPrice": { "type": "number", "example": 22000 },
+          "requiredPrice": { "type": "number", "example": 26000 },
+          "soldPrice": { "type": "number", "example": 25500 },
+          "available": { "type": "boolean", "example": true },
+          "carStatus": { "type": "string", "enum": ["Sold", "Waiting", "Dealing", "Repair", "Cleaning"], "example": "Waiting" },
+          "image": { "type": "array", "items": { "type": "string" } },
+          "features": { "type": "array", "items": { "type": "string" }, "example": ["Leather Seats", "Sunroof", "Nav"] }
+        }
+      },
+      "Budget": {
+        "type": "object",
+        "required": ["type", "addedBy", "amount"],
+        "properties": {
+          "_id": { "type": "string" },
+          "type": { "type": "string", "enum": ["income", "expense"], "example": "income" },
+          "addedBy": { "type": "string", "example": "Admin" },
+          "amount": { "type": "number", "example": 5000 },
+          "explanation": { "type": "string", "example": "Car sale profit deposit" }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "required": ["firstName", "lastName", "email", "content"],
+        "properties": {
+          "_id": { "type": "string" },
+          "firstName": { "type": "string", "example": "Alice" },
+          "lastName": { "type": "string", "example": "Smith" },
+          "email": { "type": "string", "format": "email", "example": "alice@example.com" },
+          "phone": { "type": "string", "example": "+15559876543" },
+          "title": { "type": "string", "example": "Inquiry about Camry" },
+          "content": { "type": "string", "example": "Is the 2023 Toyota Camry still available?" },
+          "isRead": { "type": "boolean", "example": false }
+        }
+      },
+      "Upload": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "filename": { "type": "string" },
+          "path": { "type": "string" },
+          "originalName": { "type": "string" },
+          "mimetype": { "type": "string" },
+          "size": { "type": "integer" },
+          "type": { "type": "string" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Authenticate user & set JWT cookie",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": { "type": "string", "example": "admin@example.com" },
+                  "password": { "type": "string", "example": "Password123!" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful" },
+          "401": { "$ref": "#/components/schemas/StandardError" }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": ["Authentication"],
+        "summary": "Get authenticated user profile",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": { "description": "Current active user data" },
+          "401": { "$ref": "#/components/schemas/StandardError" }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Refresh expired JWT access token",
+        "responses": {
+          "200": { "description": "Token refreshed successfully" }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Clear authorization cookie & session",
+        "responses": {
+          "200": { "description": "Logged out successfully" }
+        }
+      }
+    },
+    "/api/cars": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "List cars with pagination & filtering",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20 } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Paginated list of vehicles" }
+        }
+      },
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a new vehicle listing (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/Car" } }
+          }
+        },
+        "responses": {
+          "201": { "description": "Vehicle entry created" },
+          "403": { "$ref": "#/components/schemas/StandardError" }
+        }
+      }
+    },
+    "/api/cars/{carId}": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "Retrieve specific car by ID",
+        "parameters": [{ "name": "carId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Car details" }, "404": { "$ref": "#/components/schemas/StandardError" } }
+      },
+      "put": {
+        "tags": ["Cars"],
+        "summary": "Update car record (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [{ "name": "carId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Car updated" } }
+      },
+      "delete": {
+        "tags": ["Cars"],
+        "summary": "Delete car listing (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [{ "name": "carId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "Car removed" } }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "List users (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "List of active users" } }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Register user with optional avatar image",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "contactNumber": { "type": "string" },
+                  "role": { "type": "integer" },
+                  "file": { "type": "string", "format": "binary" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "User created" } }
+      }
+    },
+    "/api/messages": {
+      "get": {
+        "tags": ["Messages"],
+        "summary": "Retrieve all customer messages (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "Message list" } }
+      },
+      "post": {
+        "tags": ["Messages"],
+        "summary": "Submit a public contact message",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Message" } } }
+        },
+        "responses": { "201": { "description": "Message submitted successfully" } }
+      }
+    },
+    "/api/messages/count": {
+      "get": {
+        "tags": ["Messages"],
+        "summary": "Get total message counts",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "Total message tally" } }
+      }
+    },
+    "/api/messages/unread": {
+      "get": {
+        "tags": ["Messages"],
+        "summary": "Get unread message queue",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "List of unread messages" } }
+      }
+    },
+    "/api/budgets": {
+      "get": {
+        "tags": ["Budgets"],
+        "summary": "List financial entries (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "List of budget items" } }
+      },
+      "post": {
+        "tags": ["Budgets"],
+        "summary": "Create new income/expense record (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Budget" } } }
+        },
+        "responses": { "201": { "description": "Budget record created" } }
+      }
+    },
+    "/api/uploads": {
+      "get": {
+        "tags": ["Uploads"],
+        "summary": "List general uploaded assets",
+        "responses": { "200": { "description": "File upload catalog" } }
+      },
+      "post": {
+        "tags": ["Uploads"],
+        "summary": "Upload multiple assets (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": { "type": "array", "items": { "type": "string", "format": "binary" } }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Files successfully uploaded" } }
+      }
+    },
+    "/api/visitors": {
+      "get": {
+        "tags": ["Visitors"],
+        "summary": "List recorded site traffic/visitors (Admin)",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "Visitor logs" } }
+      }
+    }
+  }
+}

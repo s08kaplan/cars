@@ -9,19 +9,19 @@ const MessageSchema = new Schema(
     firstName: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, "First name is required."],
     },
 
     lastName: {
       type: String,
       trim: true,
-      required: true,
+     required: [true, "Last name is required."],
     },
 
     email: {
       type: String,
       trim: true,
-      required: [true, "Email field must be required"],
+      required: [true, "Email field is required"],
       validate: [
         (email) => {
           const regexEmailCheck =

@@ -5,12 +5,16 @@ const router = express.Router()
 
 const message = require("../controllers/message");
 const isAdmin = require("../middlewares/authorized")
-//router.use(isAdmin)
+router.use(isAdmin)
 
-router.route("/").get(message.list).post(message.create);
-router.route("/count").get(message.count);
-router.route("/unread").get(message.unRead);
-router.route("/recent").get(message.recent);
+router.get("/count", isAdmin, message.count);
+router.get("/unread", isAdmin, message.unRead);
+router.get("/recent", isAdmin, message.recent);
+
+router.route("/")
+.get(message.list)
+.post(message.create);
+
 
 
 router

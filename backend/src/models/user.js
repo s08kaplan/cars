@@ -10,7 +10,6 @@ const { randomBytes } = require("node:crypto");
 const {
   emailValidate,
   passwordEncrypt,
-  encryptFunc,
 } = require("../helpers/validationHelpers");
 
 const UserSchema = new Schema(
@@ -18,13 +17,13 @@ const UserSchema = new Schema(
     firstName: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, "First name is required."],
     },
 
     lastName: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, "Last name is required."],
     },
 
     email: {
@@ -37,7 +36,7 @@ const UserSchema = new Schema(
     contactNumber: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, "Contact number is required."],
       unique: true,
     },
 
@@ -45,7 +44,7 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      select: false, 
+      select: false,
     },
 
     image: {
@@ -55,7 +54,7 @@ const UserSchema = new Schema(
 
     role: {
       type: String,
-      required: true,
+      required: [true, "Role is required."],
       enum: {
         values: Object.keys(userRoles).map((key) => Number(key)),
         message: "Please enter a valid role",
@@ -73,7 +72,6 @@ const UserSchema = new Schema(
       default: () => randomBytes(16).toString("hex"),
       select: false, // Hidden by default
     },
-    
   },
   {
     collection: "users",
@@ -91,14 +89,11 @@ UserSchema.set("toObject", { virtuals: true });
 
 UserSchema.pre("save", async function () {
   if (this.isModified("password")) {
-   
     const salt = randomBytes(16).toString("hex");
     this.salt = salt;
 
-
     this.password = passwordEncrypt(this.password, salt);
   }
- 
 });
 
 module.exports = model("User", UserSchema);

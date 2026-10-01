@@ -5,7 +5,8 @@ const budget = require("../controllers/budget")
 const { express } = require("../configs/requiredBasics")
 const router = express.Router()
 
-/* const isAdmin = require("../middlewares/authorized") */
+ const isAdmin = require("../middlewares/authorized")
+ router.use(isAdmin);
  
 router.route("/")
 .get(budget.list)
